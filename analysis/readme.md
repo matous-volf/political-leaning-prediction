@@ -73,6 +73,6 @@ The results are shown in the table:
 The percentages in each row mean the portion of the intersection over all the articles in the dataset in the
 corresponding row. For example, the CommonCrawl news articles dataset has an intersection of 2514 articles with the
 Article bias prediction dataset, which is 0.6 % of the CommonCrawl dataset. In the Article bias detection dataset row,
-the intersection size is the same number (2514) but that equals to 6.7 % of that dataset.
+the intersection size is the same number (2514), but that equals to 6.7 % of that dataset.
 
 The measurement can be replicated using [this notebook](dataset_intersection.ipynb).
