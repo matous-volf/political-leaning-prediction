@@ -93,7 +93,7 @@ class DistilBertPoliticalBias(Model):
         ]
 
 
-class BertPoliticalBiasFineTune(Model):
+class BertPoliticalBiasFinetune(Model):
     def __init__(self):
         super().__init__(
             BertTokenizer.from_pretrained("bert-base-uncased"),
@@ -127,6 +127,6 @@ def get_models() -> List[Model]:
         PoliticalBiasBert(),
         PoliticalBiasPredictionAllsidesDeberta(),
         DistilBertPoliticalBias(),
-        BertPoliticalBiasFineTune(),
+        BertPoliticalBiasFinetune(),
         DistilBertPoliticalFinetune()
     ]
