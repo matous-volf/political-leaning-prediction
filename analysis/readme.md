@@ -76,3 +76,79 @@ Article bias prediction dataset, which is 0.6 % of the CommonCrawl dataset. In t
 the intersection size is the same number (2514), but that equals to 6.7 % of that dataset.
 
 The measurement can be replicated using [this notebook](dataset_intersection.ipynb).
+
+## Model evaluation
+
+The DistilBertPoliticalBias model is in fact trained to predict conservative vs. liberal leaning. That output has been
+mapped to right vs. left respectively. Moreover, it uses a 5-level spectrum, which has been reduced to a 3-level one.
+
+The BertPoliticalBiasFinetune model does not support a center leaning class, and so has been only tested on left or
+right leaning articles.
+
+The datasets have been downsampled to 1 000 articles each using systematic sampling (taking rows at a regular interval).
+
+The models have a maximum length of tokens passed in. For this reason, two measurements have been conducted. Their
+resulting accuracies are shown in the two tables below and can be replicated
+using [this notebook](model_evaluation.ipynb).
+
+### 1. With tokenizer truncation enabled
+
+Tokenizer truncation enables the models to process texts longer than the limit (or at least a part of the text).
+
+<table>
+  <tr>
+    <th></th>
+    <th>CommonCrawl news articles</th>
+    <th>Article bias prediction</th>
+    <th>Qbias</th>
+    <th>Webis-News-Bias-20</th>
+    <th>Webis-Bias-Flipper-18</th>
+  </tr>
+  <tr>
+    <th>PoliticalBiasBert</th>
+    <td>194/1000 (19.4 %)</td>
+    <td>676/1000 (67.6 %)</td>
+    <td>399/1000 (39.9 %)</td>
+    <td>530/1000 (53.0 %)</td>
+    <td>449/1000 (44.9 %)</td>
+  </tr>
+  <tr>
+    <th>PoliticalBiasPredictionAllsidesDeberta</th>
+    <td>624/1000 (62.4 %)</td>
+    <td>695/1000 (69.5 %)</td>
+    <td>528/1000 (52.8 %)</td>
+    <td>772/1000 (77.2 %)</td>
+    <td>659/1000 (65.9 %)</td>
+  </tr>
+  <tr>
+    <th>DistilBertPoliticalBias</th>
+    <td>295/1000 (29.5 %)</td>
+    <td>364/1000 (36.4 %)</td>
+    <td>318/1000 (31.8 %)</td>
+    <td>390/1000 (39.0 %)</td>
+    <td>387/1000 (38.7 %)</td>
+  </tr>
+  <tr>
+    <th>BertPoliticalBiasFinetune</th>
+    <td>581/1000 (58.1 %)</td>
+    <td>477/1000 (47.7 %)</td>
+    <td>558/1000 (55.8 %)</td>
+    <td>561/1000 (56.1 %)</td>
+    <td>411/1000 (41.1 %)</td>
+  </tr>
+  <tr>
+    <th>DistilBertPoliticalFinetune</th>
+    <td>403/1000 (40.3 %)</td>
+    <td>339/1000 (33.9 %)</td>
+    <td>460/1000 (46.0 %)</td>
+    <td>430/1000 (43.0 %)</td>
+    <td>367/1000 (36.7 %)</td>
+  </tr>
+</table>
+
+### 2. With tokenizer truncation disabled
+
+Disabling the truncation results in some of the article bodies being too long to pass into some of the models, and so
+getting skipped.
+
+*Work in progress.*
