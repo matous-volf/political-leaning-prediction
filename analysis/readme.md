@@ -151,4 +151,53 @@ Tokenizer truncation enables the models to process texts longer than the limit (
 Disabling the truncation results in some of the article bodies being too long to pass into some of the models, and so
 getting skipped.
 
-*Work in progress.*
+<table>
+  <tr>
+    <th></th>
+    <th>CommonCrawl news articles</th>
+    <th>Article bias prediction</th>
+    <th>Qbias</th>
+    <th>Webis-News-Bias-20</th>
+    <th>Webis-Bias-Flipper-18</th>
+  </tr>
+  <tr>
+    <th>PoliticalBiasBert</th>
+    <td>97/346 (28.03 %)</td>
+    <td>69/102 (67.65 %)</td>
+    <td>420/1000 (42.0 %)</td>
+    <td>89/180 (49.44 %)</td>
+    <td>102/185 (55.14 %)</td>
+  </tr>
+  <tr>
+    <th>PoliticalBiasPredictionAllsidesDeberta</th>
+    <td>613/1000 (61.3 %)</td>
+    <td>684/1000 (68.4 %)</td>
+    <td>535/1000 (53.5 %)</td>
+    <td>764/1000 (76.4 %)</td>
+    <td>678/1000 (67.8 %)</td>
+  </tr>
+  <tr>
+    <th>DistilBertPoliticalBias</th>
+    <td>107/378 (28.31 %)</td>
+    <td>56/118 (47.46 %)</td>
+    <td>357/1000 (35.7 %)</td>
+    <td>110/191 (57.59 %)</td>
+    <td>113/206 (54.85 %)</td>
+  </tr>
+  <tr>
+    <th>BertPoliticalBiasFinetune</th>
+    <td>178/337 (52.82 %)</td>
+    <td>49/131 (37.4 %)</td>
+    <td>557/1000 (55.7 %)</td>
+    <td>67/183 (36.61 %)</td>
+    <td>95/247 (38.46 %)</td>
+  </tr>
+  <tr>
+    <th>DistilBertPoliticalFinetune</th>
+    <td>137/377 (36.34 %)</td>
+    <td>33/117 (28.21 %)</td>
+    <td>446/1000 (44.6 %)</td>
+    <td>50/189 (26.46 %)</td>
+    <td>54/194 (27.84 %)</td>
+  </tr>
+</table>
