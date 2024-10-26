@@ -4,11 +4,11 @@ from typing import List
 
 import torch
 from transformers import (
-    AutoTokenizer,
     AutoModelForSequenceClassification,
+    AutoTokenizer,
+    BertTokenizer,
     DistilBertForSequenceClassification,
     RobertaTokenizer,
-    BertTokenizer,
     pipeline,
 )
 
