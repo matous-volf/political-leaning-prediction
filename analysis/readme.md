@@ -83,7 +83,8 @@ The DistilBertPoliticalBias model is in fact trained to predict conservative vs.
 mapped to right vs. left respectively. Moreover, it uses a 5-level spectrum, which has been reduced to a 3-level one.
 
 The BertPoliticalBiasFinetune model does not support a center leaning class, and so has been only tested on left or
-right leaning articles.
+right leaning articles. To avoid misinterpreting the resulting accuracy (when comparing to the other models), it is
+included in a separate table.
 
 The datasets have been downsampled to 1 000 articles each using systematic sampling (taking rows at a regular interval).
 
@@ -129,20 +130,31 @@ Tokenizer truncation enables the models to process texts longer than the limit (
     <td>387/1000 (38.7 %)</td>
   </tr>
   <tr>
-    <th>BertPoliticalBiasFinetune</th>
-    <td>581/1000 (58.1 %)</td>
-    <td>477/1000 (47.7 %)</td>
-    <td>558/1000 (55.8 %)</td>
-    <td>561/1000 (56.1 %)</td>
-    <td>411/1000 (41.1 %)</td>
-  </tr>
-  <tr>
     <th>DistilBertPoliticalFinetune</th>
     <td>403/1000 (40.3 %)</td>
     <td>339/1000 (33.9 %)</td>
     <td>460/1000 (46.0 %)</td>
     <td>430/1000 (43.0 %)</td>
     <td>367/1000 (36.7 %)</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th></th>
+    <th>CommonCrawl news articles</th>
+    <th>Article bias prediction</th>
+    <th>Qbias</th>
+    <th>Webis-News-Bias-20</th>
+    <th>Webis-Bias-Flipper-18</th>
+  </tr>
+  <tr>
+    <th>BertPoliticalBiasFinetune</th>
+    <td>581/1000 (58.1 %)</td>
+    <td>477/1000 (47.7 %)</td>
+    <td>558/1000 (55.8 %)</td>
+    <td>561/1000 (56.1 %)</td>
+    <td>411/1000 (41.1 %)</td>
   </tr>
 </table>
 
@@ -185,19 +197,30 @@ getting skipped.
     <td>113/206 (54.85 %)</td>
   </tr>
   <tr>
-    <th>BertPoliticalBiasFinetune</th>
-    <td>178/337 (52.82 %)</td>
-    <td>49/131 (37.4 %)</td>
-    <td>557/1000 (55.7 %)</td>
-    <td>67/183 (36.61 %)</td>
-    <td>95/247 (38.46 %)</td>
-  </tr>
-  <tr>
     <th>DistilBertPoliticalFinetune</th>
     <td>137/377 (36.34 %)</td>
     <td>33/117 (28.21 %)</td>
     <td>446/1000 (44.6 %)</td>
     <td>50/189 (26.46 %)</td>
     <td>54/194 (27.84 %)</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th></th>
+    <th>CommonCrawl news articles</th>
+    <th>Article bias prediction</th>
+    <th>Qbias</th>
+    <th>Webis-News-Bias-20</th>
+    <th>Webis-Bias-Flipper-18</th>
+  </tr>
+  <tr>
+    <th>BertPoliticalBiasFinetune</th>
+    <td>178/337 (52.82 %)</td>
+    <td>49/131 (37.4 %)</td>
+    <td>557/1000 (55.7 %)</td>
+    <td>67/183 (36.61 %)</td>
+    <td>95/247 (38.46 %)</td>
   </tr>
 </table>
