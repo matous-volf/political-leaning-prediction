@@ -14,16 +14,11 @@ DATASETS_DIRECTORY = "../datasets/preprocessed"
 
 
 def get_datasets() -> List[Dataset]:
-    return sorted(
-        map(
-            lambda filename: Dataset(
-                os.path.splitext(filename)[0],
-                pd.read_parquet(open(os.path.join(DATASETS_DIRECTORY, filename), "rb")),
-            ),
-            filter(
-                lambda filename: filename.endswith(".parquet"),
-                os.listdir(DATASETS_DIRECTORY),
-            ),
-        ),
-        key=lambda dataset: dataset.name,
-    )
+    datasets = []
+    for filename in filter(
+        lambda f: f.endswith(".parquet"), os.listdir(DATASETS_DIRECTORY)
+    ):
+        with open(os.path.join(DATASETS_DIRECTORY, filename), "rb") as file:
+            dataset = Dataset(os.path.splitext(filename)[0], pd.read_parquet(file))
+            datasets.append(dataset)
+    return sorted(datasets, key=lambda dataset: dataset.name)
