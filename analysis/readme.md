@@ -86,6 +86,12 @@ The BertPoliticalBiasFinetune model does not support a center leaning class, and
 right leaning articles. To avoid misinterpreting the resulting accuracy (when comparing to the other models), it is
 included in a separate table.
 
+According to their description on Hugging Face, PoliticalBiasPredictionAllsidesDeberta and (probably) PoliticalBiasBert
+have been trained on the Article bias prediction dataset. This get reflected by the results: it is on this dataset that
+PoliticalBiasBert scores the best (67.6 %). PoliticalBiasPredictionAllsidesDeberta scores the best on the
+Webis-News-Bias-20 dataset which contains 48.2 % of the Article bias prediction dataset (as measured in the intersection
+analysis).
+
 The datasets have been downsampled to 1 000 articles each using systematic sampling (taking rows at a regular interval).
 
 The models have a maximum length of tokens passed in. For this reason, two measurements have been conducted. Their
