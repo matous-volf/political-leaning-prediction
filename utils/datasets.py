@@ -5,7 +5,7 @@ import pandas as pd
 
 
 class Dataset:
-    def __init__(self, name: str, dataframe: pd.DataFrame):
+    def __init__(self, name: str, dataframe: pd.DataFrame) -> None:
         self.name = name
         self.dataframe = dataframe
 

@@ -26,7 +26,7 @@ class Model(ABC):
         model,
         supports_center_leaning: bool,
         model_max_length: int | None = None,
-    ):
+    ) -> None:
         self.tokenizer = tokenizer
         self.model = model
         self.model_max_length = (
@@ -63,7 +63,7 @@ class Model(ABC):
 
 
 class PoliticalBiasBert(Model):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             AutoTokenizer.from_pretrained("bert-base-cased"),
             AutoModelForSequenceClassification.from_pretrained(
@@ -81,7 +81,7 @@ class PoliticalBiasBert(Model):
 
 
 class PoliticalBiasPredictionAllsidesDeberta(Model):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             AutoTokenizer.from_pretrained(
                 "premsa/political-bias-prediction-allsides-DeBERTa"
@@ -106,7 +106,7 @@ class PoliticalBiasPredictionAllsidesDeberta(Model):
 
 
 class DistilBertPoliticalBias(Model):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             RobertaTokenizer.from_pretrained("cajcodes/DistilBERT-PoliticalBias"),
             DistilBertForSequenceClassification.from_pretrained(
@@ -134,7 +134,7 @@ class DistilBertPoliticalBias(Model):
 
 
 class BertPoliticalBiasFinetune(Model):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             BertTokenizer.from_pretrained("bert-base-uncased"),
             AutoModelForSequenceClassification.from_pretrained(
@@ -150,7 +150,7 @@ class BertPoliticalBiasFinetune(Model):
 
 
 class DistilBertPoliticalFinetune(Model):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             AutoTokenizer.from_pretrained("harshal-11/DistillBERT-Political-Finetune"),
             AutoModelForSequenceClassification.from_pretrained(
