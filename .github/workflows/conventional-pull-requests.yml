@@ -1,0 +1,23 @@
+name: conventional pull requests
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, edited ]
+
+permissions: { }
+
+jobs:
+  build:
+    name: conventional pull requests
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      pull-requests: read
+      packages: read
+      statuses: write
+    steps:
+      - name: conventional pull requests check
+        uses: ytanikin/PRConventionalCommits@1.1.0
+        with:
+          task_types: '["build","chore","ci","docs","feat","fix","perf","refactor","revert","style","test"]'
+          add_label: 'false'
