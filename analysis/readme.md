@@ -2,7 +2,7 @@
 
 ## Dataset intersection
 
-The intersections of articles between the datasets has been measured by comparing the article titles. If two articles
+The intersections of articles between the datasets have been measured by comparing the article titles. If two articles
 have the same title (trimmed of leading and trailing whitespace), they are considered the same.
 
 An exception is the CommonCrawl dataset, which doesn't have a title column. So it is necessary to compare the bodies in
