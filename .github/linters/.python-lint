@@ -9,8 +9,8 @@ jobs=0
 # does not support installing dependencies as it runs
 disable=
     import-error,
-    missing-module-docstring
-    missing-class-docstring
-    missing-function-docstring
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
     too-few-public-methods
 
