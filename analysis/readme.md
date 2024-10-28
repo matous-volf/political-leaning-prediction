@@ -103,46 +103,84 @@ using [this notebook](model_evaluation.ipynb).
 Tokenizer truncation enables the models to process texts longer than the limit (or at least a part of the text).
 
 <table>
-  <tr>
-    <th></th>
-    <th>CommonCrawl news articles</th>
-    <th>Article bias prediction</th>
-    <th>Qbias</th>
-    <th>Webis-News-Bias-20</th>
-    <th>Webis-Bias-Flipper-18</th>
-  </tr>
-  <tr>
-    <th>PoliticalBiasBert</th>
-    <td>194/1000 (19.4 %)</td>
-    <td>676/1000 (67.6 %)</td>
-    <td>399/1000 (39.9 %)</td>
-    <td>530/1000 (53.0 %)</td>
-    <td>449/1000 (44.9 %)</td>
-  </tr>
-  <tr>
-    <th>PoliticalBiasPredictionAllsidesDeberta</th>
-    <td>624/1000 (62.4 %)</td>
-    <td>695/1000 (69.5 %)</td>
-    <td>528/1000 (52.8 %)</td>
-    <td>772/1000 (77.2 %)</td>
-    <td>659/1000 (65.9 %)</td>
-  </tr>
-  <tr>
-    <th>DistilBertPoliticalBias</th>
-    <td>295/1000 (29.5 %)</td>
-    <td>364/1000 (36.4 %)</td>
-    <td>318/1000 (31.8 %)</td>
-    <td>390/1000 (39.0 %)</td>
-    <td>387/1000 (38.7 %)</td>
-  </tr>
-  <tr>
-    <th>DistilBertPoliticalFinetune</th>
-    <td>403/1000 (40.3 %)</td>
-    <td>339/1000 (33.9 %)</td>
-    <td>460/1000 (46.0 %)</td>
-    <td>430/1000 (43.0 %)</td>
-    <td>367/1000 (36.7 %)</td>
-  </tr>
+    <tr>
+        <th></th>
+        <th>CommonCrawl news articles</th>
+        <th>Article bias prediction</th>
+        <th>Qbias</th>
+        <th>Webis-News-Bias-20</th>
+        <th>Webis-Bias-Flipper-18</th>
+        <th>GPT-4 political bias</th>
+    </tr>
+    <tr>
+        <th>PoliticalBiasBert</th>
+        <td>194/1000 (19.4 %)</td>
+        <td>676/1000 (67.6 %)</td>
+        <td>399/1000 (39.9 %)</td>
+        <td>530/1000 (53.0 %)</td>
+        <td>449/1000 (44.9 %)</td>
+        <td>190/612 (31.05 %)</td>
+    </tr>
+    <tr>
+        <th>PoliticalBiasPredictionAllsidesDeberta</th>
+        <td>624/1000 (62.4 %)</td>
+        <td>695/1000 (69.5 %)</td>
+        <td>528/1000 (52.8 %)</td>
+        <td>772/1000 (77.2 %)</td>
+        <td>659/1000 (65.9 %)</td>
+        <td>188/612 (30.72 %)</td>
+    </tr>
+    <tr>
+        <th>DistilBertPoliticalBias</th>
+        <td>295/1000 (29.5 %)</td>
+        <td>364/1000 (36.4 %)</td>
+        <td>318/1000 (31.8 %)</td>
+        <td>390/1000 (39.0 %)</td>
+        <td>387/1000 (38.7 %)</td>
+        <td>502/612 (82.03 %)</td>
+    </tr>
+    <tr>
+        <th>DistilBertPoliticalFinetune</th>
+        <td>403/1000 (40.3 %)</td>
+        <td>339/1000 (33.9 %)</td>
+        <td>460/1000 (46.0 %)</td>
+        <td>430/1000 (43.0 %)</td>
+        <td>367/1000 (36.7 %)</td>
+        <td>271/612 (44.28 %)</td>
+    </tr>
+    <tr>
+        <th>BertFinetuneCustom 4500</th>
+        <td>505/1000 (50.5 %)</td>
+        <td>737/1000 (73.7 %)</td>
+        <td>445/1000 (44.5 %)</td>
+        <td>593/1000 (59.3 %)</td>
+        <td>505/1000 (50.5 %)</td>
+    </tr>
+    <tr>
+        <th>BertFinetuneCustom 7000</th>
+        <td>520/1000 (52.0 %)</td>
+        <td>779/1000 (77.9 %)</td>
+        <td>415/1000 (41.5 %)</td>
+        <td>611/1000 (61.1 %)</td>
+        <td>552/1000 (55.2 %)</td>
+    </tr>
+    <tr>
+        <th>BertFinetuneCustom 9500</th>
+        <td>513/1000 (51.3 %)</td>
+        <td>830/1000 (83.0 %)</td>
+        <td>450/1000 (45.0 %)</td>
+        <td>609/1000 (60.9 %)</td>
+        <td>567/1000 (56.7 %)</td>
+    </tr>
+    <tr>
+        <th>BertFinetuneCustom 11265</th>
+        <td>513/1000 (51.3 %)</td>
+        <td>848/1000 (84.8 %)</td>
+        <td>443/1000 (44.3 %)</td>
+        <td>631/1000 (63.1 %)</td>
+        <td>583/1000 (58.3 %)</td>
+        <td>190/612 (31.05 %)</td>
+    </tr>
 </table>
 
 <table>
@@ -153,6 +191,7 @@ Tokenizer truncation enables the models to process texts longer than the limit (
     <th>Qbias</th>
     <th>Webis-News-Bias-20</th>
     <th>Webis-Bias-Flipper-18</th>
+    <th>GPT-4 political bias</th>
   </tr>
   <tr>
     <th>BertPoliticalBiasFinetune</th>
@@ -161,6 +200,7 @@ Tokenizer truncation enables the models to process texts longer than the limit (
     <td>558/1000 (55.8 %)</td>
     <td>561/1000 (56.1 %)</td>
     <td>411/1000 (41.1 %)</td>
+    <td>294/612 (48.04 %)</td>
   </tr>
 </table>
 
