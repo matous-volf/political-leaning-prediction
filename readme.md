@@ -13,6 +13,8 @@
   Generation Conference (INLG 2018). Zenodo. <https://doi.org/10.5281/zenodo.3250686>
 - Chen, W.-F., Al-Khatib, K., Wachsmuth, H., & Stein, B. (2020). Webis-News-Bias-20 [Data set].
   Zenodo. <https://doi.org/10.5281/zenodo.8321586>
+- Jones, C. (2024). Political bias dataset: A synthetic dataset for bias detection and reduction. Retrieved
+from https://huggingface.co/datasets/cajcodes/political-bias
 
 ## Referenced models
 
