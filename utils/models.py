@@ -13,6 +13,9 @@ from transformers import (
 )
 
 
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
 class Leaning(Enum):
     LEFT = "left"
     CENTER = "center"
@@ -27,6 +30,7 @@ class Model(ABC):
         supports_center_leaning: bool,
         model_max_length: int | None = None,
     ) -> None:
+        model.to(DEVICE)
         self.tokenizer = tokenizer
         self.model = model
         self.model_max_length = (
@@ -55,7 +59,7 @@ class Model(ABC):
         if return_tensors:
             tokenizer_args["return_tensors"] = return_tensors
 
-        return self.tokenizer(article_body, **tokenizer_args)
+        return self.tokenizer(article_body, **tokenizer_args).to(DEVICE)
 
     def get_output(self, tokens):
         with torch.no_grad():
@@ -95,7 +99,10 @@ class PoliticalBiasPredictionAllsidesDeberta(Model):
 
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
         pipe = pipeline(
-            "text-classification", model=self.model, tokenizer=self.tokenizer
+            "text-classification",
+            model=self.model,
+            tokenizer=self.tokenizer,
+            device=DEVICE,
         )
         output = pipe(article_body)
         return {
