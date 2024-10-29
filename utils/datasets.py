@@ -21,4 +21,4 @@ def get_datasets() -> List[Dataset]:
         with open(os.path.join(DATASETS_DIRECTORY, filename), "rb") as file:
             dataset = Dataset(os.path.splitext(filename)[0], pd.read_parquet(file))
             datasets.append(dataset)
-    return sorted(datasets, key=lambda dataset: dataset.name)
+    return sorted(datasets, key=lambda dataset: -len(dataset.dataframe))
