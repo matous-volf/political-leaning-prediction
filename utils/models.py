@@ -1,6 +1,7 @@
+import os
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import List
+from typing import Generator
 
 import torch
 from transformers import (
@@ -12,6 +13,7 @@ from transformers import (
     pipeline,
 )
 
+from utils.base_directory import BASE_DIRECTORY
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -175,11 +177,55 @@ class DistilBertPoliticalFinetune(Model):
         ]
 
 
-def get_models() -> List[Model]:
-    return [
+class CustomModel(Model):
+    def __init__(
+        self, model_name: str, tokenizer_name: str, model_max_length: int
+    ) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained(tokenizer_name),
+            AutoModelForSequenceClassification.from_pretrained(
+                BASE_DIRECTORY / "models_custom" / model_name
+            ),
+            True,
+            model_max_length,
+        )
+        self.name = model_name
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(article_body, truncate_tokens)
+        output = self.get_output(tokens)
+        print(output)
+        return [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT][
+            torch.argmax(output.logits, dim=-1)
+        ]
+
+
+def get_models() -> Generator[Model, None, None]:
+    custom_model_tokenizer_names = [
+        "microsoft/deberta-v3-base",
+        "FacebookAI/roberta-base",
+        "google-bert/bert-base-cased",
+    ]
+    custom_models_max_length = 512
+
+    for model, tokenizer_name in zip(
+        os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark"),
+        custom_model_tokenizer_names,
+    ):
+        for dataset in sorted(
+            os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark" / model)
+        ):
+            yield CustomModel(
+                f"dataset_benchmark/{model}/{dataset}",
+                tokenizer_name,
+                custom_models_max_length,
+            )
+
+    for model in [
         PoliticalBiasBert(),
         PoliticalBiasPredictionAllsidesDeberta(),
         DistilBertPoliticalBias(),
         BertPoliticalBiasFinetune(),
         DistilBertPoliticalFinetune(),
-    ]
+    ]:
+        yield model
