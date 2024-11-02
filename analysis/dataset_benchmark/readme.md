@@ -4,8 +4,7 @@ From each dataset, a sample of 1 000 articles (except for the GPT-4 political bi
 taken while ensuring an equal distribution of leaning and systematically sampling by the body length. Several models
 have been fine-tuned separately on each of these samples to compare the suitability of the datasets for training.
 
-The fine-tuned models are stored in [this directory](/models_custom/dataset_benchmark) and can be reproduced using
-[this notebook](notebook.ipynb).
+The fine-tuned models can be reproduced using [this notebook](notebook.ipynb).
 
 Then the models have been evaluated using the methodology prescribed in [this document](../model_evaluation) while the
 datasets have been sampled to 1 000 articles each. The resulting accuracies are recorded in the tables below, rows being
