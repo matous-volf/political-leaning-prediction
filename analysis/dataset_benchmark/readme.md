@@ -15,7 +15,7 @@ The results on the dataset each model has been fine-tuned on (the diagonal) shou
 fine-tuning sample (1 000 articles) is a different portion of each dataset. That said, smaller datasets have a greater
 chance of the same articles appearing both in fine-tuning and in evaluation, making the prediction easier for the model.
 
-## BERT base model (cased)
+## BERT base (cased)
 
 <table>
     <tr>

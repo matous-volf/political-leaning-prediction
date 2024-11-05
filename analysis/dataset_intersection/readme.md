@@ -12,8 +12,8 @@ the second article contains it. Slicing the middle is considered optimal, as tha
 of a scraping mismatch. Still, this method only gives a rough estimate of the true intersection – for example, there are
 instances of false positive matches caused by two articles both citing one politician's statement in their middle.
 
-Beforehand, both the titles and the bodies are stripped of any non-letter characters (even whitespace), so
-that irrelevant text discrepancies don't manifest.
+Beforehand, both the titles and the bodies have been stripped of any non-letter characters (even whitespace), so that
+irrelevant text discrepancies don't manifest.
 
 The results are recorded in the table below and can be replicated using [this notebook](notebook.ipynb).
 
