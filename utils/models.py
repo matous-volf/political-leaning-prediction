@@ -200,7 +200,18 @@ class CustomModel(Model):
         ]
 
 
-def get_models() -> Generator[Model, None, None]:
+def get_existing_models() -> Generator[Model, None, None]:
+    for model in [
+        PoliticalBiasBert(),
+        PoliticalBiasPredictionAllsidesDeberta(),
+        DistilBertPoliticalBias(),
+        BertPoliticalBiasFinetune(),
+        DistilBertPoliticalFinetune(),
+    ]:
+        yield model
+
+
+def get_dataset_benchmark_models() -> Generator[Model, None, None]:
     custom_model_tokenizer_names = [
         "microsoft/deberta-v3-base",
         "FacebookAI/roberta-base",
@@ -220,12 +231,3 @@ def get_models() -> Generator[Model, None, None]:
                 tokenizer_name,
                 custom_models_max_length,
             )
-
-    for model in [
-        PoliticalBiasBert(),
-        PoliticalBiasPredictionAllsidesDeberta(),
-        DistilBertPoliticalBias(),
-        BertPoliticalBiasFinetune(),
-        DistilBertPoliticalFinetune(),
-    ]:
-        yield model
