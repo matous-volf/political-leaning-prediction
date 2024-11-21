@@ -201,14 +201,13 @@ class CustomModel(Model):
 
 
 def get_existing_models() -> Generator[Model, None, None]:
-    for model in [
+    yield from [
         PoliticalBiasBert(),
         PoliticalBiasPredictionAllsidesDeberta(),
         DistilBertPoliticalBias(),
         BertPoliticalBiasFinetune(),
         DistilBertPoliticalFinetune(),
-    ]:
-        yield model
+    ]
 
 
 def get_dataset_benchmark_models() -> Generator[Model, None, None]:
