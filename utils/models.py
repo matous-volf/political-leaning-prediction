@@ -213,7 +213,6 @@ def get_existing_models() -> Generator[Model, None, None]:
 
 def get_dataset_benchmark_models() -> Generator[Model, None, None]:
     custom_model_tokenizer_names = [
-        "microsoft/deberta-v3-base",
         "FacebookAI/roberta-base",
         "google-bert/bert-base-cased",
     ]
