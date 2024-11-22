@@ -3,6 +3,8 @@ from typing import List
 
 import pandas as pd
 
+from utils.base_directory import BASE_DIRECTORY
+
 
 class Dataset:
     def __init__(self, name: str, dataframe: pd.DataFrame) -> None:
@@ -10,7 +12,7 @@ class Dataset:
         self.dataframe = dataframe
 
 
-DATASETS_DIRECTORY = "../datasets/preprocessed"
+DATASETS_DIRECTORY = BASE_DIRECTORY / "datasets" / "preprocessed"
 
 
 def get_datasets() -> List[Dataset]:
@@ -21,4 +23,4 @@ def get_datasets() -> List[Dataset]:
         with open(os.path.join(DATASETS_DIRECTORY, filename), "rb") as file:
             dataset = Dataset(os.path.splitext(filename)[0], pd.read_parquet(file))
             datasets.append(dataset)
-    return sorted(datasets, key=lambda dataset: dataset.name)
+    return sorted(datasets, key=lambda dataset: -len(dataset.dataframe))

@@ -3,6 +3,8 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/datasets/raw/article_bias_prediction" />
+      <excludeFolder url="file://$MODULE_DIR$/datasets/raw/commoncrawl_news_articles" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.12 (political-leaning-prediction)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
