@@ -199,7 +199,6 @@ class CustomModel(Model):
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
         tokens = self.get_tokens(article_body, truncate_tokens)
         output = self.get_output(tokens)
-        print(output)
         return [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT][
             torch.argmax(output.logits, dim=-1)
         ]
