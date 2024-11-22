@@ -17,6 +17,11 @@ from utils.base_directory import BASE_DIRECTORY
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+dataset_benchmark_model_names = [
+    "FacebookAI/roberta-base",
+    "google-bert/bert-base-cased",
+]
+
 
 class Leaning(Enum):
     LEFT = "left"
@@ -211,15 +216,11 @@ def get_existing_models() -> Generator[Model, None, None]:
 
 
 def get_dataset_benchmark_models() -> Generator[Model, None, None]:
-    custom_model_tokenizer_names = [
-        "FacebookAI/roberta-base",
-        "google-bert/bert-base-cased",
-    ]
     custom_models_max_length = 512
 
     for model, tokenizer_name in zip(
         os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark"),
-        custom_model_tokenizer_names,
+        dataset_benchmark_model_names,
     ):
         for dataset in sorted(
             os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark" / model)
