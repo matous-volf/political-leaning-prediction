@@ -20,7 +20,7 @@ POLITICAL_LEANING_NO_CENTER_LABEL_MAPPING = {"left": 0, "right": 1}
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-dataset_benchmark_model_names = [
+DATASET_BENCHMARK_MODEL_NAMES = [
     "FacebookAI/roberta-base",
     "google-bert/bert-base-cased",
 ]
@@ -226,7 +226,7 @@ def get_dataset_benchmark_models() -> Generator[Model, None, None]:
 
     for model, tokenizer_name in zip(
         os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark"),
-        dataset_benchmark_model_names,
+        DATASET_BENCHMARK_MODEL_NAMES,
     ):
         for dataset in sorted(
             os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark" / model)
