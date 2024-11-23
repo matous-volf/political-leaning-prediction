@@ -17,6 +17,8 @@
   from <https://huggingface.co/datasets/cajcodes/political-bias>
 - Burnham, M. (2024). PoliStance issue tweets. Retrieved
   from <https://huggingface.co/datasets/mlburnham/polistance_issue_tweets>
+- Burnham, M. (2024). Dem., rep. party platform topics. Retrieved
+  from <https://huggingface.co/datasets/mlburnham/dem_rep_party_platform_topics>
 
 ## Referenced models
 
