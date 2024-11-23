@@ -27,6 +27,7 @@
 - España-Bonet, C. (2023). Multilingual Coarse Political Stance Classification of Media. The Editorial Line of a ChatGPT
   and Bard Newspaper (v1.0) [Data set]. Empirical Methods in Natural Language Processing (EMNLP), Singapore.
   Zenodo. https://doi.org/10.5281/zenodo.8417761
+- Van Steyn, J. (2023). Political tweets. Retrieved from <https://huggingface.co/datasets/Jacobvs/PoliticalTweets>
 
 ## Referenced models
 
