@@ -20,8 +20,10 @@
 - Burnham, M. (2024). Dem., rep. party platform topics. Retrieved
   from <https://huggingface.co/datasets/mlburnham/dem_rep_party_platform_topics>
 - Nayak, J. (2024). Political ideologies. Retrieved
-  from <https://huggingface.co/datasets/JyotiNayak/political_ideologies>
   from <https://huggingface.co/datasets/JyotiNayak/political_ideologies>. Licensed under Apache 2.0.
+- Çöltekin, Ç., Kopp, M., Morkevičius, V., Ljubešić, N., Meden, K., & Erjavec, T. (2024). Training data for the shared
+  task Ideology and Power Identification in Parliamentary Debates [Data set].
+  Zenodo. https://doi.org/10.5281/zenodo.10450641 Licensed under CC BY 4.0.
 
 ## Referenced models
 
