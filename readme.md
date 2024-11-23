@@ -21,6 +21,7 @@
   from <https://huggingface.co/datasets/mlburnham/dem_rep_party_platform_topics>
 - Nayak, J. (2024). Political ideologies. Retrieved
   from <https://huggingface.co/datasets/JyotiNayak/political_ideologies>
+  from <https://huggingface.co/datasets/JyotiNayak/political_ideologies>. Licensed under Apache 2.0.
 
 ## Referenced models
 
