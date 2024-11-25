@@ -23,10 +23,10 @@
   from <https://huggingface.co/datasets/JyotiNayak/political_ideologies>. Licensed under Apache 2.0.
 - Çöltekin, Ç., Kopp, M., Morkevičius, V., Ljubešić, N., Meden, K., & Erjavec, T. (2024). Training data for the shared
   task Ideology and Power Identification in Parliamentary Debates [Data set].
-  Zenodo. https://doi.org/10.5281/zenodo.10450641 Licensed under CC BY 4.0.
+  Zenodo. <https://doi.org/10.5281/zenodo.10450641> Licensed under CC BY 4.0.
 - España-Bonet, C. (2023). Multilingual Coarse Political Stance Classification of Media. The Editorial Line of a ChatGPT
   and Bard Newspaper (v1.0) [Data set]. Empirical Methods in Natural Language Processing (EMNLP), Singapore.
-  Zenodo. https://doi.org/10.5281/zenodo.8417761
+  Zenodo. <https://doi.org/10.5281/zenodo.8417761>
 - Van Steyn, J. (2023). Political tweets. Retrieved from <https://huggingface.co/datasets/Jacobvs/PoliticalTweets>
 
 ## Referenced models
