@@ -1,5 +1,5 @@
 import os
-from typing import List
+from typing import Generator
 
 import pandas as pd
 
@@ -15,12 +15,18 @@ class Dataset:
 DATASETS_DIRECTORY = BASE_DIRECTORY / "datasets" / "preprocessed"
 
 
-def get_datasets() -> List[Dataset]:
-    datasets = []
-    for filename in filter(
-        lambda f: f.endswith(".parquet"), os.listdir(DATASETS_DIRECTORY)
+def get_datasets() -> Generator[Dataset, None, None]:
+    for filename in sorted(
+        filter(lambda f: f.endswith(".parquet"), os.listdir(DATASETS_DIRECTORY))
     ):
         with open(os.path.join(DATASETS_DIRECTORY, filename), "rb") as file:
-            dataset = Dataset(os.path.splitext(filename)[0], pd.read_parquet(file))
-            datasets.append(dataset)
-    return sorted(datasets, key=lambda dataset: -len(dataset.dataframe))
+            yield Dataset(os.path.splitext(filename)[0], pd.read_parquet(file))
+
+
+def systematic_sample(group, size):
+    if size <= 0:
+        raise ValueError("The sample size must be positive.")
+    if size >= len(group):
+        return group
+    indexes = list(range(0, len(group), max(1, len(group) // size)))[:size]
+    return group.iloc[indexes]

@@ -15,9 +15,12 @@ from transformers import (
 
 from utils.base_directory import BASE_DIRECTORY
 
+POLITICAL_LEANING_LABEL_MAPPING = {"left": 0, "center": 1, "right": 2}
+POLITICAL_LEANING_NO_CENTER_LABEL_MAPPING = {"left": 0, "right": 1}
+
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-dataset_benchmark_model_names = [
+DATASET_BENCHMARK_MODEL_NAMES = [
     "FacebookAI/roberta-base",
     "google-bert/bert-base-cased",
 ]
@@ -186,12 +189,13 @@ class CustomModel(Model):
     def __init__(
         self, model_name: str, tokenizer_name: str, model_max_length: int
     ) -> None:
+        model = AutoModelForSequenceClassification.from_pretrained(
+            BASE_DIRECTORY / "models_custom" / model_name
+        )
         super().__init__(
             AutoTokenizer.from_pretrained(tokenizer_name),
-            AutoModelForSequenceClassification.from_pretrained(
-                BASE_DIRECTORY / "models_custom" / model_name
-            ),
-            True,
+            model,
+            model.config.num_labels == 3,
             model_max_length,
         )
         self.name = model_name
@@ -199,9 +203,12 @@ class CustomModel(Model):
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
         tokens = self.get_tokens(article_body, truncate_tokens)
         output = self.get_output(tokens)
-        return [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT][
-            torch.argmax(output.logits, dim=-1)
-        ]
+        labels = (
+            [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT]
+            if self.supports_center_leaning
+            else [Leaning.LEFT, Leaning.RIGHT]
+        )
+        return labels[torch.argmax(output.logits, dim=-1)]
 
 
 def get_existing_models() -> Generator[Model, None, None]:
@@ -219,7 +226,7 @@ def get_dataset_benchmark_models() -> Generator[Model, None, None]:
 
     for model, tokenizer_name in zip(
         os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark"),
-        dataset_benchmark_model_names,
+        DATASET_BENCHMARK_MODEL_NAMES,
     ):
         for dataset in sorted(
             os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark" / model)
