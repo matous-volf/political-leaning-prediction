@@ -6,3 +6,6 @@ MD013:
   line_length: 120
   heading_line_length: 120
   code_block_line_length: 120
+# no-inline-html
+MD033:
+  allowed_elements: [ "table", "tr", "th", "td", "img", "div", "span" ]
