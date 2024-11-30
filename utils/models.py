@@ -179,6 +179,24 @@ class DistilBertPoliticalFinetune(Model):
         ]
 
 
+class PoliticalIdeologiesRobertaFinetuned(Model):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained(
+                "JyotiNayak/political_ideologies_detection_roberta_finetuned"
+            ),
+            AutoModelForSequenceClassification.from_pretrained(
+                "JyotiNayak/political_ideologies_detection_roberta_finetuned"
+            ),
+            512,
+        )
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(article_body, truncate_tokens)
+        output = self.get_output(tokens)
+        return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
+
+
 class CustomModel(Model):
     def __init__(
         self, model_name: str, tokenizer_name: str, model_max_length: int
