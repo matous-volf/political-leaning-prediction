@@ -232,6 +232,35 @@ class DistilBertPoliticalTweets(Model):
         return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
 
 
+class PoliticalDebateLarge(Model):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained("mlburnham/Political_DEBATE_large_v1.0"),
+            AutoModelForSequenceClassification.from_pretrained(
+                "mlburnham/Political_DEBATE_large_v1.0"
+            ),
+            supports_center_leaning=True,
+        )
+        self.pipe = pipeline(
+            "zero-shot-classification",
+            model=self.model,
+            tokenizer=self.tokenizer,
+            device=DEVICE,
+        )
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        hypothesis_template = "This text supports {} political leaning."
+        output = self.pipe(
+            article_body,
+            ["left", "center", "right"],
+            hypothesis_template=hypothesis_template,
+            multi_label=False,
+        )
+        return {"left": Leaning.LEFT, "center": Leaning.CENTER, "right": Leaning.RIGHT}[
+            output["labels"][0]
+        ]
+
+
 class CustomModel(Model):
     def __init__(
         self, model_name: str, tokenizer_name: str, model_max_length: int
@@ -270,6 +299,7 @@ def get_existing_models() -> Generator[Model, None, None]:
         PoliticalIdeologiesRobertaFinetuned,
         DebertaPoliticalClassification,
         DistilBertPoliticalTweets,
+        PoliticalDebateLarge,
     ]:
         yield model_class()
 
