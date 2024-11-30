@@ -37,7 +37,6 @@ class Model(ABC):
         self,
         tokenizer,
         model,
-        supports_center_leaning: bool,
         model_max_length: int | None = None,
     ) -> None:
         model.to(DEVICE)
@@ -49,7 +48,7 @@ class Model(ABC):
             else model_max_length
         )
         self.name = type(self).__name__
-        self.supports_center_leaning = supports_center_leaning
+        self.supports_center_leaning = model.config.num_labels >= 3
 
     @abstractmethod
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
@@ -83,7 +82,6 @@ class PoliticalBiasBert(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "bucketresearch/politicalBiasBERT"
             ),
-            True,
         )
 
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
@@ -103,7 +101,6 @@ class PoliticalBiasPredictionAllsidesDeberta(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "premsa/political-bias-prediction-allsides-DeBERTa"
             ),
-            True,
             512,
         )
 
@@ -129,7 +126,6 @@ class DistilBertPoliticalBias(Model):
             DistilBertForSequenceClassification.from_pretrained(
                 "cajcodes/DistilBERT-PoliticalBias"
             ),
-            True,
             512,
         )
 
@@ -157,7 +153,6 @@ class BertPoliticalBiasFinetune(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "jhonalevc1995/BERT-political_bias-finetune"
             ),
-            False,
         )
 
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
@@ -173,7 +168,6 @@ class DistilBertPoliticalFinetune(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "harshal-11/DistillBERT-Political-Finetune"
             ),
-            True,
             512,
         )
 
@@ -195,7 +189,6 @@ class CustomModel(Model):
         super().__init__(
             AutoTokenizer.from_pretrained(tokenizer_name),
             model,
-            model.config.num_labels == 3,
             model_max_length,
         )
         self.name = model_name
