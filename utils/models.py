@@ -188,7 +188,6 @@ class PoliticalIdeologiesRobertaFinetuned(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "JyotiNayak/political_ideologies_detection_roberta_finetuned"
             ),
-            512,
         )
 
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
