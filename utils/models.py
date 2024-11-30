@@ -108,15 +108,15 @@ class PoliticalBiasPredictionAllsidesDeberta(Model):
             ),
             512,
         )
-
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        pipe = pipeline(
+        self.pipe = pipeline(
             "text-classification",
             model=self.model,
             tokenizer=self.tokenizer,
             device=DEVICE,
         )
-        output = pipe(article_body)
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        output = self.pipe(article_body)
         return {
             "LABEL_0": Leaning.LEFT,
             "LABEL_1": Leaning.CENTER,
