@@ -196,6 +196,22 @@ class PoliticalIdeologiesRobertaFinetuned(Model):
         return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
 
 
+class DebertaPoliticalClassification(Model):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained("oscpalML/DeBERTa-political-classification"),
+            AutoModelForSequenceClassification.from_pretrained(
+                "oscpalML/DeBERTa-political-classification"
+            ),
+            512,
+        )
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(article_body, truncate_tokens)
+        output = self.get_output(tokens)
+        return [Leaning.LEFT, Leaning.RIGHT][torch.argmax(output.logits, dim=-1)]
+
+
 class CustomModel(Model):
     def __init__(
         self, model_name: str, tokenizer_name: str, model_max_length: int
@@ -232,6 +248,7 @@ def get_existing_models() -> Generator[Model, None, None]:
         BertPoliticalBiasFinetune,
         DistilBertPoliticalFinetune,
         PoliticalIdeologiesRobertaFinetuned,
+        DebertaPoliticalClassification,
     ]:
         yield model_class()
 
