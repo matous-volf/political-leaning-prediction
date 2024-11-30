@@ -205,13 +205,18 @@ class CustomModel(Model):
 
 
 def get_existing_models() -> Generator[Model, None, None]:
-    yield from [
-        PoliticalBiasBert(),
-        PoliticalBiasPredictionAllsidesDeberta(),
-        DistilBertPoliticalBias(),
-        BertPoliticalBiasFinetune(),
-        DistilBertPoliticalFinetune(),
-    ]
+    # Caution is necessary with creating lists to yield from. The models cannot be instantiated
+    # right away, as that would completely undermine the usage of the generator. It could cause the
+    # memory to overflow. Instead, models need to be yielded one at a time.
+    for model_class in [
+        PoliticalBiasBert,
+        PoliticalBiasPredictionAllsidesDeberta,
+        DistilBertPoliticalBias,
+        BertPoliticalBiasFinetune,
+        DistilBertPoliticalFinetune,
+        PoliticalIdeologiesRobertaFinetuned,
+    ]:
+        yield model_class()
 
 
 def get_dataset_benchmark_models() -> Generator[Model, None, None]:
