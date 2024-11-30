@@ -38,6 +38,7 @@ class Model(ABC):
         tokenizer,
         model,
         model_max_length: int | None = None,
+        supports_center_leaning: bool | None = None,
     ) -> None:
         model.to(DEVICE)
         self.tokenizer = tokenizer
@@ -48,7 +49,11 @@ class Model(ABC):
             else model_max_length
         )
         self.name = type(self).__name__
-        self.supports_center_leaning = model.config.num_labels >= 3
+        self.supports_center_leaning = (
+            model.config.num_labels >= 3
+            if supports_center_leaning is None
+            else supports_center_leaning
+        )
 
     @abstractmethod
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
