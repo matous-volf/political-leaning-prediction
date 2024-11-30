@@ -212,6 +212,21 @@ class DebertaPoliticalClassification(Model):
         return [Leaning.LEFT, Leaning.RIGHT][torch.argmax(output.logits, dim=-1)]
 
 
+class DistilBertPoliticalTweets(Model):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained("m-newhauser/distilbert-political-tweets"),
+            AutoModelForSequenceClassification.from_pretrained(
+                "m-newhauser/distilbert-political-tweets"
+            ),
+        )
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(article_body, truncate_tokens)
+        output = self.get_output(tokens)
+        return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
+
+
 class CustomModel(Model):
     def __init__(
         self, model_name: str, tokenizer_name: str, model_max_length: int
@@ -249,6 +264,7 @@ def get_existing_models() -> Generator[Model, None, None]:
         DistilBertPoliticalFinetune,
         PoliticalIdeologiesRobertaFinetuned,
         DebertaPoliticalClassification,
+        DistilBertPoliticalTweets,
     ]:
         yield model_class()
 
