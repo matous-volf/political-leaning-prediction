@@ -49,4 +49,4 @@
   Face. <https://huggingface.co/oscpalML/DeBERTa-political-classification>
 - Newhauser, M. (2022) DistilBERT political tweets [Model]. Hugging
   Face. <https://huggingface.co/m-newhauser/distilbert-political-tweets>. Licensed under GNU Lesser General Public
-  License v3.0. See https://www.gnu.org/licenses/lgpl-3.0.html.
+  License v3.0. See <https://www.gnu.org/licenses/lgpl-3.0.html>.
