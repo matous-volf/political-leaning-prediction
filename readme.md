@@ -29,15 +29,24 @@
   Zenodo. <https://doi.org/10.5281/zenodo.8417761>
 - Van Steyn, J. (2023). Political tweets. Retrieved from <https://huggingface.co/datasets/Jacobvs/PoliticalTweets>
 
-## Referenced models
+## Referenced existing models
 
-- Premsa. (2024). political-bias-prediction-allsides-DeBERTa [Model]. Hugging
+- Sahitaj, P. (2024). Political bias prediction AllSides DeBERTa [Model]. Hugging
   Face. <https://huggingface.co/premsa/political-bias-prediction-allsides-DeBERTa>
-- Bucket Research. (2023). politicalBiasBERT (Revision f964ce8). Hugging
+- Bucket Research. (2023). PoliticalBiasBERT (Revision f964ce8). Hugging
   Face. <https://huggingface.co/bucketresearch/politicalBiasBERT> <https://doi.org/10.57967/hf/0870>
 - Jones, C. (2024). DistilBERT-PoliticalBias: A novel approach to detecting and reducing political bias in text.
   Hugging Face. <https://huggingface.co/cajcodes/DistilBERT-PoliticalBias>
-- Jhonalev, C. (2024). BERT-political_bias-finetune [Model]. Hugging
+- Vélez Castañeda, A. (2024). BERT-political_bias-finetune [Model]. Hugging
   Face. <https://huggingface.co/jhonalevc1995/BERT-political_bias-finetune>
-- Harshal-11. (2024). DistillBERT-Political-Finetune [Model]. Hugging
+- Shrimali, H. (2024). DistillBERT-Political-Finetune [Model]. Hugging
   Face. <https://huggingface.co/harshal-11/DistillBERT-Political-Finetune>
+- Burnham, M. (2024). Political DEBATE large [Model]. Hugging
+  Face. <https://huggingface.co/mlburnham/Political_DEBATE_large_v1.0>
+- Nayak, J. (2024). Political ideologies detection RoBERTa finetuned [Model]. Hugging
+  Face. <https://huggingface.co/JyotiNayak/political_ideologies_detection_roberta_finetuned>
+- Palmqvist, O. (2024). DeBERTa political classification [Model]. Hugging
+  Face. <https://huggingface.co/oscpalML/DeBERTa-political-classification>
+- Newhauser, M. (2022) DistilBERT political tweets [Model]. Hugging
+  Face. <https://huggingface.co/m-newhauser/distilbert-political-tweets>. Licensed under GNU Lesser General Public
+  License v3.0. See https://www.gnu.org/licenses/lgpl-3.0.html.
