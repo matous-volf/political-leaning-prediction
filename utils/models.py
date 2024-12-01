@@ -37,8 +37,8 @@ class Model(ABC):
         self,
         tokenizer,
         model,
-        supports_center_leaning: bool,
         model_max_length: int | None = None,
+        supports_center_leaning: bool | None = None,
     ) -> None:
         model.to(DEVICE)
         self.tokenizer = tokenizer
@@ -49,7 +49,11 @@ class Model(ABC):
             else model_max_length
         )
         self.name = type(self).__name__
-        self.supports_center_leaning = supports_center_leaning
+        self.supports_center_leaning = (
+            model.config.num_labels >= 3
+            if supports_center_leaning is None
+            else supports_center_leaning
+        )
 
     @abstractmethod
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
@@ -83,7 +87,6 @@ class PoliticalBiasBert(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "bucketresearch/politicalBiasBERT"
             ),
-            True,
         )
 
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
@@ -103,18 +106,17 @@ class PoliticalBiasPredictionAllsidesDeberta(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "premsa/political-bias-prediction-allsides-DeBERTa"
             ),
-            True,
             512,
         )
-
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        pipe = pipeline(
+        self.pipe = pipeline(
             "text-classification",
             model=self.model,
             tokenizer=self.tokenizer,
             device=DEVICE,
         )
-        output = pipe(article_body)
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        output = self.pipe(article_body)
         return {
             "LABEL_0": Leaning.LEFT,
             "LABEL_1": Leaning.CENTER,
@@ -129,7 +131,6 @@ class DistilBertPoliticalBias(Model):
             DistilBertForSequenceClassification.from_pretrained(
                 "cajcodes/DistilBERT-PoliticalBias"
             ),
-            True,
             512,
         )
 
@@ -157,7 +158,6 @@ class BertPoliticalBiasFinetune(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "jhonalevc1995/BERT-political_bias-finetune"
             ),
-            False,
         )
 
     def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
@@ -173,7 +173,6 @@ class DistilBertPoliticalFinetune(Model):
             AutoModelForSequenceClassification.from_pretrained(
                 "harshal-11/DistillBERT-Political-Finetune"
             ),
-            True,
             512,
         )
 
@@ -182,6 +181,83 @@ class DistilBertPoliticalFinetune(Model):
         output = self.get_output(tokens)
         return [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT][
             torch.argmax(output.logits, dim=-1)
+        ]
+
+
+class PoliticalIdeologiesRobertaFinetuned(Model):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained(
+                "JyotiNayak/political_ideologies_detection_roberta_finetuned"
+            ),
+            AutoModelForSequenceClassification.from_pretrained(
+                "JyotiNayak/political_ideologies_detection_roberta_finetuned"
+            ),
+        )
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(article_body, truncate_tokens)
+        output = self.get_output(tokens)
+        return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
+
+
+class DebertaPoliticalClassification(Model):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained("oscpalML/DeBERTa-political-classification"),
+            AutoModelForSequenceClassification.from_pretrained(
+                "oscpalML/DeBERTa-political-classification"
+            ),
+            512,
+        )
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(article_body, truncate_tokens)
+        output = self.get_output(tokens)
+        return [Leaning.LEFT, Leaning.RIGHT][torch.argmax(output.logits, dim=-1)]
+
+
+class DistilBertPoliticalTweets(Model):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained("m-newhauser/distilbert-political-tweets"),
+            AutoModelForSequenceClassification.from_pretrained(
+                "m-newhauser/distilbert-political-tweets"
+            ),
+        )
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(article_body, truncate_tokens)
+        output = self.get_output(tokens)
+        return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
+
+
+class PoliticalDebateLarge(Model):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained("mlburnham/Political_DEBATE_large_v1.0"),
+            AutoModelForSequenceClassification.from_pretrained(
+                "mlburnham/Political_DEBATE_large_v1.0"
+            ),
+            supports_center_leaning=True,
+        )
+        self.pipe = pipeline(
+            "zero-shot-classification",
+            model=self.model,
+            tokenizer=self.tokenizer,
+            device=DEVICE,
+        )
+
+    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+        hypothesis_template = "This text supports {} political leaning."
+        output = self.pipe(
+            article_body,
+            ["left", "center", "right"],
+            hypothesis_template=hypothesis_template,
+            multi_label=False,
+        )
+        return {"left": Leaning.LEFT, "center": Leaning.CENTER, "right": Leaning.RIGHT}[
+            output["labels"][0]
         ]
 
 
@@ -195,7 +271,6 @@ class CustomModel(Model):
         super().__init__(
             AutoTokenizer.from_pretrained(tokenizer_name),
             model,
-            model.config.num_labels == 3,
             model_max_length,
         )
         self.name = model_name
@@ -212,13 +287,21 @@ class CustomModel(Model):
 
 
 def get_existing_models() -> Generator[Model, None, None]:
-    yield from [
-        PoliticalBiasBert(),
-        PoliticalBiasPredictionAllsidesDeberta(),
-        DistilBertPoliticalBias(),
-        BertPoliticalBiasFinetune(),
-        DistilBertPoliticalFinetune(),
-    ]
+    # Caution is necessary with creating lists to yield from. The models cannot be instantiated
+    # right away, as that would completely undermine the usage of the generator. It could cause the
+    # memory to overflow. Instead, models need to be yielded one at a time.
+    for model_class in [
+        PoliticalBiasBert,
+        PoliticalBiasPredictionAllsidesDeberta,
+        DistilBertPoliticalBias,
+        BertPoliticalBiasFinetune,
+        DistilBertPoliticalFinetune,
+        PoliticalIdeologiesRobertaFinetuned,
+        DebertaPoliticalClassification,
+        DistilBertPoliticalTweets,
+        PoliticalDebateLarge,
+    ]:
+        yield model_class()
 
 
 def get_dataset_benchmark_models() -> Generator[Model, None, None]:
