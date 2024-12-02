@@ -23,6 +23,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 DATASET_BENCHMARK_MODEL_NAMES = [
     "FacebookAI/roberta-base",
     "google-bert/bert-base-cased",
+    "launch/POLITICS",
 ]
 
 
