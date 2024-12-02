@@ -50,3 +50,6 @@
 - Newhauser, M. (2022) DistilBERT political tweets [Model]. Hugging
   Face. <https://huggingface.co/m-newhauser/distilbert-political-tweets>. Licensed under GNU Lesser General Public
   License v3.0. See <https://www.gnu.org/licenses/lgpl-3.0.html>.
+- Liu, Y., Zhang, X. F., Wegsman, D., Beauchamp, N., & Wang, L. (2022). POLITICS: Pretraining with same-story article
+  comparison for ideology prediction and stance detection. In Findings of the Association for Computational Linguistics:
+  NAACL 2022. <https://huggingface.co/launch/POLITICS>

@@ -486,3 +486,239 @@ since their accuracy is probabilistically higher.
     <td>5539 / 10434 (53 %)</td>
 </tr>
 </table>
+
+## POLITICS
+
+### With a center leaning class
+
+<table>
+<tr>
+    <th></th>
+    <th>Article bias prediction</th>
+    <th>CommonCrawl news articles</th>
+    <th>Dem., rep. party platform topics</th>
+    <th>GPT-4 political bias</th>
+    <th>GPT-4 political ideologies</th>
+    <th>Media political stance</th>
+    <th>Parliament speeches 2024</th>
+    <th>PoliStance issue tweets</th>
+    <th>Political tweets</th>
+    <th>Qbias</th>
+    <th>Webis bias flipper 18</th>
+    <th>Webis news bias 20</th>
+    <th>average</th>
+</tr>
+<tr>
+    <td>Article bias prediction</td>
+    <td>765 / 1000 (76 %)</td>
+    <td>550 / 1000 (55 %)</td>
+    <td>524 / 1000 (52 %)</td>
+    <td>184 / 612 (30 %)</td>
+    <td>630 / 1000 (63 %)</td>
+    <td>526 / 1000 (53 %)</td>
+    <td>282 / 1000 (28 %)</td>
+    <td>503 / 1000 (50 %)</td>
+    <td>525 / 1000 (52 %)</td>
+    <td>509 / 1000 (51 %)</td>
+    <td>655 / 1000 (66 %)</td>
+    <td>752 / 1000 (75 %)</td>
+    <td>5640 / 10612 (53 %)</td>
+</tr>
+<tr>
+    <td>CommonCrawl news articles</td>
+    <td>495 / 1000 (50 %)</td>
+    <td>784 / 1000 (78 %)</td>
+    <td>328 / 1000 (33 %)</td>
+    <td>181 / 612 (30 %)</td>
+    <td>518 / 1000 (52 %)</td>
+    <td>551 / 1000 (55 %)</td>
+    <td>370 / 1000 (37 %)</td>
+    <td>453 / 1000 (45 %)</td>
+    <td>497 / 1000 (50 %)</td>
+    <td>383 / 1000 (38 %)</td>
+    <td>625 / 1000 (62 %)</td>
+    <td>693 / 1000 (69 %)</td>
+    <td>5094 / 10612 (48 %)</td>
+</tr>
+<tr>
+    <td>GPT-4 political bias</td>
+    <td>356 / 1000 (36 %)</td>
+    <td>322 / 1000 (32 %)</td>
+    <td>563 / 1000 (56 %)</td>
+    <td>592 / 612 (97 %)</td>
+    <td>716 / 1000 (72 %)</td>
+    <td>468 / 1000 (47 %)</td>
+    <td>390 / 1000 (39 %)</td>
+    <td>602 / 1000 (60 %)</td>
+    <td>613 / 1000 (61 %)</td>
+    <td>360 / 1000 (36 %)</td>
+    <td>436 / 1000 (44 %)</td>
+    <td>391 / 1000 (39 %)</td>
+    <td>5217 / 11000 (47 %)</td>
+</tr>
+<tr>
+    <td>Qbias</td>
+    <td>498 / 1000 (50 %)</td>
+    <td>339 / 1000 (34 %)</td>
+    <td>261 / 1000 (26 %)</td>
+    <td>162 / 612 (26 %)</td>
+    <td>197 / 1000 (20 %)</td>
+    <td>282 / 1000 (28 %)</td>
+    <td>3 / 1000 (0 %)</td>
+    <td>299 / 1000 (30 %)</td>
+    <td>270 / 1000 (27 %)</td>
+    <td>494 / 1000 (49 %)</td>
+    <td>614 / 1000 (61 %)</td>
+    <td>604 / 1000 (60 %)</td>
+    <td>3529 / 10612 (33 %)</td>
+</tr>
+<tr>
+    <td>Webis bias flipper</td>
+    <td>487 / 1000 (49 %)</td>
+    <td>571 / 1000 (57 %)</td>
+    <td>481 / 1000 (48 %)</td>
+    <td>189 / 612 (31 %)</td>
+    <td>512 / 1000 (51 %)</td>
+    <td>556 / 1000 (56 %)</td>
+    <td>193 / 1000 (19 %)</td>
+    <td>474 / 1000 (47 %)</td>
+    <td>537 / 1000 (54 %)</td>
+    <td>483 / 1000 (48 %)</td>
+    <td>892 / 1000 (89 %)</td>
+    <td>655 / 1000 (66 %)</td>
+    <td>5138 / 10612 (48 %)</td>
+</tr>
+<tr>
+    <td>Webis news bias 20</td>
+    <td>564 / 1000 (56 %)</td>
+    <td>415 / 1000 (42 %)</td>
+    <td>503 / 1000 (50 %)</td>
+    <td>180 / 612 (29 %)</td>
+    <td>528 / 1000 (53 %)</td>
+    <td>497 / 1000 (50 %)</td>
+    <td>123 / 1000 (12 %)</td>
+    <td>426 / 1000 (43 %)</td>
+    <td>450 / 1000 (45 %)</td>
+    <td>490 / 1000 (49 %)</td>
+    <td>721 / 1000 (72 %)</td>
+    <td>828 / 1000 (83 %)</td>
+    <td>4897 / 10612 (46 %)</td>
+</tr>
+</table>
+
+### Without a center leaning class
+
+<table>
+<tr>
+  <th></th>
+  <th>Article bias prediction</th>
+  <th>CommonCrawl news articles</th>
+  <th>Dem., rep. party platform topics</th>
+  <th>GPT-4 political bias</th>
+  <th>GPT-4 political ideologies</th>
+  <th>Media political stance</th>
+  <th>Parliament speeches 2024</th>
+  <th>PoliStance issue tweets</th>
+  <th>Political tweets</th>
+  <th>Qbias</th>
+  <th>Webis bias flipper 18</th>
+  <th>Webis news bias 20</th>
+  <th>average</th>
+</tr>
+<tr>
+    <td>Dem., rep. party platform topics</td>
+    <td>525 / 1000 (52 %)</td>
+    <td>572 / 1000 (57 %)</td>
+    <td>767 / 1000 (77 %)</td>
+    <td>302 / 434 (70 %)</td>
+    <td>809 / 1000 (81 %)</td>
+    <td>578 / 1000 (58 %)</td>
+    <td>508 / 1000 (51 %)</td>
+    <td>743 / 1000 (74 %)</td>
+    <td>624 / 1000 (62 %)</td>
+    <td>541 / 1000 (54 %)</td>
+    <td>591 / 1000 (59 %)</td>
+    <td>606 / 1000 (61 %)</td>
+    <td>6399 / 10434 (61 %)</td>
+</tr>
+<tr>
+    <td>GPT-4 political ideologies</td>
+    <td>571 / 1000 (57 %)</td>
+    <td>464 / 1000 (46 %)</td>
+    <td>605 / 1000 (60 %)</td>
+    <td>360 / 434 (83 %)</td>
+    <td>977 / 1000 (98 %)</td>
+    <td>523 / 1000 (52 %)</td>
+    <td>548 / 1000 (55 %)</td>
+    <td>674 / 1000 (67 %)</td>
+    <td>625 / 1000 (62 %)</td>
+    <td>466 / 1000 (47 %)</td>
+    <td>598 / 1000 (60 %)</td>
+    <td>557 / 1000 (56 %)</td>
+    <td>5991 / 10434 (57 %)</td>
+</tr>
+<tr>
+    <td>Media political stance</td>
+    <td>756 / 1000 (76 %)</td>
+    <td>734 / 1000 (73 %)</td>
+    <td>535 / 1000 (54 %)</td>
+    <td>186 / 434 (43 %)</td>
+    <td>715 / 1000 (72 %)</td>
+    <td>907 / 1000 (91 %)</td>
+    <td>503 / 1000 (50 %)</td>
+    <td>613 / 1000 (61 %)</td>
+    <td>636 / 1000 (64 %)</td>
+    <td>672 / 1000 (67 %)</td>
+    <td>809 / 1000 (81 %)</td>
+    <td>815 / 1000 (82 %)</td>
+    <td>6974 / 10434 (67 %)</td>
+</tr>
+<tr>
+    <td>Parliament speeches 2024</td>
+    <td>478 / 1000 (48 %)</td>
+    <td>477 / 1000 (48 %)</td>
+    <td>494 / 1000 (49 %)</td>
+    <td>250 / 434 (58 %)</td>
+    <td>495 / 1000 (50 %)</td>
+    <td>491 / 1000 (49 %)</td>
+    <td>743 / 1000 (74 %)</td>
+    <td>371 / 1000 (37 %)</td>
+    <td>409 / 1000 (41 %)</td>
+    <td>450 / 1000 (45 %)</td>
+    <td>427 / 1000 (43 %)</td>
+    <td>465 / 1000 (46 %)</td>
+    <td>4807 / 10434 (46 %)</td>
+</tr>
+<tr>
+    <td>PoliStance issue tweets</td>
+    <td>562 / 1000 (56 %)</td>
+    <td>527 / 1000 (53 %)</td>
+    <td>577 / 1000 (58 %)</td>
+    <td>327 / 434 (75 %)</td>
+    <td>670 / 1000 (67 %)</td>
+    <td>516 / 1000 (52 %)</td>
+    <td>531 / 1000 (53 %)</td>
+    <td>957 / 1000 (96 %)</td>
+    <td>573 / 1000 (57 %)</td>
+    <td>510 / 1000 (51 %)</td>
+    <td>562 / 1000 (56 %)</td>
+    <td>523 / 1000 (52 %)</td>
+    <td>5878 / 10434 (56 %)</td>
+</tr>
+<tr>
+    <td>Political tweets</td>
+    <td>667 / 1000 (67 %)</td>
+    <td>618 / 1000 (62 %)</td>
+    <td>584 / 1000 (58 %)</td>
+    <td>294 / 434 (68 %)</td>
+    <td>760 / 1000 (76 %)</td>
+    <td>615 / 1000 (62 %)</td>
+    <td>463 / 1000 (46 %)</td>
+    <td>649 / 1000 (65 %)</td>
+    <td>741 / 1000 (74 %)</td>
+    <td>577 / 1000 (58 %)</td>
+    <td>718 / 1000 (72 %)</td>
+    <td>673 / 1000 (67 %)</td>
+    <td>6618 / 10434 (63 %)</td>
+</tr>
+</table>
