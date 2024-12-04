@@ -84,9 +84,13 @@ class Model(ABC):
 class PoliticalBiasBert(Model):
     def __init__(self) -> None:
         super().__init__(
-            AutoTokenizer.from_pretrained("bert-base-cased"),
+            AutoTokenizer.from_pretrained(
+                "bert-base-cased",
+                code_revision="cd5ef92a9fb2f889e972770a36d4ed042daf221e",
+            ),
             AutoModelForSequenceClassification.from_pretrained(
-                "bucketresearch/politicalBiasBERT"
+                "bucketresearch/politicalBiasBERT",
+                code_revision="fd40172e075c046ec5f47bae270d17c2b91cf847",
             ),
         )
 
@@ -102,10 +106,12 @@ class PoliticalBiasPredictionAllsidesDeberta(Model):
     def __init__(self) -> None:
         super().__init__(
             AutoTokenizer.from_pretrained(
-                "premsa/political-bias-prediction-allsides-DeBERTa"
+                "premsa/political-bias-prediction-allsides-DeBERTa",
+                code_revision="e28374fcbb66f6ce21faf224fa3bdcb6d054ec46",
             ),
             AutoModelForSequenceClassification.from_pretrained(
-                "premsa/political-bias-prediction-allsides-DeBERTa"
+                "premsa/political-bias-prediction-allsides-DeBERTa",
+                code_revision="e28374fcbb66f6ce21faf224fa3bdcb6d054ec46",
             ),
             512,
         )
@@ -128,9 +134,13 @@ class PoliticalBiasPredictionAllsidesDeberta(Model):
 class DistilBertPoliticalBias(Model):
     def __init__(self) -> None:
         super().__init__(
-            RobertaTokenizer.from_pretrained("cajcodes/DistilBERT-PoliticalBias"),
+            RobertaTokenizer.from_pretrained(
+                "cajcodes/DistilBERT-PoliticalBias",
+                revision="ebfc38d3fac856b86fda2e08357da171b53896a2",
+            ),
             DistilBertForSequenceClassification.from_pretrained(
-                "cajcodes/DistilBERT-PoliticalBias"
+                "cajcodes/DistilBERT-PoliticalBias",
+                revision="ebfc38d3fac856b86fda2e08357da171b53896a2",
             ),
             512,
         )
@@ -155,9 +165,12 @@ class DistilBertPoliticalBias(Model):
 class BertPoliticalBiasFinetune(Model):
     def __init__(self) -> None:
         super().__init__(
-            BertTokenizer.from_pretrained("bert-base-uncased"),
+            BertTokenizer.from_pretrained(
+                "bert-base-uncased", revision="86b5e0934494bd15c9632b12f734a8a67f723594"
+            ),
             AutoModelForSequenceClassification.from_pretrained(
-                "jhonalevc1995/BERT-political_bias-finetune"
+                "jhonalevc1995/BERT-political_bias-finetune",
+                code_revision="7ceb614323352d05051d13d2d60f89d8a4595dc5",
             ),
         )
 
@@ -170,9 +183,13 @@ class BertPoliticalBiasFinetune(Model):
 class DistilBertPoliticalFinetune(Model):
     def __init__(self) -> None:
         super().__init__(
-            AutoTokenizer.from_pretrained("harshal-11/DistillBERT-Political-Finetune"),
+            AutoTokenizer.from_pretrained(
+                "harshal-11/DistillBERT-Political-Finetune",
+                code_revision="4e218bdcc3c69844bcb8aab1bf218e7942292222",
+            ),
             AutoModelForSequenceClassification.from_pretrained(
-                "harshal-11/DistillBERT-Political-Finetune"
+                "harshal-11/DistillBERT-Political-Finetune",
+                code_revision="4e218bdcc3c69844bcb8aab1bf218e7942292222",
             ),
             512,
         )
@@ -189,10 +206,12 @@ class PoliticalIdeologiesRobertaFinetuned(Model):
     def __init__(self) -> None:
         super().__init__(
             AutoTokenizer.from_pretrained(
-                "JyotiNayak/political_ideologies_detection_roberta_finetuned"
+                "JyotiNayak/political_ideologies_detection_roberta_finetuned",
+                code_revision="3e82956ad2f1d0880b8c4d370d513f92a1a3591a",
             ),
             AutoModelForSequenceClassification.from_pretrained(
-                "JyotiNayak/political_ideologies_detection_roberta_finetuned"
+                "JyotiNayak/political_ideologies_detection_roberta_finetuned",
+                code_revision="3e82956ad2f1d0880b8c4d370d513f92a1a3591a",
             ),
         )
 
@@ -205,9 +224,13 @@ class PoliticalIdeologiesRobertaFinetuned(Model):
 class DebertaPoliticalClassification(Model):
     def __init__(self) -> None:
         super().__init__(
-            AutoTokenizer.from_pretrained("oscpalML/DeBERTa-political-classification"),
+            AutoTokenizer.from_pretrained(
+                "oscpalML/DeBERTa-political-classification",
+                code_revision="26e16d1c52121d834ff374c07944bc085e1b1656",
+            ),
             AutoModelForSequenceClassification.from_pretrained(
-                "oscpalML/DeBERTa-political-classification"
+                "oscpalML/DeBERTa-political-classification",
+                code_revision="26e16d1c52121d834ff374c07944bc085e1b1656",
             ),
             512,
         )
@@ -221,9 +244,13 @@ class DebertaPoliticalClassification(Model):
 class DistilBertPoliticalTweets(Model):
     def __init__(self) -> None:
         super().__init__(
-            AutoTokenizer.from_pretrained("m-newhauser/distilbert-political-tweets"),
+            AutoTokenizer.from_pretrained(
+                "m-newhauser/distilbert-political-tweets",
+                code_revision="b7c4530e8c44cf8dcf448a6e5e5e460df33f83bf",
+            ),
             AutoModelForSequenceClassification.from_pretrained(
-                "m-newhauser/distilbert-political-tweets"
+                "m-newhauser/distilbert-political-tweets",
+                code_revision="b7c4530e8c44cf8dcf448a6e5e5e460df33f83bf",
             ),
         )
 
@@ -236,9 +263,13 @@ class DistilBertPoliticalTweets(Model):
 class PoliticalDebateLarge(Model):
     def __init__(self) -> None:
         super().__init__(
-            AutoTokenizer.from_pretrained("mlburnham/Political_DEBATE_large_v1.0"),
+            AutoTokenizer.from_pretrained(
+                "mlburnham/Political_DEBATE_large_v1.0",
+                code_revision="3568d6f7bdd58a2792b27699cf88435409318ecf",
+            ),
             AutoModelForSequenceClassification.from_pretrained(
-                "mlburnham/Political_DEBATE_large_v1.0"
+                "mlburnham/Political_DEBATE_large_v1.0",
+                code_revision="3568d6f7bdd58a2792b27699cf88435409318ecf",
             ),
             supports_center_leaning=True,
         )
