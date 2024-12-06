@@ -20,11 +20,14 @@ POLITICAL_LEANING_NO_CENTER_LABEL_MAPPING = {"left": 0, "right": 1}
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-DATASET_BENCHMARK_MODEL_NAMES = [
-    "FacebookAI/roberta-base",
-    "google-bert/bert-base-cased",
-    "launch/POLITICS",
-]
+DATASET_BENCHMARK_MODEL_NAMES = sorted(
+    [
+        "google-bert/bert-base-cased",
+        "FacebookAI/roberta-base",
+        "launch/POLITICS",
+    ],
+    key=lambda model_name: model_name.split("/")[-1],
+)
 
 
 class Leaning(Enum):
@@ -340,7 +343,7 @@ def get_dataset_benchmark_models() -> Generator[Model, None, None]:
     custom_models_max_length = 512
 
     for model, tokenizer_name in zip(
-        os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark"),
+        sorted(os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark")),
         DATASET_BENCHMARK_MODEL_NAMES,
     ):
         for dataset in sorted(
