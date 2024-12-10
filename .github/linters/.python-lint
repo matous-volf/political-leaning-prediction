@@ -6,11 +6,12 @@ jobs=0
 [MESSAGES CONTROL]
 
 # Ignoring Import Errors is desired as super-linter
-# does not support installing dependencies as it runs
+# does not support installing dependencies as it runs.
 disable=
     import-error,
     missing-module-docstring,
     missing-class-docstring,
     missing-function-docstring,
-    too-few-public-methods
-
+    too-few-public-methods,
+    no-name-in-module,
+    wrong-import-order,
