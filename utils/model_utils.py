@@ -398,7 +398,7 @@ def finetune_custom_models(
             )
 
             tokenized_dataset = dataset.map(
-                lambda batch: tokenizer(
+                lambda batch, t=tokenizer: t(
                     batch["body"],
                     max_length=CUSTOM_MODELS_MAX_LENGTH,
                     truncation=True,
@@ -414,9 +414,11 @@ def finetune_custom_models(
                 data_seed=data_seed,
             )
             trainer = Trainer(
-                model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
-                    model_name,
-                    num_labels=len(dataset.unique("label")),
+                model_init=lambda m=model_name, d=dataset: (
+                    AutoModelForSequenceClassification.from_pretrained(
+                        m,
+                        num_labels=len(d.unique("label")),
+                    )
                 ),
                 args=training_arguments,
                 train_dataset=tokenized_dataset,
