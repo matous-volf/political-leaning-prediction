@@ -1,25 +1,30 @@
 import os
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Generator
+from os import PathLike
+from typing import Generator, Iterable
 
 import torch
+from datasets import Dataset
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
     BertTokenizer,
     DistilBertForSequenceClassification,
     RobertaTokenizer,
+    Trainer,
+    TrainingArguments,
     pipeline,
 )
 
 from utils.base_directory import BASE_DIRECTORY
 
-POLITICAL_LEANING_LABEL_MAPPING = {"left": 0, "center": 1, "right": 2}
+POLITICAL_LEANING_WITH_CENTER_LABEL_MAPPING = {"left": 0, "center": 1, "right": 2}
 POLITICAL_LEANING_NO_CENTER_LABEL_MAPPING = {"left": 0, "right": 1}
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+CUSTOM_MODELS_MAX_LENGTH = 512
 DATASET_BENCHMARK_MODEL_NAMES = sorted(
     [
         "google-bert/bert-base-cased",
@@ -339,18 +344,84 @@ def get_existing_models() -> Generator[Model, None, None]:
         yield model_class()
 
 
-def get_dataset_benchmark_models() -> Generator[Model, None, None]:
-    custom_models_max_length = 512
+def get_leave_one_in_dataset_benchmark_models() -> Generator[Model, None, None]:
+    return get_dataset_benchmark_models("leave_one_in")
 
+
+def get_leave_one_out_dataset_benchmark_models() -> Generator[Model, None, None]:
+    return get_dataset_benchmark_models("leave_one_out")
+
+
+def get_dataset_benchmark_models(benchmark_name: str):
     for model, tokenizer_name in zip(
-        sorted(os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark")),
+        sorted(
+            os.listdir(
+                BASE_DIRECTORY / "models_custom" / "dataset_benchmark" / benchmark_name
+            )
+        ),
         DATASET_BENCHMARK_MODEL_NAMES,
     ):
         for dataset in sorted(
-            os.listdir(BASE_DIRECTORY / "models_custom" / "dataset_benchmark" / model)
+            os.listdir(
+                BASE_DIRECTORY
+                / "models_custom"
+                / "dataset_benchmark"
+                / benchmark_name
+                / model
+            )
         ):
             yield CustomModel(
-                f"dataset_benchmark/{model}/{dataset}",
+                f"dataset_benchmark/{benchmark_name}/{model}/{dataset}",
                 tokenizer_name,
-                custom_models_max_length,
+                CUSTOM_MODELS_MAX_LENGTH,
             )
+
+
+def finetune_custom_models(
+    output_path: PathLike,
+    datasets: Iterable[Dataset],
+    training_seed: int,
+    data_seed: int,
+):
+    for model_name in DATASET_BENCHMARK_MODEL_NAMES:
+        print(f"fine-tuning {model_name} into {output_path}:")
+
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        for dataset in datasets:
+            print(f"  {dataset.info.dataset_name}")
+            output_directory = (
+                BASE_DIRECTORY
+                / "models_custom"
+                / output_path
+                / model_name.split("/")[-1]
+                / dataset.info.dataset_name
+            )
+
+            tokenized_dataset = dataset.map(
+                lambda batch, t=tokenizer: t(
+                    batch["body"],
+                    max_length=CUSTOM_MODELS_MAX_LENGTH,
+                    truncation=True,
+                    padding="max_length",
+                ),
+                batched=True,
+            )
+            training_arguments = TrainingArguments(
+                auto_find_batch_size=True,
+                save_strategy="no",
+                output_dir=output_directory,
+                seed=training_seed,
+                data_seed=data_seed,
+            )
+            trainer = Trainer(
+                model_init=lambda m=model_name, d=dataset: (
+                    AutoModelForSequenceClassification.from_pretrained(
+                        m,
+                        num_labels=len(d.unique("label")),
+                    )
+                ),
+                args=training_arguments,
+                train_dataset=tokenized_dataset,
+            )
+            trainer.train()
+            trainer.save_model(output_directory)
