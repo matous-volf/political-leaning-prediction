@@ -13,14 +13,29 @@ class Dataset:
 
 
 DATASETS_DIRECTORY = BASE_DIRECTORY / "datasets" / "preprocessed"
+LEAVE_ONE_OUT_BENCHMARK_EXCLUDED_NAMES = [
+    "polistance_issue_tweets",
+    "webis_bias_flipper_18",
+    "webis_news_bias_20",
+]
 
 
 def get_datasets() -> Generator[Dataset, None, None]:
     for filename in sorted(
-        filter(lambda f: f.endswith(".parquet"), os.listdir(DATASETS_DIRECTORY))
+        filter(
+            lambda filename: filename.endswith(".parquet"),
+            os.listdir(DATASETS_DIRECTORY),
+        )
     ):
         with open(os.path.join(DATASETS_DIRECTORY, filename), "rb") as file:
             yield Dataset(os.path.splitext(filename)[0], pd.read_parquet(file))
+
+
+def get_datasets_for_leave_one_out_benchmark() -> Generator[Dataset, None, None]:
+    yield from filter(
+        lambda dataset: dataset.name not in LEAVE_ONE_OUT_BENCHMARK_EXCLUDED_NAMES,
+        get_datasets(),
+    )
 
 
 def systematic_sample(group, size):
