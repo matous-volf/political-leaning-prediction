@@ -166,7 +166,6 @@ model has not been fine-tuned on), while the heading of the column is the datase
     <td>585 / 1000 (58 %)</td>
     <td>580 / 1000 (58 %)</td>
     <td>345 / 1000 (34 %)</td>
-    <td>4550 / 7612 (60 %)</td>
 </tr>
 <tr>
     <th>CommonCrawl news articles</th>
