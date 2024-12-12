@@ -1,5 +1,7 @@
 # Political leaning prediction
 
+- [Analysis](analysis)
+
 ## Used datasets
 
 - Baly, R., Da San Martino, G., Glass, J., & Nakov, P. (2020). We Can Detect Your Bias: Predicting the Political
