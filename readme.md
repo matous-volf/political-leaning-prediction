@@ -17,8 +17,6 @@
   Zenodo. <https://doi.org/10.5281/zenodo.8321586>
 - Jones, C. (2024). Political bias dataset: A synthetic dataset for bias detection and reduction. Retrieved
   from <https://huggingface.co/datasets/cajcodes/political-bias>
-- Burnham, M. (2024). PoliStance issue tweets. Retrieved
-  from <https://huggingface.co/datasets/mlburnham/polistance_issue_tweets>
 - Burnham, M. (2024). Dem., rep. party platform topics. Retrieved
   from <https://huggingface.co/datasets/mlburnham/dem_rep_party_platform_topics>
   - Wolbrecht, Christina, Brooke Shannon, E.J. Fagan, Jones, Bryan D., Frank R. Baumgartner, Sean M. Theriault, Derek A.

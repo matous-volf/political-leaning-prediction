@@ -14,7 +14,6 @@ class Dataset:
 
 DATASETS_DIRECTORY = BASE_DIRECTORY / "datasets" / "preprocessed"
 LEAVE_ONE_OUT_BENCHMARK_EXCLUDED_NAMES = [
-    "polistance_issue_tweets",
     "webis_bias_flipper_18",
     "webis_news_bias_20",
 ]
