@@ -19,10 +19,12 @@
   from <https://huggingface.co/datasets/cajcodes/political-bias>
 - Burnham, M. (2024). Dem., rep. party platform topics. Retrieved
   from <https://huggingface.co/datasets/mlburnham/dem_rep_party_platform_topics>
-  - Wolbrecht, Christina, Brooke Shannon, E.J. Fagan, Jones, Bryan D., Frank R. Baumgartner, Sean M. Theriault, Derek A.
-    Epp, Cheyenne Lee, Miranda E. Sullivan. 2023. Policy Agendas Project: Democratic Party Platform.
-  - Wolbrecht, Christina, Brooke Shannon, E.J. Fagan, Jones, Bryan D., Frank R. Baumgartner, Sean M. Theriault, Derek A.
-    Epp, Cheyenne Lee, Miranda E. Sullivan. 2023. Policy Agendas Project: Republican Party Platform.
+    - Wolbrecht, Christina, Brooke Shannon, E.J. Fagan, Jones, Bryan D., Frank R. Baumgartner, Sean M. Theriault, Derek
+      A.
+      Epp, Cheyenne Lee, Miranda E. Sullivan. 2023. Policy Agendas Project: Democratic Party Platform.
+    - Wolbrecht, Christina, Brooke Shannon, E.J. Fagan, Jones, Bryan D., Frank R. Baumgartner, Sean M. Theriault, Derek
+      A.
+      Epp, Cheyenne Lee, Miranda E. Sullivan. 2023. Policy Agendas Project: Republican Party Platform.
 - Nayak, J. (2024). Political ideologies. Retrieved
   from <https://huggingface.co/datasets/JyotiNayak/political_ideologies>. Licensed under Apache 2.0.
 - Çöltekin, Ç., Kopp, M., Morkevičius, V., Ljubešić, N., Meden, K., & Erjavec, T. (2024). Training data for the shared
@@ -32,6 +34,8 @@
   and Bard Newspaper (v1.0) [Data set]. Empirical Methods in Natural Language Processing (EMNLP), Singapore.
   Zenodo. <https://doi.org/10.5281/zenodo.8417761>
 - Van Steyn, J. (2023). Political tweets. Retrieved from <https://huggingface.co/datasets/Jacobvs/PoliticalTweets>
+- nbandhi (2024). Political podcasts listing with audio links. Retrieved
+  from <https://www.kaggle.com/datasets/nbandhi/political-podcasts-listing-with-audio-links>
 
 ## Referenced existing models
 
