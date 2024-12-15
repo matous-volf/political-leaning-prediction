@@ -19,5 +19,5 @@ jobs:
       - name: conventional pull requests check
         uses: ytanikin/PRConventionalCommits@1.1.0
         with:
-          task_types: '["build","chore","ci","docs","feat","fix","perf","refactor","revert","style","test"]'
+          task_types: '["build","chore","ci","docs","feat","fix","hotfix","perf","refactor","revert","style","test"]'
           add_label: 'false'

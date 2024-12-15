@@ -21,4 +21,5 @@ jobs:
       - name: conventional commits check
         uses: webiny/action-conventional-commits@v1.3.0
         with:
+          allowed-commit-types: "build,chore,ci,docs,feat,fix,hotfix,perf,refactor,revert,style,test"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
