@@ -15,3 +15,4 @@ disable=
     too-few-public-methods,
     no-name-in-module,
     wrong-import-order,
+    cell-var-from-loop,
