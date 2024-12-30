@@ -1,0 +1,7 @@
+/.cadence
+/.git
+/.github
+/.idea
+/.dockerignore
+/Dockerfile
+/docker-compose.yaml
