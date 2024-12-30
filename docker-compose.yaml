@@ -1,0 +1,17 @@
+---
+services:
+  notebook:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - huggingface_cache:/.cache/huggingface
+    ports:
+      - "8000:8888"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+volumes:
+  huggingface_cache:
