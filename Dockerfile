@@ -10,4 +10,4 @@ RUN chown -R 1000:1000 /usr/src/app /.local /.cache /.config
 
 USER 1000:1000
 
-CMD [ "jupyter", "notebook", "--no-browser", "--ip=0.0.0.0", "--port=8888" ]
+CMD [ "jupyter", "notebook", "--no-browser", "--ip=0.0.0.0", "--port=8000" ]
