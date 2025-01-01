@@ -5,14 +5,16 @@ jobs=0
 
 [MESSAGES CONTROL]
 
-# Ignoring Import Errors is desired as super-linter
-# does not support installing dependencies as it runs.
 disable=
+    cell-var-from-loop,
+    # Ignoring Import Errors is desired as super-linter
+    # does not support installing dependencies as it runs.
     import-error,
     missing-module-docstring,
     missing-class-docstring,
     missing-function-docstring,
-    too-few-public-methods,
     no-name-in-module,
+    too-few-public-methods,
+    too-many-arguments,
+    too-many-locals,
     wrong-import-order,
-    cell-var-from-loop,
