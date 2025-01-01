@@ -388,6 +388,7 @@ def finetune_custom_models(
     eval_strategy: IntervalStrategy,
     training_seed: int,
     data_seed: int,
+    learning_rate: float = 5e-5,
 ):
     def tokenize_dataset(dataset, tokenizer):
         return dataset.map(
@@ -423,6 +424,7 @@ def finetune_custom_models(
             eval_dataset_tokenized = tokenize_dataset(eval_dataset, tokenizer)
 
             training_arguments = TrainingArguments(
+                learning_rate=learning_rate,
                 auto_find_batch_size=True,
                 eval_strategy=(
                     eval_strategy if len(eval_dataset) > 0 else IntervalStrategy.NO
