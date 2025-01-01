@@ -48,7 +48,10 @@ def systematic_sample(group, size):
     return group.iloc[indexes]
 
 
-def take_sample(dataframe: DataFrame, size: int) -> DataFrame:
+def take_even_class_distribution_sample(dataframe: DataFrame, size: int) -> DataFrame:
+    if size == 0:
+        return dataframe[0:0]
+
     class_sample_count = int(np.ceil(size / dataframe["leaning"].nunique()))
     return (
         dataframe.groupby("leaning", group_keys=False, observed=True)[

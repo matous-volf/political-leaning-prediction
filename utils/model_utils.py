@@ -383,8 +383,8 @@ def get_dataset_benchmark_models(benchmark_name: str):
 def finetune_custom_models(
     output_path: PathLike,
     train_datasets: Iterable[Dataset],
-    eval_datasets: Iterable[Dataset] | None,
-    metric: EvaluationModule | None,
+    eval_datasets: Iterable[Dataset],
+    metric: EvaluationModule,
     eval_strategy: IntervalStrategy,
     training_seed: int,
     data_seed: int,
@@ -424,7 +424,9 @@ def finetune_custom_models(
 
             training_arguments = TrainingArguments(
                 auto_find_batch_size=True,
-                eval_strategy=eval_strategy,
+                eval_strategy=(
+                    eval_strategy if len(eval_dataset) > 0 else IntervalStrategy.NO
+                ),
                 save_strategy=IntervalStrategy.NO,
                 output_dir=output_directory,
                 seed=training_seed,
