@@ -4,13 +4,16 @@ from enum import Enum
 from os import PathLike
 from typing import Generator, Iterable
 
+import numpy as np
 import torch
 from datasets import Dataset
+from evaluate import EvaluationModule
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
     BertTokenizer,
     DistilBertForSequenceClassification,
+    IntervalStrategy,
     RobertaTokenizer,
     Trainer,
     TrainingArguments,
@@ -379,36 +382,50 @@ def get_dataset_benchmark_models(benchmark_name: str):
 
 def finetune_custom_models(
     output_path: PathLike,
-    datasets: Iterable[Dataset],
+    train_datasets: Iterable[Dataset],
+    eval_datasets: Iterable[Dataset] | None,
+    metric: EvaluationModule | None,
+    eval_strategy: IntervalStrategy,
     training_seed: int,
     data_seed: int,
 ):
+    def tokenize_dataset(dataset, tokenizer):
+        return dataset.map(
+            lambda batch: tokenizer(
+                batch["body"],
+                max_length=CUSTOM_MODELS_MAX_LENGTH,
+                truncation=True,
+                padding="max_length",
+            ),
+            batched=True,
+        )
+
+    def compute_metrics(eval_pred):
+        logits, labels = eval_pred
+        predictions = np.argmax(logits, axis=-1)
+        return metric.compute(predictions=predictions, references=labels)
+
     for model_name in DATASET_BENCHMARK_MODEL_NAMES:
         print(f"fine-tuning {model_name} into {output_path}:")
 
         tokenizer = AutoTokenizer.from_pretrained(model_name)
-        for dataset in datasets:
-            print(f"  {dataset.info.dataset_name}")
+        for train_dataset, eval_dataset in zip(train_datasets, eval_datasets):
+            print(f"  {train_dataset.info.dataset_name}")
             output_directory = (
                 BASE_DIRECTORY
                 / "models_custom"
                 / output_path
                 / model_name.split("/")[-1]
-                / dataset.info.dataset_name
+                / train_dataset.info.dataset_name
             )
 
-            tokenized_dataset = dataset.map(
-                lambda batch: tokenizer(
-                    batch["body"],
-                    max_length=CUSTOM_MODELS_MAX_LENGTH,
-                    truncation=True,
-                    padding="max_length",
-                ),
-                batched=True,
-            )
+            train_dataset_tokenized = tokenize_dataset(train_dataset, tokenizer)
+            eval_dataset_tokenized = tokenize_dataset(train_dataset, tokenizer)
+
             training_arguments = TrainingArguments(
                 auto_find_batch_size=True,
-                save_strategy="no",
+                eval_strategy=eval_strategy,
+                save_strategy=IntervalStrategy.NO,
                 output_dir=output_directory,
                 seed=training_seed,
                 data_seed=data_seed,
@@ -416,10 +433,12 @@ def finetune_custom_models(
             trainer = Trainer(
                 model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
                     model_name,
-                    num_labels=len(dataset.unique("label")),
+                    num_labels=len(train_dataset.unique("label")),
                 ),
                 args=training_arguments,
-                train_dataset=tokenized_dataset,
+                train_dataset=train_dataset_tokenized,
+                eval_dataset=eval_dataset_tokenized,
+                compute_metrics=compute_metrics,
             )
             trainer.train()
             trainer.save_model(output_directory)

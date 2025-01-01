@@ -1,7 +1,9 @@
 import os
 from typing import Generator
 
+import numpy as np
 import pandas as pd
+from pandas import DataFrame
 
 from utils.base_directory import BASE_DIRECTORY
 
@@ -44,3 +46,22 @@ def systematic_sample(group, size):
         return group
     indexes = list(range(0, len(group), max(1, len(group) // size)))[:size]
     return group.iloc[indexes]
+
+
+def take_sample(dataframe: DataFrame, size: int) -> DataFrame:
+    class_sample_count = int(np.ceil(size / dataframe["leaning"].nunique()))
+    return (
+        dataframe.groupby("leaning", group_keys=False, observed=True)[
+            ["body", "leaning"]
+        ]
+        .apply(lambda group: systematic_sample(group, class_sample_count))
+        .head(size)
+    )
+
+
+def transform_train_labels(
+    dataframe: DataFrame, label_mapping: dict[str, int]
+) -> DataFrame:
+    dataframe = dataframe.rename(columns={"leaning": "label"})
+    dataframe["label"] = dataframe["label"].cat.rename_categories(label_mapping)
+    return dataframe
