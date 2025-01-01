@@ -420,7 +420,7 @@ def finetune_custom_models(
             )
 
             train_dataset_tokenized = tokenize_dataset(train_dataset, tokenizer)
-            eval_dataset_tokenized = tokenize_dataset(train_dataset, tokenizer)
+            eval_dataset_tokenized = tokenize_dataset(eval_dataset, tokenizer)
 
             training_arguments = TrainingArguments(
                 auto_find_batch_size=True,
