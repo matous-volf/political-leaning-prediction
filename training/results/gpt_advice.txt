@@ -1,0 +1,67 @@
+out_large
+5e-6
+weight_decay=0.01,
+warmup_steps=500,
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.750300 	1.400264 	0.370000
+2 	0.557900 	1.790734 	0.340000
+3 	0.434400 	1.766159 	0.390000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.786900 	1.397667 	0.360000
+2 	0.596600 	1.448708 	0.410000
+3 	0.465700 	1.529573 	0.460000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.827100 	0.916565 	0.560000
+2 	0.632200 	1.015756 	0.560000
+3 	0.490000 	1.138836 	0.570000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.797300 	1.578497 	0.530000
+2 	0.625900 	1.662330 	0.570000
+3 	0.472600 	1.741922 	0.540000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.887600 	0.537140 	0.750000
+2 	0.689400 	0.442539 	0.820000
+3 	0.554000 	0.431096 	0.840000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.793800 	1.129160 	0.260000
+2 	0.602100 	0.949157 	0.510000
+3 	0.458300 	0.951373 	0.550000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.818200 	0.816585 	0.570000
+2 	0.626500 	0.947889 	0.520000
+3 	0.485800 	1.238659 	0.480000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.820800 	0.646095 	0.710000
+2 	0.642900 	0.612670 	0.750000
+3 	0.498200 	0.546849 	0.790000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.791400 	1.091419 	0.510000
+2 	0.598500 	1.551675 	0.510000
+3 	0.451000 	1.777795 	0.510000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.746700 	1.270211 	0.320000
+2 	0.554200 	1.327495 	0.340000
+3 	0.402100 	1.501040 	0.320000
+
+,article_bias_prediction,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,parliament_speeches_2024,political_podcasts,political_tweets,qbias,average
+dataset_benchmark/leave_one_out/bert-large-cased/article_bias_prediction,469 / 1000 (47 %),642 / 1000 (64 %),696 / 1000 (70 %),572 / 612 (93 %),972 / 1000 (97 %),746 / 1000 (75 %),679 / 1000 (68 %),971 / 1000 (97 %),697 / 1000 (70 %),342 / 1000 (34 %),6317 / 8612 (73 %)
+dataset_benchmark/leave_one_out/bert-large-cased/commoncrawl_news_articles,533 / 1000 (53 %),500 / 1000 (50 %),708 / 1000 (71 %),583 / 612 (95 %),975 / 1000 (98 %),757 / 1000 (76 %),682 / 1000 (68 %),974 / 1000 (97 %),694 / 1000 (69 %),381 / 1000 (38 %),6287 / 8612 (73 %)
+dataset_benchmark/leave_one_out/bert-large-cased/dem_rep_party_platform_topics,581 / 1000 (58 %),686 / 1000 (69 %),556 / 1000 (56 %),573 / 612 (94 %),977 / 1000 (98 %),764 / 1000 (76 %),683 / 1000 (68 %),972 / 1000 (97 %),682 / 1000 (68 %),414 / 1000 (41 %),6332 / 8612 (74 %)
+dataset_benchmark/leave_one_out/bert-large-cased/gpt4_political_bias,573 / 1000 (57 %),682 / 1000 (68 %),679 / 1000 (68 %),360 / 612 (59 %),971 / 1000 (97 %),776 / 1000 (78 %),665 / 1000 (66 %),976 / 1000 (98 %),694 / 1000 (69 %),402 / 1000 (40 %),6418 / 9000 (71 %)
+dataset_benchmark/leave_one_out/bert-large-cased/gpt4_political_ideologies,592 / 1000 (59 %),680 / 1000 (68 %),691 / 1000 (69 %),573 / 612 (94 %),810 / 1000 (81 %),805 / 1000 (80 %),703 / 1000 (70 %),968 / 1000 (97 %),685 / 1000 (68 %),404 / 1000 (40 %),6101 / 8612 (71 %)
+dataset_benchmark/leave_one_out/bert-large-cased/media_political_stance,609 / 1000 (61 %),655 / 1000 (66 %),693 / 1000 (69 %),576 / 612 (94 %),966 / 1000 (97 %),463 / 1000 (46 %),672 / 1000 (67 %),972 / 1000 (97 %),681 / 1000 (68 %),404 / 1000 (40 %),6228 / 8612 (72 %)
+dataset_benchmark/leave_one_out/bert-large-cased/parliament_speeches_2024,571 / 1000 (57 %),653 / 1000 (65 %),701 / 1000 (70 %),575 / 612 (94 %),969 / 1000 (97 %),746 / 1000 (75 %),410 / 1000 (41 %),965 / 1000 (96 %),689 / 1000 (69 %),401 / 1000 (40 %),6270 / 8612 (73 %)
+dataset_benchmark/leave_one_out/bert-large-cased/political_podcasts,596 / 1000 (60 %),675 / 1000 (68 %),682 / 1000 (68 %),577 / 612 (94 %),972 / 1000 (97 %),795 / 1000 (80 %),676 / 1000 (68 %),734 / 1000 (73 %),680 / 1000 (68 %),401 / 1000 (40 %),6054 / 8612 (70 %)
+dataset_benchmark/leave_one_out/bert-large-cased/political_tweets,578 / 1000 (58 %),689 / 1000 (69 %),682 / 1000 (68 %),577 / 612 (94 %),978 / 1000 (98 %),767 / 1000 (77 %),677 / 1000 (68 %),963 / 1000 (96 %),515 / 1000 (52 %),391 / 1000 (39 %),6302 / 8612 (73 %)
+dataset_benchmark/leave_one_out/bert-large-cased/qbias,588 / 1000 (59 %),675 / 1000 (68 %),704 / 1000 (70 %),575 / 612 (94 %),975 / 1000 (98 %),762 / 1000 (76 %),682 / 1000 (68 %),967 / 1000 (97 %),684 / 1000 (68 %),441 / 1000 (44 %),6612 / 8612 (77 %)
+

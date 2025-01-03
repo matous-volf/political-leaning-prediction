@@ -1,0 +1,336 @@
+learning_rate=2e-5,
+num_train_epochs=5,
+warmup_ratio=0.1,
+weight_decay=0.01,
+max_grad_norm=1.0,
+
+per_device_train_batch_size=16,
+per_device_eval_batch_size=16,
+gradient_accumulation_steps=1,
+
+Epoch 	Training Loss 	Validation Loss Accuracy
+1 	0.690500 	1.555344 	0.424000
+2 	0.562500 	1.520755 	0.458000
+3 	0.385600 	1.571355 	0.428000
+4 	0.219500 	2.076923 	0.446000
+5 	0.156600 	2.445205 	0.450000
+
+---
+
+per_device_train_batch_size=32,
+per_device_eval_batch_size=32,
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.723700 	1.535168 	0.362000
+2 	0.599600 	1.520097 	0.420000
+3 	0.430800 	1.573663 	0.472000
+4 	0.320800 	1.748255 	0.474000
+5 	0.212000 	1.808760 	0.492000
+
+---
+
+per_device_train_batch_size=16,
+per_device_eval_batch_size=16,
+gradient_accumulation_steps=4,
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+0 	0.887600 	1.305568 	0.376000
+1 	0.667200 	1.470422 	0.364000
+2 	0.557900 	1.453900 	0.442000
+4 	0.357300 	1.604044 	0.472000
+
+---
+
+per_device_train_batch_size=16,
+per_device_eval_batch_size=16,
+gradient_accumulation_steps=8,
+
+
+[710/945 27:01 < 08:58, 0.44 it/s, Epoch 11.19/15]
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+0 	0.961200 	1.337548 	0.328000
+1 	0.832400 	1.184975 	0.382000
+2 	0.687600 	1.434544 	0.390000
+3 	0.489100 	1.511250 	0.454000
+4 	0.393300 	1.594976 	0.458000
+5 	0.326700 	1.703282 	0.460000
+6 	0.266300 	1.660502 	0.480000
+8 	0.136800 	2.087744 	0.470000
+9 	0.133400 	1.936434 	0.470000
+10 	0.104000 	2.092620 	0.490000
+
+---
+
+per_device_train_batch_size=16,
+per_device_eval_batch_size=16,
+gradient_accumulation_steps=1,
+learning_rate=1e-5
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.801300 	1.417617 	0.356000
+2 	0.690900 	1.424447 	0.418000
+3 	0.532100 	1.440060 	0.480000
+4 	0.396100 	1.475901 	0.498000
+5 	0.277200 	1.961113 	0.470000
+6 	0.198600 	2.028870 	0.514000
+7 	0.103800 	3.151301 	0.432000
+8 	0.081400 	2.817073 	0.500000
+9 	0.064900 	3.158331 	0.492000
+10 	0.075900 	3.497688 	0.486000
+11 	0.033800 	3.621621 	0.494000
+12 	0.006900 	3.792119 	0.490000
+13 	0.004900 	3.691984 	0.502000
+14 	0.000900 	3.818526 	0.486000
+15 	0.001400 	3.832634 	0.506000
+
+per_device_train_batch_size=16,
+per_device_eval_batch_size=16,
+gradient_accumulation_steps=1,
+learning_rate=1e-6
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.940600 	1.195853 	0.326000
+2 	0.903000 	1.326304 	0.346000
+3 	0.846400 	1.366657 	0.382000
+4 	0.805100 	1.444371 	0.382000
+5 	0.794500 	1.504099 	0.378000
+6 	0.721900 	1.469634 	0.394000
+7 	0.717100 	1.491247 	0.392000
+8 	0.687800 	1.508571 	0.394000
+9 	0.694100 	1.535598 	0.412000
+10 	0.671100 	1.516138 	0.402000
+11 	0.656000 	1.512543 	0.402000
+
+--- 
+
+learning_rate=1e-6,
+num_train_epochs=15,
+warmup_ratio=0.1,
+weight_decay=0.05,
+max_grad_norm=1.0,
+
+lr_scheduler_type="linear",
+
+per_device_train_batch_size=16,
+per_device_eval_batch_size=16,
+gradient_accumulation_steps=1,
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.940600 	1.195852 	0.326000
+2 	0.903000 	1.326292 	0.346000
+3 	0.846400 	1.366635 	0.382000
+4 	0.805100 	1.444239 	0.382000
+5 	0.794400 	1.504002 	0.378000
+6 	0.721900 	1.469500 	0.394000
+7 	0.717100 	1.491300 	0.392000
+8 	0.687800 	1.508440 	0.394000
+9 	0.694100 	1.535663 	0.412000
+10 	0.671000 	1.516034 	0.402000
+11 	0.656000 	1.512473 	0.402000
+12 	0.655900 	1.525642 	0.408000
+13 	0.633900 	1.525935 	0.414000
+
+--- 1 000
+
+BestRun(run_id='0', objective=0.51, hyperparameters={'learning_rate': 4.720483165452149e-05, 'per_device_train_batch_size': 8, 'weight_decay': 0.09946309475403227, 'warmup_ratio': 0.13642525109705497, 'max_grad_norm': 1.1176467282299472}, run_summary=None)
+
+--- 2 000
+
+fine-tuning google-bert/bert-base-cased into dataset_benchmark/leave_one_out:
+  article_bias_prediction
+
+Map: 100%
+ 16512/16512 [00:03<00:00, 6741.94 examples/s]
+Map: 100%
+ 100/100 [00:00<00:00, 1791.71 examples/s]
+
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at google-bert/bert-base-cased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[I 2025-01-03 08:48:12,950] A new study created in memory with name: no-name-8949be2e-02a7-4e85-920e-f8843633a139
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at google-bert/bert-base-cased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+
+  training batch size:  8
+  evaluation batch size:  8
+  gradient accumulation steps:  1
+
+[14448/14448 39:03, Epoch 7/7]
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.576300 	1.649501 	0.420000
+2 	0.413500 	1.795135 	0.400000
+3 	0.386500 	2.117210 	0.460000
+4 	0.279600 	2.718110 	0.500000
+5 	0.139400 	3.241275 	0.520000
+6 	0.106400 	3.440598 	0.550000
+7 	0.095100 	3.666638 	0.550000
+
+2 0.42
+3 0.42
+4 0.46
+5 0.5
+6 0.52
+7 0.55
+1 0.55
+
+[I 2025-01-03 09:27:17,437] Trial 0 finished with value: 0.55 and parameters: {'learning_rate': 3.0299512003968508e-05, 'per_device_train_batch_size': 8, 'weight_decay': 0.055414654395123795, 'warmup_ratio': 0.06435672877479807, 'max_grad_norm': 1.2153266561119527}. Best is trial 0 with value: 0.55.
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at google-bert/bert-base-cased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+
+[14448/14448 39:04, Epoch 7/7]
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.836600 	1.361364 	0.390000
+2 	0.617400 	1.389349 	0.410000
+3 	0.671000 	1.442110 	0.420000
+4 	0.526400 	1.608844 	0.410000
+5 	0.519700 	1.448130 	0.420000
+6 	0.484100 	1.501382 	0.430000
+7 	0.479500 	1.448259 	0.440000
+
+2 0.39
+3 0.41
+4 0.42
+5 0.42
+6 0.42
+7 0.43
+1 0.44
+
+[I 2025-01-03 10:06:22,379] Trial 1 finished with value: 0.44 and parameters: {'learning_rate': 2.5488460557406256e-06, 'per_device_train_batch_size': 8, 'weight_decay': 0.02643962015290454, 'warmup_ratio': 0.1015025880302265, 'max_grad_norm': 0.9609946753899428}. Best is trial 0 with value: 0.55.
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at google-bert/bert-base-cased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+
+[7224/7224 35:56, Epoch 7/7]
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.655000 	1.496841 	0.400000
+2 	0.468100 	1.929922 	0.470000
+3 	0.363400 	1.950434 	0.460000
+4 	0.237000 	2.444304 	0.510000
+5 	0.128000 	3.296047 	0.460000
+6 	0.091200 	3.958113 	0.460000
+7 	0.043600 	4.073750 	0.470000
+
+2 0.4
+3 0.47
+4 0.47
+5 0.51
+6 0.51
+7 0.51
+1 0.51
+
+---
+
+learning_rate=2.5488460557406256e-06,
+num_train_epochs=num_train_epochs,
+warmup_ratio=0.1,
+weight_decay=0.03,
+max_grad_norm=0.9,
+
+# lr_scheduler_type="linear",
+
+per_device_train_batch_size=16,
+per_device_eval_batch_size=16,
+gradient_accumulation_steps=1,
+
+hidden_dropout_prob=0.2,
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.937600 	1.331122 	0.300000
+2 	0.746500 	1.321876 	0.320000
+3 	0.743100 	1.365473 	0.370000
+4 	0.568700 	1.591188 	0.390000
+5 	0.552500 	1.458858 	0.450000
+6 	0.490100 	1.547162 	0.470000
+7 	0.470600 	1.711415 	0.420000
+8 	0.377500 	1.480091 	0.480000
+9 	0.362300 	1.638243 	0.440000
+10 	0.361200 	1.741951 	0.500000
+11 	0.411400 	1.836787 	0.470000
+12 	0.351900 	2.036294 	0.450000
+13 	0.339200 	2.236796 	0.460000
+14 	0.269500 	2.350724 	0.460000
+15 	0.218200 	2.664084 	0.460000
+16 	0.312800 	2.586864 	0.510000
+17 	0.204200 	2.565881 	0.480000
+18 	0.227400 	2.806897 	0.470000
+19 	0.177300 	2.948776 	0.500000
+20 	0.172200 	3.036528 	0.500000
+21 	0.213600 	3.094496 	0.520000
+22 	0.204300 	3.290168 	0.510000
+23 	0.273000 	3.398500 	0.480000
+24 	0.120900 	3.352198 	0.490000
+25 	0.092500 	3.445202 	0.510000
+26 	0.057400 	3.335120 	0.540000
+27 	0.067100 	3.556620 	0.530000
+28 	0.135900 	3.541350 	0.530000
+29 	0.122000 	3.591169 	0.530000
+30 	0.099400 	3.477918 	0.520000
+
+Prefer the BIG over the BASE model if you plan to train longer than one day and
+have 11 GB (or more) memory available on GPU.
+
+--- ^, 100 batch
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.997500 	1.165277 	0.240000
+2 	0.950800 	1.258539 	0.280000
+3 	0.911700 	1.336077 	0.290000
+4 	0.825300 	1.348908 	0.290000
+5 	0.748000 	1.318004 	0.330000
+6 	0.712000 	1.313423 	0.330000
+7 	0.652700 	1.305130 	0.330000
+8 	0.628800 	1.300778 	0.380000
+9 	0.602500 	1.347770 	0.390000
+10 	0.563900 	1.297248 	0.400000
+11 	0.542600 	1.317469 	0.400000
+12 	0.534400 	1.336944 	0.410000
+13 	0.514800 	1.339481 	0.430000
+14 	0.488900 	1.326990 	0.460000
+15 	0.477700 	1.330282 	0.430000
+16 	0.459600 	1.337114 	0.440000
+17 	0.438100 	1.334720 	0.450000
+18 	0.437700 	1.404418 	0.430000
+19 	0.411600 	1.385171 	0.440000
+20 	0.407600 	1.402661 	0.450000
+21 	0.406200 	1.395599 	0.440000
+22 	0.390400 	1.400355 	0.470000
+
+--- ^ gradient_accumulation_steps=1
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.968100 	1.183474 	0.260000
+2 	0.918800 	1.302655 	0.300000
+3 	0.837600 	1.341378 	0.280000
+4 	0.732600 	1.358332 	0.320000
+5 	0.689700 	1.301849 	0.320000
+6 	0.642400 	1.384105 	0.350000
+7 	0.593900 	1.312326 	0.440000
+8 	0.556600 	1.362581 	0.430000
+9 	0.507600 	1.408545 	0.440000
+10 	0.509500 	1.376746 	0.450000
+11 	0.462200 	1.356096 	0.440000
+12 	0.448200 	1.400557 	0.460000
+13 	0.405600 	1.397557 	0.490000
+14 	0.404800 	1.381948 	0.480000
+15 	0.389300 	1.408449 	0.470000
+16 	0.369700 	1.424680 	0.460000
+17 	0.343700 	1.395548 	0.480000
+18 	0.334900 	1.505142 	0.470000
+19 	0.325500 	1.488889 	0.440000
+
+--- ^ 4 000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.954100 	1.219246 	0.300000
+2 	0.855100 	1.325329 	0.320000
+3 	0.733000 	1.350657 	0.360000
+4 	0.657300 	1.319347 	0.430000
+5 	0.603000 	1.312009 	0.470000
+6 	0.556700 	1.288387 	0.460000
+7 	0.513500 	1.313337 	0.460000
+8 	0.486800 	1.313250 	0.470000
+
+--- ^ 8 000
+
+
+
+
+

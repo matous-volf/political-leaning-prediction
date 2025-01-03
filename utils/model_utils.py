@@ -27,12 +27,14 @@ POLITICAL_LEANING_NO_CENTER_LABEL_MAPPING = {"left": 0, "right": 1}
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-CUSTOM_MODELS_MAX_LENGTH = 512
+CUSTOM_MODELS_MAX_LENGTH = 128
 DATASET_BENCHMARK_MODEL_NAMES = sorted(
     [
+        # "microsoft/deberta-v3-base",
+        # "google-bert/bert-large-cased",
         "google-bert/bert-base-cased",
-        "FacebookAI/roberta-base",
-        "launch/POLITICS",
+        # "FacebookAI/roberta-base",
+        # "launch/POLITICS",
     ],
     key=lambda model_name: model_name.split("/")[-1],
 )
@@ -380,6 +382,15 @@ def get_dataset_benchmark_models(benchmark_name: str):
             )
 
 
+from transformers import AutoConfig
+
+# to consider the best epoch of a trial. maybe not actually effective.
+# https://discuss.huggingface.co/t/hyperparameter-optimization-and-load-best-model-at-end/44188
+num_train_epochs = 30
+num_train_epochs_current = 1
+best_metric = 0.0
+
+
 def finetune_custom_models(
     output_path: PathLike,
     train_datasets: Iterable[Dataset],
@@ -406,6 +417,36 @@ def finetune_custom_models(
         predictions = np.argmax(logits, axis=-1)
         return metric.compute(predictions=predictions, references=labels)
 
+    def compute_objective(metrics):
+        global num_train_epochs
+        global num_train_epochs_current
+        global best_metric
+
+        current_best_metric = max(best_metric, metrics["eval_accuracy"])
+
+        if num_train_epochs_current >= num_train_epochs:
+            num_train_epochs_current = 0
+            best_metric = 0.0
+        else:
+            best_metric = current_best_metric
+
+        num_train_epochs_current += 1
+
+        print(num_train_epochs_current, current_best_metric)
+        return current_best_metric
+
+    def model_hp_space(trial):
+        return {
+            "learning_rate": trial.suggest_float("learning_rate", 1e-6, 1e-4, log=True),
+            "per_device_train_batch_size": trial.suggest_categorical(
+                "per_device_train_batch_size", [4, 8, 16]
+            ),
+            "weight_decay": trial.suggest_float("weight_decay", 0.01, 0.2),
+            "warmup_ratio": trial.suggest_float("warmup_ratio", 0.05, 0.2),
+            # "gradient_accumulation_steps": trial.suggest_int("gradient_accumulation_steps", 1, 8),
+            "max_grad_norm": trial.suggest_float("max_grad_norm", 0.5, 2.0),
+        }
+
     for model_name in DATASET_BENCHMARK_MODEL_NAMES:
         print(f"fine-tuning {model_name} into {output_path}:")
 
@@ -424,8 +465,22 @@ def finetune_custom_models(
             eval_dataset_tokenized = tokenize_dataset(eval_dataset, tokenizer)
 
             training_arguments = TrainingArguments(
-                learning_rate=learning_rate,
-                auto_find_batch_size=True,
+                learning_rate=2.5488460557406256e-06,
+                num_train_epochs=num_train_epochs,
+                warmup_ratio=0.1,
+                weight_decay=0.03,
+                max_grad_norm=0.9,
+                # lr_scheduler_type="linear",
+                per_device_train_batch_size=100,
+                per_device_eval_batch_size=100,
+                gradient_accumulation_steps=1,
+                # load_best_model_at_end=True,
+                # warmup_steps=500,
+                # auto_find_batch_size=True,
+                # load_best_model_at_end=True,
+                # report_to="tensorboard",
+                logging_steps=50,
+                logging_dir="./logs",
                 eval_strategy=(
                     eval_strategy if len(eval_dataset) > 0 else IntervalStrategy.NO
                 ),
@@ -434,15 +489,37 @@ def finetune_custom_models(
                 seed=training_seed,
                 data_seed=data_seed,
             )
+            config = AutoConfig.from_pretrained(
+                model_name,
+                num_labels=len(train_dataset.unique("label")),
+                hidden_dropout_prob=0.05,
+            )
             trainer = Trainer(
                 model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
                     model_name,
-                    num_labels=len(train_dataset.unique("label")),
+                    config=config,
                 ),
                 args=training_arguments,
                 train_dataset=train_dataset_tokenized,
                 eval_dataset=eval_dataset_tokenized,
                 compute_metrics=compute_metrics,
             )
+            print("  training batch size: ", trainer.args.per_device_train_batch_size)
+            print("  evaluation batch size: ", trainer.args.per_device_eval_batch_size)
+            print(
+                "  gradient accumulation steps: ",
+                trainer.args.gradient_accumulation_steps,
+            )
+
+            # best_run = trainer.hyperparameter_search(
+            #     compute_objective=compute_objective,
+            #     direction="maximize",
+            #     hp_space=model_hp_space,
+            #     n_trials=50,
+            #     backend="optuna",
+            # )
+            # print(best_run)
+            # return best_run
+
             trainer.train()
             trainer.save_model(output_directory)

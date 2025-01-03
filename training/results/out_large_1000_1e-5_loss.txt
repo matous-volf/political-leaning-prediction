@@ -1,0 +1,50 @@
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.654700 	1.638489 	0.430000
+2 	0.420000 	1.856643 	0.460000
+3 	0.259200 	2.210843 	0.500000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.705100 	1.383369 	0.430000
+2 	0.483200 	1.422853 	0.570000
+3 	0.335900 	1.618211 	0.560000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.719300 	0.923951 	0.580000
+2 	0.508100 	1.167383 	0.610000
+3 	0.342900 	1.436529 	0.560000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.706800 	1.957290 	0.550000
+2 	0.504200 	2.675678 	0.480000
+3 	0.311300 	2.910596 	0.480000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.802100 	0.466886 	0.790000
+2 	0.568300 	0.558007 	0.770000
+3 	0.370800 	0.756376 	0.790000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.675900 	1.100087 	0.450000
+2 	0.479600 	1.517103 	0.390000
+3 	0.301400 	2.087838 	0.430000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.698100 	0.957514 	0.500000
+2 	0.476400 	1.208961 	0.470000
+3 	0.300300 	1.651457 	0.400000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.753300 	0.717719 	0.660000
+2 	0.557200 	0.732450 	0.680000
+3 	0.353300 	0.732772 	0.810000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.729100 	1.500516 	0.500000
+2 	0.518000 	2.300482 	0.520000
+3 	0.336100 	2.761436 	0.520000
+
+Epoch 	Training Loss 	Validation Loss 	Accuracy
+1 	0.700200 	1.284568 	0.280000
+2 	0.496500 	1.628932 	0.320000
+3 	0.314200 	2.044189 	0.350000
+
