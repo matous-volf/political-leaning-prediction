@@ -6,7 +6,8 @@ services:
       - .:/usr/src/app
       - huggingface_cache:/.cache/huggingface
     ports:
-      - "8000:8888"
+      - "8000:8000"
+      - "6006:6006"
     deploy:
       resources:
         reservations:

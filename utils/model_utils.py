@@ -1,4 +1,5 @@
 import os
+import shutil
 from abc import ABC, abstractmethod
 from enum import Enum
 from os import PathLike
@@ -13,6 +14,7 @@ from transformers import (
     AutoTokenizer,
     BertTokenizer,
     DistilBertForSequenceClassification,
+    EarlyStoppingCallback,
     IntervalStrategy,
     RobertaTokenizer,
     Trainer,
@@ -32,7 +34,7 @@ DATASET_BENCHMARK_MODEL_NAMES = sorted(
     [
         # "microsoft/deberta-v3-base",
         # "google-bert/bert-large-cased",
-        "google-bert/bert-base-cased",
+        "answerdotai/ModernBERT-base",
         # "FacebookAI/roberta-base",
         # "launch/POLITICS",
     ],
@@ -386,7 +388,7 @@ from transformers import AutoConfig
 
 # to consider the best epoch of a trial. maybe not actually effective.
 # https://discuss.huggingface.co/t/hyperparameter-optimization-and-load-best-model-at-end/44188
-num_train_epochs = 30
+num_train_epochs = 10
 num_train_epochs_current = 1
 best_metric = 0.0
 
@@ -464,62 +466,76 @@ def finetune_custom_models(
             train_dataset_tokenized = tokenize_dataset(train_dataset, tokenizer)
             eval_dataset_tokenized = tokenize_dataset(eval_dataset, tokenizer)
 
-            training_arguments = TrainingArguments(
-                learning_rate=2.5488460557406256e-06,
-                num_train_epochs=num_train_epochs,
-                warmup_ratio=0.1,
-                weight_decay=0.03,
-                max_grad_norm=0.9,
-                # lr_scheduler_type="linear",
-                per_device_train_batch_size=100,
-                per_device_eval_batch_size=100,
-                gradient_accumulation_steps=1,
-                # load_best_model_at_end=True,
-                # warmup_steps=500,
-                # auto_find_batch_size=True,
-                # load_best_model_at_end=True,
-                # report_to="tensorboard",
-                logging_steps=50,
-                logging_dir="./logs",
-                eval_strategy=(
-                    eval_strategy if len(eval_dataset) > 0 else IntervalStrategy.NO
-                ),
-                save_strategy=IntervalStrategy.NO,
-                output_dir=output_directory,
-                seed=training_seed,
-                data_seed=data_seed,
-            )
-            config = AutoConfig.from_pretrained(
-                model_name,
-                num_labels=len(train_dataset.unique("label")),
-                hidden_dropout_prob=0.05,
-            )
-            trainer = Trainer(
-                model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
+            for learning_rate in np.arange(1e-6, 5e-5, 1e-7):
+                print(f"  learning rate: {learning_rate}")
+                training_arguments = TrainingArguments(
+                    learning_rate=learning_rate,
+                    num_train_epochs=num_train_epochs,
+                    warmup_ratio=0.1,
+                    weight_decay=0.01,
+                    # max_grad_norm=0.9,
+                    # lr_scheduler_type="linear",
+                    # per_device_train_batch_size=100,
+                    # per_device_eval_batch_size=100,
+                    # gradient_accumulation_steps=1,
+                    # load_best_model_at_end=True,
+                    # warmup_steps=500,
+                    auto_find_batch_size=True,
+                    # load_best_model_at_end=True,
+                    # report_to="tensorboard",
+                    load_best_model_at_end=True,
+                    logging_steps=50,
+                    logging_dir="./logs",
+                    eval_strategy=(
+                        eval_strategy if len(eval_dataset) > 0 else IntervalStrategy.NO
+                    ),
+                    save_strategy=IntervalStrategy.EPOCH,
+                    output_dir=output_directory,
+                    seed=training_seed,
+                    data_seed=data_seed,
+                )
+                config = AutoConfig.from_pretrained(
                     model_name,
-                    config=config,
-                ),
-                args=training_arguments,
-                train_dataset=train_dataset_tokenized,
-                eval_dataset=eval_dataset_tokenized,
-                compute_metrics=compute_metrics,
-            )
-            print("  training batch size: ", trainer.args.per_device_train_batch_size)
-            print("  evaluation batch size: ", trainer.args.per_device_eval_batch_size)
-            print(
-                "  gradient accumulation steps: ",
-                trainer.args.gradient_accumulation_steps,
-            )
+                    num_labels=len(train_dataset.unique("label")),
+                    hidden_dropout_prob=0.05,
+                )
+                trainer = Trainer(
+                    model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
+                        model_name,
+                        config=config,
+                    ),
+                    args=training_arguments,
+                    train_dataset=train_dataset_tokenized,
+                    eval_dataset=eval_dataset_tokenized,
+                    compute_metrics=compute_metrics,
+                    callbacks=[EarlyStoppingCallback(early_stopping_patience=3)],
+                )
+                print(
+                    f"  training batch size: {trainer.args.per_device_train_batch_size}"
+                )
+                print(
+                    f"  evaluation batch size: {trainer.args.per_device_eval_batch_size}"
+                )
+                print(
+                    "  gradient accumulation steps: ",
+                    trainer.args.gradient_accumulation_steps,
+                )
 
-            # best_run = trainer.hyperparameter_search(
-            #     compute_objective=compute_objective,
-            #     direction="maximize",
-            #     hp_space=model_hp_space,
-            #     n_trials=50,
-            #     backend="optuna",
-            # )
-            # print(best_run)
-            # return best_run
+                # best_run = trainer.hyperparameter_search(
+                #     compute_objective=compute_objective,
+                #     direction="maximize",
+                #     hp_space=model_hp_space,
+                #     n_trials=50,
+                #     backend="optuna",
+                # )
+                # print(best_run)
+                # return best_run
 
-            trainer.train()
-            trainer.save_model(output_directory)
+                trainer.train()
+                # trainer.save_model(output_directory)
+
+                # Clean up the model to save storage space.
+                for sub_entry in os.listdir(output_directory):
+                    sub_entry_path = os.path.join(output_directory, sub_entry)
+                    if os.path.isdir(sub_entry_path):
+                        shutil.rmtree(sub_entry_path)
