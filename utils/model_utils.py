@@ -33,8 +33,8 @@ CUSTOM_MODELS_MAX_LENGTH = 128
 DATASET_BENCHMARK_MODEL_NAMES = sorted(
     [
         # "microsoft/deberta-v3-base",
-        # "google-bert/bert-large-cased",
-        "answerdotai/ModernBERT-base",
+        "google-bert/bert-base-cased",
+        # "answerdotai/ModernBERT-base",
         # "FacebookAI/roberta-base",
         # "launch/POLITICS",
     ],
@@ -466,7 +466,7 @@ def finetune_custom_models(
             train_dataset_tokenized = tokenize_dataset(train_dataset, tokenizer)
             eval_dataset_tokenized = tokenize_dataset(eval_dataset, tokenizer)
 
-            for learning_rate in np.arange(1e-6, 5e-5, 1e-7):
+            for learning_rate in np.arange(5e-7, 5e-5, 1e-7):
                 print(f"  learning rate: {learning_rate}")
                 training_arguments = TrainingArguments(
                     learning_rate=learning_rate,
