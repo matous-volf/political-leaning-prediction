@@ -19,6 +19,10 @@ LEAVE_ONE_OUT_BENCHMARK_EXCLUDED_NAMES = [
     "webis_bias_flipper_18",
     "webis_news_bias_20",
 ]
+TRAINING_EXCLUDED_NAMES = [
+    "webis_bias_flipper_18",
+    "webis_news_bias_20",
+]
 
 
 def get_datasets() -> Generator[Dataset, None, None]:
@@ -35,6 +39,13 @@ def get_datasets() -> Generator[Dataset, None, None]:
 def get_datasets_for_leave_one_out_benchmark() -> Generator[Dataset, None, None]:
     yield from filter(
         lambda dataset: dataset.name not in LEAVE_ONE_OUT_BENCHMARK_EXCLUDED_NAMES,
+        get_datasets(),
+    )
+
+
+def get_datasets_for_training() -> Generator[Dataset, None, None]:
+    yield from filter(
+        lambda dataset: dataset.name not in TRAINING_EXCLUDED_NAMES,
         get_datasets(),
     )
 
