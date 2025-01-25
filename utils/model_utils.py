@@ -309,7 +309,7 @@ class CustomModel(Model):
         self, model_name: str, tokenizer_name: str, model_max_length: int
     ) -> None:
         model = AutoModelForSequenceClassification.from_pretrained(
-            BASE_DIRECTORY / "models_custom" / model_name
+            BASE_DIRECTORY / "political_leaning" / "models_custom" / model_name
         )
         super().__init__(
             AutoTokenizer.from_pretrained(tokenizer_name),
@@ -359,7 +359,11 @@ def get_dataset_benchmark_models(benchmark_name: str):
     for model, tokenizer_name in zip(
         sorted(
             os.listdir(
-                BASE_DIRECTORY / "models_custom" / "dataset_benchmark" / benchmark_name
+                BASE_DIRECTORY
+                / "political_leaning"
+                / "models_custom"
+                / "dataset_benchmark"
+                / benchmark_name
             )
         ),
         DATASET_BENCHMARK_MODEL_NAMES,
@@ -367,6 +371,7 @@ def get_dataset_benchmark_models(benchmark_name: str):
         for dataset in sorted(
             os.listdir(
                 BASE_DIRECTORY
+                / "political_leaning"
                 / "models_custom"
                 / "dataset_benchmark"
                 / benchmark_name
@@ -414,6 +419,7 @@ def finetune_custom_models(
             print(f"  {train_dataset.info.dataset_name}")
             output_directory = (
                 BASE_DIRECTORY
+                / "political_leaning"
                 / "models_custom"
                 / output_path
                 / model_name.split("/")[-1]

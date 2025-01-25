@@ -1,6 +1,6 @@
 # Leave-one-out dataset benchmark
 
-If two datasets intersect with each other (as measured [here](/analysis/dataset_intersection)) by more than 10 %, the
+If two datasets intersect with each other (as measured [here](../../dataset_intersection)) by more than 10 %, the
 smaller dataset is not a part of this benchmark to avoid spillover.
 
 From each dataset, a sample of 1 000 articles (or less if the dataset is smaller) has been taken while ensuring an equal
