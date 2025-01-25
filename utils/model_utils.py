@@ -68,12 +68,12 @@ class Model(ABC):
         )
 
     @abstractmethod
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
         pass
 
     def get_tokens(
         self,
-        article_body: str,
+        text: str,
         truncate_tokens: bool,
         return_tensors: str | None = "pt",
     ):
@@ -85,7 +85,7 @@ class Model(ABC):
         if return_tensors:
             tokenizer_args["return_tensors"] = return_tensors
 
-        return self.tokenizer(article_body, **tokenizer_args).to(DEVICE)
+        return self.tokenizer(text, **tokenizer_args).to(DEVICE)
 
     def get_output(self, tokens):
         with torch.no_grad():
@@ -105,8 +105,8 @@ class PoliticalBiasBert(Model):
             ),
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(article_body, truncate_tokens)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT][
             torch.argmax(output.logits, dim=-1)
@@ -133,8 +133,8 @@ class PoliticalBiasPredictionAllsidesDeberta(Model):
             device=DEVICE,
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        output = self.pipe(article_body)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        output = self.pipe(text)
         return {
             "LABEL_0": Leaning.LEFT,
             "LABEL_1": Leaning.CENTER,
@@ -156,9 +156,9 @@ class DistilBertPoliticalBias(Model):
             512,
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        article_body = article_body.replace("\n", "").replace("``", '"')
-        tokens = self.get_tokens(article_body, truncate_tokens)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        text = text.replace("\n", "").replace("``", '"')
+        tokens = self.get_tokens(text, truncate_tokens)
         unk_token_id = self.tokenizer.convert_tokens_to_ids(self.tokenizer.unk_token)
         tokens["input_ids"][
             tokens["input_ids"] >= self.model.config.vocab_size
@@ -185,8 +185,8 @@ class BertPoliticalBiasFinetune(Model):
             ),
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(article_body, truncate_tokens)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [Leaning.LEFT, Leaning.RIGHT][torch.argmax(output.logits, dim=-1)]
 
@@ -205,8 +205,8 @@ class DistilBertPoliticalFinetune(Model):
             512,
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(article_body, truncate_tokens)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT][
             torch.argmax(output.logits, dim=-1)
@@ -226,8 +226,8 @@ class PoliticalIdeologiesRobertaFinetuned(Model):
             ),
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(article_body, truncate_tokens)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
 
@@ -246,8 +246,8 @@ class DebertaPoliticalClassification(Model):
             512,
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(article_body, truncate_tokens)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [Leaning.LEFT, Leaning.RIGHT][torch.argmax(output.logits, dim=-1)]
 
@@ -265,8 +265,8 @@ class DistilBertPoliticalTweets(Model):
             ),
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(article_body, truncate_tokens)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
 
@@ -291,10 +291,10 @@ class PoliticalDebateLarge(Model):
             device=DEVICE,
         )
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
         hypothesis_template = "This text supports {} political leaning."
         output = self.pipe(
-            article_body,
+            text,
             ["left", "center", "right"],
             hypothesis_template=hypothesis_template,
             multi_label=False,
@@ -318,8 +318,8 @@ class CustomModel(Model):
         )
         self.name = model_name
 
-    def predict(self, article_body: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(article_body, truncate_tokens)
+    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+        tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         labels = (
             [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT]
@@ -398,7 +398,7 @@ def finetune_custom_models(
     def tokenize_dataset(dataset, tokenizer):
         return dataset.map(
             lambda batch: tokenizer(
-                batch["body"],
+                batch["text"],
                 max_length=CUSTOM_MODELS_MAX_LENGTH,
                 truncation=True,
                 padding="max_length",
