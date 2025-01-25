@@ -14,7 +14,7 @@ class Dataset:
         self.dataframe = dataframe
 
 
-DATASETS_DIRECTORY = BASE_DIRECTORY / "datasets" / "preprocessed"
+DATASETS_DIRECTORY = BASE_DIRECTORY / "political_leaning" / "datasets" / "preprocessed"
 LEAVE_ONE_OUT_BENCHMARK_EXCLUDED_NAMES = [
     "webis_bias_flipper_18",
     "webis_news_bias_20",
