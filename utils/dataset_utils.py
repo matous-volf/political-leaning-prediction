@@ -5,7 +5,6 @@ from typing import Generator
 import datasets
 import numpy as np
 import pandas as pd
-from pandas import DataFrame
 
 from utils.base_directory import BASE_DIRECTORY
 
