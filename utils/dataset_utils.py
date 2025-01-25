@@ -1,9 +1,10 @@
 import os
+from copy import deepcopy
 from typing import Generator
 
+import datasets
 import numpy as np
 import pandas as pd
-from pandas import DataFrame
 
 from utils.base_directory import BASE_DIRECTORY
 
@@ -12,6 +13,13 @@ class Dataset:
     def __init__(self, name: str, dataframe: pd.DataFrame) -> None:
         self.name = name
         self.dataframe = dataframe
+        self.has_title = self.dataframe.get("title") is not None
+        self.has_center_leaning_class = len(self.dataframe["leaning"].unique()) == 3
+
+    def to_huggingface(self):
+        return datasets.Dataset.from_pandas(
+            self.dataframe, info=datasets.DatasetInfo(dataset_name=self.name)
+        )
 
 
 DATASETS_DIRECTORY = BASE_DIRECTORY / "political_leaning" / "datasets" / "preprocessed"
@@ -48,23 +56,46 @@ def systematic_sample(group, size):
     return group.iloc[indexes]
 
 
-def take_even_class_distribution_sample(dataframe: DataFrame, size: int) -> DataFrame:
+def take_even_class_distribution_sample(dataset: Dataset, size: int) -> Dataset:
+    dataset = deepcopy(dataset)
+
     if size == 0:
-        return dataframe[0:0]
+        dataset.dataframe = dataset.dataframe[0:0]
+    else:
+        class_sample_count = int(np.ceil(size / dataset.dataframe["leaning"].nunique()))
+        dataset.dataframe = (
+            dataset.dataframe.groupby("leaning", group_keys=False, observed=True)
+            .apply(lambda group: systematic_sample(group, class_sample_count))
+            .head(size)
+        )
 
-    class_sample_count = int(np.ceil(size / dataframe["leaning"].nunique()))
-    return (
-        dataframe.groupby("leaning", group_keys=False, observed=True)[
-            ["body", "leaning"]
-        ]
-        .apply(lambda group: systematic_sample(group, class_sample_count))
-        .head(size)
+    return dataset
+
+
+def transform_train_texts(dataset: Dataset) -> Dataset:
+    dataset = deepcopy(dataset)
+    if dataset.has_title:
+        dataset.dataframe["text"] = (
+            dataset.dataframe["title"].fillna("")
+            + "\n\n"
+            + dataset.dataframe["body"].fillna("")
+        ).str.strip()
+    else:
+        dataset.dataframe["text"] = dataset.dataframe["body"]
+    return dataset
+
+
+def transform_train_labels(dataset: Dataset, label_mapping: dict[str, int]) -> Dataset:
+    dataset = deepcopy(dataset)
+    dataset.dataframe["label"] = dataset.dataframe["leaning"].cat.rename_categories(
+        label_mapping
     )
+    return dataset
 
 
-def transform_train_labels(
-    dataframe: DataFrame, label_mapping: dict[str, int]
-) -> DataFrame:
-    dataframe = dataframe.rename(columns={"leaning": "label"})
-    dataframe["label"] = dataframe["label"].cat.rename_categories(label_mapping)
-    return dataframe
+def transform_for_inference(dataset: Dataset, label_mapping: dict[str, int]) -> Dataset:
+    dataset = deepcopy(dataset)
+    dataset = transform_train_texts(dataset)
+    dataset = transform_train_labels(dataset, label_mapping)
+    dataset.dataframe = dataset.dataframe[["text", "label"]]
+    return dataset
