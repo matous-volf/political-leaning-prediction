@@ -1,33 +1,29 @@
 import os
 from abc import ABC, abstractmethod
-from enum import Enum
 from os import PathLike
-from typing import Generator, Iterable
+from typing import Callable, Generator, Iterable, List, TypeVar, Type
 
 import numpy as np
 import torch
 from datasets import Dataset
 from evaluate import EvaluationModule
+from pandas import DataFrame
+from sklearn.metrics import accuracy_score
+from tqdm.notebook import tqdm
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
-    BertTokenizer,
-    DistilBertForSequenceClassification,
     IntervalStrategy,
-    RobertaTokenizer,
     Trainer,
     TrainingArguments,
-    pipeline,
 )
 
-from utils.base_directory import BASE_DIRECTORY
+from utils.base_directory import base_directory
 
-POLITICAL_LEANING_WITH_CENTER_LABEL_MAPPING = {"left": 0, "center": 1, "right": 2}
-POLITICAL_LEANING_NO_CENTER_LABEL_MAPPING = {"left": 0, "right": 1}
+T = TypeVar("T")
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+available_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-CUSTOM_MODELS_MAX_LENGTH = 512
 DATASET_BENCHMARK_MODEL_NAMES = sorted(
     [
         "google-bert/bert-base-cased",
@@ -36,12 +32,7 @@ DATASET_BENCHMARK_MODEL_NAMES = sorted(
     ],
     key=lambda model_name: model_name.split("/")[-1],
 )
-
-
-class Leaning(Enum):
-    LEFT = "left"
-    CENTER = "center"
-    RIGHT = "right"
+DATASET_BENCHMARK_MODELS_MAX_LENGTH = 512
 
 
 class Model(ABC):
@@ -50,9 +41,8 @@ class Model(ABC):
         tokenizer,
         model,
         model_max_length: int | None = None,
-        supports_center_leaning: bool | None = None,
     ) -> None:
-        model.to(DEVICE)
+        model.to(available_device)
         self.tokenizer = tokenizer
         self.model = model
         self.model_max_length = (
@@ -61,14 +51,9 @@ class Model(ABC):
             else model_max_length
         )
         self.name = type(self).__name__
-        self.supports_center_leaning = (
-            model.config.num_labels >= 3
-            if supports_center_leaning is None
-            else supports_center_leaning
-        )
 
     @abstractmethod
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+    def predict(self, text: str, truncate_tokens: bool) -> int:
         pass
 
     def get_tokens(
@@ -85,307 +70,100 @@ class Model(ABC):
         if return_tensors:
             tokenizer_args["return_tensors"] = return_tensors
 
-        return self.tokenizer(text, **tokenizer_args).to(DEVICE)
+        return self.tokenizer(text, **tokenizer_args).to(available_device)
 
     def get_output(self, tokens):
         with torch.no_grad():
             return self.model(**tokens)
 
 
-class PoliticalBiasBert(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "bert-base-cased",
-                code_revision="cd5ef92a9fb2f889e972770a36d4ed042daf221e",
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "bucketresearch/politicalBiasBERT",
-                code_revision="fd40172e075c046ec5f47bae270d17c2b91cf847",
-            ),
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(text, truncate_tokens)
-        output = self.get_output(tokens)
-        return [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT][
-            torch.argmax(output.logits, dim=-1)
-        ]
-
-
-class PoliticalBiasPredictionAllsidesDeberta(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "premsa/political-bias-prediction-allsides-DeBERTa",
-                code_revision="e28374fcbb66f6ce21faf224fa3bdcb6d054ec46",
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "premsa/political-bias-prediction-allsides-DeBERTa",
-                code_revision="e28374fcbb66f6ce21faf224fa3bdcb6d054ec46",
-            ),
-            512,
-        )
-        self.pipe = pipeline(
-            "text-classification",
-            model=self.model,
-            tokenizer=self.tokenizer,
-            device=DEVICE,
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        output = self.pipe(text)
-        return {
-            "LABEL_0": Leaning.LEFT,
-            "LABEL_1": Leaning.CENTER,
-            "LABEL_2": Leaning.RIGHT,
-        }[output[0]["label"]]
-
-
-class DistilBertPoliticalBias(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            RobertaTokenizer.from_pretrained(
-                "cajcodes/DistilBERT-PoliticalBias",
-                revision="ebfc38d3fac856b86fda2e08357da171b53896a2",
-            ),
-            DistilBertForSequenceClassification.from_pretrained(
-                "cajcodes/DistilBERT-PoliticalBias",
-                revision="ebfc38d3fac856b86fda2e08357da171b53896a2",
-            ),
-            512,
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        text = text.replace("\n", "").replace("``", '"')
-        tokens = self.get_tokens(text, truncate_tokens)
-        unk_token_id = self.tokenizer.convert_tokens_to_ids(self.tokenizer.unk_token)
-        tokens["input_ids"][
-            tokens["input_ids"] >= self.model.config.vocab_size
-        ] = unk_token_id
-        output = self.get_output(tokens)
-        return [
-            Leaning.RIGHT,
-            Leaning.RIGHT,
-            Leaning.CENTER,
-            Leaning.LEFT,
-            Leaning.LEFT,
-        ][torch.argmax(output.logits, dim=-1)]
-
-
-class BertPoliticalBiasFinetune(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            BertTokenizer.from_pretrained(
-                "bert-base-uncased", revision="86b5e0934494bd15c9632b12f734a8a67f723594"
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "jhonalevc1995/BERT-political_bias-finetune",
-                code_revision="7ceb614323352d05051d13d2d60f89d8a4595dc5",
-            ),
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(text, truncate_tokens)
-        output = self.get_output(tokens)
-        return [Leaning.LEFT, Leaning.RIGHT][torch.argmax(output.logits, dim=-1)]
-
-
-class DistilBertPoliticalFinetune(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "harshal-11/DistillBERT-Political-Finetune",
-                code_revision="4e218bdcc3c69844bcb8aab1bf218e7942292222",
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "harshal-11/DistillBERT-Political-Finetune",
-                code_revision="4e218bdcc3c69844bcb8aab1bf218e7942292222",
-            ),
-            512,
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(text, truncate_tokens)
-        output = self.get_output(tokens)
-        return [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT][
-            torch.argmax(output.logits, dim=-1)
-        ]
-
-
-class PoliticalIdeologiesRobertaFinetuned(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "JyotiNayak/political_ideologies_detection_roberta_finetuned",
-                code_revision="3e82956ad2f1d0880b8c4d370d513f92a1a3591a",
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "JyotiNayak/political_ideologies_detection_roberta_finetuned",
-                code_revision="3e82956ad2f1d0880b8c4d370d513f92a1a3591a",
-            ),
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(text, truncate_tokens)
-        output = self.get_output(tokens)
-        return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
-
-
-class DebertaPoliticalClassification(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "oscpalML/DeBERTa-political-classification",
-                code_revision="26e16d1c52121d834ff374c07944bc085e1b1656",
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "oscpalML/DeBERTa-political-classification",
-                code_revision="26e16d1c52121d834ff374c07944bc085e1b1656",
-            ),
-            512,
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(text, truncate_tokens)
-        output = self.get_output(tokens)
-        return [Leaning.LEFT, Leaning.RIGHT][torch.argmax(output.logits, dim=-1)]
-
-
-class DistilBertPoliticalTweets(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "m-newhauser/distilbert-political-tweets",
-                code_revision="b7c4530e8c44cf8dcf448a6e5e5e460df33f83bf",
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "m-newhauser/distilbert-political-tweets",
-                code_revision="b7c4530e8c44cf8dcf448a6e5e5e460df33f83bf",
-            ),
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        tokens = self.get_tokens(text, truncate_tokens)
-        output = self.get_output(tokens)
-        return [Leaning.RIGHT, Leaning.LEFT][torch.argmax(output.logits, dim=-1)]
-
-
-class PoliticalDebateLarge(Model):
-    def __init__(self) -> None:
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "mlburnham/Political_DEBATE_large_v1.0",
-                code_revision="3568d6f7bdd58a2792b27699cf88435409318ecf",
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "mlburnham/Political_DEBATE_large_v1.0",
-                code_revision="3568d6f7bdd58a2792b27699cf88435409318ecf",
-            ),
-            supports_center_leaning=True,
-        )
-        self.pipe = pipeline(
-            "zero-shot-classification",
-            model=self.model,
-            tokenizer=self.tokenizer,
-            device=DEVICE,
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
-        hypothesis_template = "This text supports {} political leaning."
-        output = self.pipe(
-            text,
-            ["left", "center", "right"],
-            hypothesis_template=hypothesis_template,
-            multi_label=False,
-        )
-        return {"left": Leaning.LEFT, "center": Leaning.CENTER, "right": Leaning.RIGHT}[
-            output["labels"][0]
-        ]
-
-
-class CustomModel(Model):
+class LeaningModel(Model, ABC):
     def __init__(
-        self, model_name: str, tokenizer_name: str, model_max_length: int
+        self,
+        tokenizer,
+        model,
+        model_max_length: int | None = None,
+        supports_center_leaning_class: bool | None = None,
+    ):
+        super().__init__(tokenizer, model, model_max_length)
+        self.supports_center_leaning_class = (
+            model.config.num_labels >= 3
+            if supports_center_leaning_class is None
+            else supports_center_leaning_class
+        )
+
+
+class CustomLeaningModel(LeaningModel):
+    def __init__(
+        self,
+        path: PathLike[str],
+        model_name: str,
+        tokenizer_name: str,
+        model_max_length: int,
     ) -> None:
         model = AutoModelForSequenceClassification.from_pretrained(
-            BASE_DIRECTORY / "political_leaning" / "models_custom" / model_name
+            base_directory / "models" / path / model_name
         )
         super().__init__(
             AutoTokenizer.from_pretrained(tokenizer_name),
             model,
             model_max_length,
         )
-        self.name = model_name
+        self.name = str(path / model_name)
 
-    def predict(self, text: str, truncate_tokens: bool) -> Leaning:
+    def predict(self, text: str, truncate_tokens: bool) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
-        labels = (
-            [Leaning.LEFT, Leaning.CENTER, Leaning.RIGHT]
-            if self.supports_center_leaning
-            else [Leaning.LEFT, Leaning.RIGHT]
+        return torch.argmax(output.logits, dim=-1).item()
+
+
+class CustomPoliticalnessModel(Model):
+    def __init__(
+        self,
+        path: PathLike[str],
+        model_name: str,
+        tokenizer_name: str,
+        model_max_length: int,
+    ) -> None:
+        model = AutoModelForSequenceClassification.from_pretrained(
+            base_directory / "models" / path / model_name
         )
-        return labels[torch.argmax(output.logits, dim=-1)]
+        super().__init__(
+            AutoTokenizer.from_pretrained(tokenizer_name),
+            model,
+            model_max_length,
+        )
+        self.name = str(path / model_name)
+
+    def predict(self, text: str, truncate_tokens: bool) -> int:
+        tokens = self.get_tokens(text, truncate_tokens)
+        output = self.get_output(tokens)
+        return torch.argmax(output.logits, dim=-1).item()
 
 
-def get_existing_models() -> Generator[Model, None, None]:
-    # Caution is necessary with creating lists to yield from. The models cannot be instantiated
-    # right away, as that would completely undermine the usage of the generator. It could cause the
-    # memory to overflow. Instead, models need to be yielded one at a time.
-    for model_class in [
-        PoliticalBiasBert,
-        PoliticalBiasPredictionAllsidesDeberta,
-        DistilBertPoliticalBias,
-        BertPoliticalBiasFinetune,
-        DistilBertPoliticalFinetune,
-        PoliticalIdeologiesRobertaFinetuned,
-        DebertaPoliticalClassification,
-        DistilBertPoliticalTweets,
-        PoliticalDebateLarge,
-    ]:
-        yield model_class()
-
-
-def get_leave_one_in_dataset_benchmark_models() -> Generator[Model, None, None]:
-    return get_dataset_benchmark_models("leave_one_in")
-
-
-def get_leave_one_out_dataset_benchmark_models() -> Generator[Model, None, None]:
-    return get_dataset_benchmark_models("leave_one_out")
-
-
-def get_dataset_benchmark_models(benchmark_name: str):
+def get_custom_models(path: PathLike[str], cls: Type[T]) -> Generator[T, None, None]:
     for model, tokenizer_name in zip(
-        sorted(
-            os.listdir(
-                BASE_DIRECTORY
-                / "political_leaning"
-                / "models_custom"
-                / "dataset_benchmark"
-                / benchmark_name
-            )
-        ),
+        sorted(os.listdir(base_directory / "models" / path)),
         DATASET_BENCHMARK_MODEL_NAMES,
     ):
-        for dataset in sorted(
-            os.listdir(
-                BASE_DIRECTORY
-                / "political_leaning"
-                / "models_custom"
-                / "dataset_benchmark"
-                / benchmark_name
-                / model
-            )
-        ):
-            yield CustomModel(
-                f"dataset_benchmark/{benchmark_name}/{model}/{dataset}",
+        for dataset in sorted(os.listdir(base_directory / "models" / path / model)):
+            yield cls(
+                path,
+                f"{model}/{dataset}",
                 tokenizer_name,
-                CUSTOM_MODELS_MAX_LENGTH,
+                DATASET_BENCHMARK_MODELS_MAX_LENGTH,
             )
 
 
-def finetune_custom_models(
+def get_custom_politicalness_models(path: PathLike[str]):
+    return get_custom_models(path, CustomPoliticalnessModel)
+
+
+def get_custom_leaning_models(path: PathLike[str]):
+    return get_custom_models(path, CustomLeaningModel)
+
+
+def finetune_models(
     output_path: PathLike,
     train_datasets: Iterable[Dataset],
     eval_datasets: Iterable[Dataset],
@@ -399,7 +177,7 @@ def finetune_custom_models(
         return dataset.map(
             lambda batch: tokenizer(
                 batch["text"],
-                max_length=CUSTOM_MODELS_MAX_LENGTH,
+                max_length=DATASET_BENCHMARK_MODELS_MAX_LENGTH,
                 truncation=True,
                 padding="max_length",
             ),
@@ -418,9 +196,8 @@ def finetune_custom_models(
         for train_dataset, eval_dataset in zip(train_datasets, eval_datasets):
             print(f"  {train_dataset.info.dataset_name}")
             output_directory = (
-                BASE_DIRECTORY
-                / "political_leaning"
-                / "models_custom"
+                base_directory
+                / "models"
                 / output_path
                 / model_name.split("/")[-1]
                 / train_dataset.info.dataset_name
@@ -452,3 +229,71 @@ def finetune_custom_models(
             )
             trainer.train()
             trainer.save_model(output_directory)
+
+
+def evaluate_models(
+    get_models: Callable[[], Generator[Model, None, None]],
+    datasets: List[Dataset],
+    truncate_tokens: bool,
+):
+    accuracy_results = []
+
+    for model in get_models():
+        print(f"evaluating {model.name} on:")
+
+        accuracy_results.append([])
+        total_predictions_count = 0
+        total_correct_predictions_count = 0
+
+        for dataset in datasets:
+            print(f"  {dataset.info.dataset_name}")
+
+            predictions = []
+            for text in tqdm(dataset["text"]):
+                try:
+                    predictions.append(model.predict(text, truncate_tokens))
+                except RuntimeError:
+                    if truncate_tokens:
+                        raise
+                    predictions.append(None)
+
+            valid_indices = [
+                i for i, prediction in enumerate(predictions) if prediction is not None
+            ]
+            predictions = list([predictions[i] for i in valid_indices])
+            accuracy = (
+                accuracy_score(
+                    dataset.to_pandas()["label"].iloc[valid_indices].tolist(),
+                    predictions,
+                )
+                if len(predictions) > 0
+                else 0
+            )
+
+            predictions_count = len(valid_indices)
+            correct_predictions_count = predictions_count * accuracy
+
+            accuracy_results[-1].append(
+                f"{correct_predictions_count:.0f} / {predictions_count} ({accuracy * 100:.0f} %)"
+            )
+            # Skip the evaluation of the models trained on the same dataset for the calculation of
+            # the average.
+            if model.name.split("/")[-1] != dataset.info.dataset_name:
+                total_predictions_count += predictions_count
+                total_correct_predictions_count += correct_predictions_count
+
+        average_accuracy = (
+            total_correct_predictions_count / total_predictions_count
+            if total_predictions_count > 0
+            else 0
+        )
+        accuracy_results[-1].append(
+            f"{total_correct_predictions_count:.0f} / {total_predictions_count} ({average_accuracy * 100:.0f} %)"
+        )
+
+    return DataFrame(
+        accuracy_results,
+        index=list(map(lambda model: model.name, get_models())),
+        columns=list(map(lambda dataset: dataset.info.dataset_name, datasets))
+        + ["average"],
+    )
