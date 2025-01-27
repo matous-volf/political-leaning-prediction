@@ -4,6 +4,7 @@ from copy import deepcopy
 from typing import Generator, Self, Type, TypeVar
 
 import datasets
+import math
 import numpy as np
 import pandas as pd
 from pandas import DataFrame
@@ -96,6 +97,35 @@ class Dataset(ABC):
         dataset = dataset.transform_train_texts()
         dataset = dataset.transform_train_labels()
         dataset.dataframe = dataset.dataframe[["text", "label"]]
+        return dataset
+
+    def prepare_for_intersection_comparison(self, body_slice_size: int) -> Self:
+        dataset = deepcopy(self)
+
+        if dataset.has_title:
+            dataset.dataframe["title"] = (
+                dataset.dataframe["title"]
+                .str.replace(r"[^a-zA-Z]", "", regex=True)
+                .str.lower()
+            )
+        dataset.dataframe["body"] = (
+            dataset.dataframe["body"]
+            .str.replace(r"[^a-zA-Z]", "", regex=True)
+            .str.lower()
+        )
+
+        dataset.dataframe["body_slice"] = dataset.dataframe["body"].map(
+            lambda body: (
+                body[
+                    math.floor(len(body) / 2 - body_slice_size / 2) : math.ceil(
+                        len(body) / 2 + body_slice_size / 2
+                    )
+                ]
+                if pd.notna(body) and len(body) > body_slice_size
+                else body
+            )
+        )
+
         return dataset
 
     def to_huggingface(self) -> datasets.Dataset:
