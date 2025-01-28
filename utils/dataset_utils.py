@@ -108,11 +108,17 @@ class Dataset(ABC):
                 .str.replace(r"[^a-zA-Z]", "", regex=True)
                 .str.lower()
             )
+            dataset.dataframe["has_notnull_title"] = dataset.dataframe["title"].notna()
+        else:
+            dataset.dataframe["title"] = np.nan
+            dataset.dataframe["has_notnull_title"] = False
+
         dataset.dataframe["body"] = (
             dataset.dataframe["body"]
             .str.replace(r"[^a-zA-Z]", "", regex=True)
             .str.lower()
         )
+        dataset.dataframe["has_notnull_body"] = dataset.dataframe["body"].notna()
 
         dataset.dataframe["body_slice"] = dataset.dataframe["body"].map(
             lambda body: (
