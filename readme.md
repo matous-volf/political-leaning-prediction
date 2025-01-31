@@ -1,8 +1,16 @@
 # Political leaning prediction
 
-## Politicalness
+## Docs
 
-### Used datasets
+The documents describing the methodology and results are stored in the [docs](docs) directory.
+
+## Analysis
+
+The Jupyter notebooks are stored in the [analysis](analysis) directory.
+
+## Used datasets
+
+### Politicalness
 
 - Hou, Y., Li, J., He, Z., Yan, A., Chen, X., & McAuley, J. (2024). Bridging language and items for retrieval and
   recommendation. arXiv preprint arXiv:2403.03952. <https://arxiv.org/abs/2403.03952>
@@ -45,11 +53,7 @@
 - Xiang Zhang, Junbo Zhao, Yann LeCun. Character-level Convolutional Networks for Text Classification. Advances in
   Neural Information Processing Systems 28 (NIPS 2015).
 
-## Political leaning
-
-- [Analysis](political_leaning/analysis)
-
-### Used datasets
+### Political leaning
 
 - Baly, R., Da San Martino, G., Glass, J., & Nakov, P. (2020). We Can Detect Your Bias: Predicting the Political
   Ideology of News Articles. Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing
@@ -82,7 +86,9 @@
 - Chen, W.-F., Al-Khatib, K., Wachsmuth, H., & Stein, B. (2020). Webis-News-Bias-20 [Data set].
   Zenodo. <https://doi.org/10.5281/zenodo.8321586>
 
-### Referenced existing models
+## Referenced existing models
+
+### Political leaning
 
 - Liu, Y., Zhang, X. F., Wegsman, D., Beauchamp, N., & Wang, L. (2022). POLITICS: Pretraining with same-story article
   comparison for ideology prediction and stance detection. In Findings of the Association for Computational Linguistics:
