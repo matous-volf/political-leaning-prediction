@@ -1,6 +1,7 @@
 import os
 from abc import ABC, abstractmethod
 from os import PathLike
+from pathlib import Path
 from typing import Callable, Generator, Iterable, List, TypeVar, Type
 
 import numpy as np
@@ -109,7 +110,7 @@ class CustomLeaningModel(LeaningModel):
             model,
             model_max_length,
         )
-        self.name = str(path / model_name)
+        self.name = str(Path(path, model_name))
 
     def predict(self, text: str, truncate_tokens: bool) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
@@ -133,7 +134,7 @@ class CustomPoliticalnessModel(Model):
             model,
             model_max_length,
         )
-        self.name = str(path / model_name)
+        self.name = str(Path(path, model_name))
 
     def predict(self, text: str, truncate_tokens: bool) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
