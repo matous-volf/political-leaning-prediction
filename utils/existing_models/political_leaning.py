@@ -221,7 +221,7 @@ class PoliticalDebateLarge(LeaningModel):
         )
 
     def predict(self, text: str, truncate_tokens: bool) -> int:
-        hypothesis_template = "This text supports {} political political_leaning."
+        hypothesis_template = "This text supports {} political leaning."
         output = self.pipe(
             text,
             ["left", "center", "right"],
