@@ -4,9 +4,9 @@ From each dataset, a sample of 1 000 articles (or less if the dataset is smaller
 distribution of leaning and systematically sampling by the body length. Several models have been fine-tuned separately
 on each of these samples to compare the suitability of the datasets for training.
 
-The fine-tuned models can be reproduced using [this notebook](../../../../analysis/dataset_benchmark/leave_one_in/notebook.ipynb).
+The fine-tuned models can be reproduced using [this notebook](../../../analysis/dataset_benchmark/leave_one_in/notebook.ipynb).
 
-Then the models have been evaluated using the methodology prescribed in [this document](../../../../analysis/model_evaluation), while
+Then the models have been evaluated using the methodology prescribed in [this document](../../../analysis/model_evaluation), while
 the datasets have been sampled to 1 000 articles each. The resulting accuracies are recorded in the tables below, rows
 being models and columns being datasets. The heading of the row means the dataset the model has been fine-tuned on,
 while the heading of the column is the dataset being evaluated on.

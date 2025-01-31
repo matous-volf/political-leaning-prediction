@@ -1,6 +1,6 @@
 # Leave-one-out dataset benchmark
 
-If two datasets intersect with each other (as measured [here](../../../../analysis/dataset_intersection)) by more than 15 %, the
+If two datasets intersect with each other (as measured [here](../../../analysis/dataset_intersection)) by more than 15 %, the
 smaller dataset is not a part of this benchmark to avoid spillover.
 
 From each dataset, a sample of 1 000 articles (or less if the dataset is smaller) has been taken while ensuring an equal
@@ -8,9 +8,9 @@ distribution of leaning and systematically sampling by the body length. Several 
 each on a concatenation of all but one (the left-out dataset) of these samples. This has been repeated, leaving out a
 different one dataset at a time.
 
-The fine-tuned models can be reproduced using [this notebook](../../../../analysis/dataset_benchmark/leave_one_out/notebook.ipynb).
+The fine-tuned models can be reproduced using [this notebook](../../../analysis/dataset_benchmark/leave_one_out/notebook.ipynb).
 
-Then the models have been evaluated using the methodology prescribed in [this document](../../../../analysis/model_evaluation), while
+Then the models have been evaluated using the methodology prescribed in [this document](../../../analysis/model_evaluation), while
 the datasets have been sampled to 1 000 articles each. The resulting accuracies are recorded in the tables below, rows
 being models and columns being datasets. The heading of the row means the left-out dataset (the only one, which the
 model has not been fine-tuned on), while the heading of the column is the dataset being evaluated on.

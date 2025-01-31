@@ -41,7 +41,7 @@ relationships are shown in the following table.
 
 This gets reflected by the accuracy results: the models score very high on the datasets they've been trained on.
 
-The measurements have been conducted using the methodology prescribed in [this document](../../../analysis/model_evaluation) while the
+The measurements have been conducted using the methodology prescribed in [this document](../../analysis/model_evaluation) while the
 datasets have been sampled to 1 000 articles each.
 
 The resulting accuracies are recorded in the two tables below.
