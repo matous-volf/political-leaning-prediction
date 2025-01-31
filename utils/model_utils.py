@@ -78,23 +78,7 @@ class Model(ABC):
             return self.model(**tokens)
 
 
-class LeaningModel(Model, ABC):
-    def __init__(
-        self,
-        tokenizer,
-        model,
-        model_max_length: int | None = None,
-        supports_center_leaning_class: bool | None = None,
-    ):
-        super().__init__(tokenizer, model, model_max_length)
-        self.supports_center_leaning_class = (
-            model.config.num_labels >= 3
-            if supports_center_leaning_class is None
-            else supports_center_leaning_class
-        )
-
-
-class CustomLeaningModel(LeaningModel):
+class CustomPoliticalnessModel(Model):
     def __init__(
         self,
         path: PathLike[str],
@@ -118,7 +102,23 @@ class CustomLeaningModel(LeaningModel):
         return torch.argmax(output.logits, dim=-1).item()
 
 
-class CustomPoliticalnessModel(Model):
+class LeaningModel(Model, ABC):
+    def __init__(
+        self,
+        tokenizer,
+        model,
+        model_max_length: int | None = None,
+        supports_center_leaning_class: bool | None = None,
+    ):
+        super().__init__(tokenizer, model, model_max_length)
+        self.supports_center_leaning_class = (
+            model.config.num_labels >= 3
+            if supports_center_leaning_class is None
+            else supports_center_leaning_class
+        )
+
+
+class CustomLeaningModel(LeaningModel):
     def __init__(
         self,
         path: PathLike[str],
