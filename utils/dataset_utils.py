@@ -83,19 +83,25 @@ class Dataset(ABC):
             dataset.dataframe["text"] = dataset.dataframe["body"]
         return dataset
 
-    def transform_train_labels(self) -> Self:
+    def transform_train_labels(
+        self, label_mapping: dict[str, int] | None = None
+    ) -> Self:
         dataset = deepcopy(self)
         dataset.dataframe["label"] = (
             dataset.dataframe[self.label_column_name]
-            .cat.rename_categories(self.label_mapping())
+            .cat.rename_categories(
+                self.label_mapping() if label_mapping is None else label_mapping
+            )
             .cat.remove_unused_categories()
         )
         return dataset
 
-    def transform_for_inference(self) -> Self:
+    def transform_for_inference(
+        self, label_mapping: dict[str, int] | None = None
+    ) -> Self:
         dataset = deepcopy(self)
         dataset = dataset.transform_train_texts()
-        dataset = dataset.transform_train_labels()
+        dataset = dataset.transform_train_labels(label_mapping)
         dataset.dataframe = dataset.dataframe[["text", "label"]]
         return dataset
 
