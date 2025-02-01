@@ -2,20 +2,37 @@ import os
 from abc import ABC, abstractmethod
 from os import PathLike
 from pathlib import Path
-from typing import Callable, Generator, Iterable, List, TypeVar, Type
+from typing import (
+    Callable,
+    Generator,
+    Iterable,
+    List,
+    Optional,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    Dict,
+)
 
 import numpy as np
 import torch
-from datasets import Dataset
+from datasets import Dataset, IterableDataset
 from evaluate import EvaluationModule
 from pandas import DataFrame
 from sklearn.metrics import accuracy_score
+from sklearn.utils import compute_class_weight
 from tqdm.notebook import tqdm
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
+    DataCollator,
+    EvalPrediction,
     IntervalStrategy,
+    PreTrainedModel,
+    PreTrainedTokenizerBase,
     Trainer,
+    TrainerCallback,
     TrainingArguments,
 )
 
@@ -164,6 +181,61 @@ def get_custom_leaning_models(path: PathLike[str]):
     return get_custom_models(path, CustomLeaningModel)
 
 
+class CustomTrainer(Trainer):
+    def __init__(
+        self,
+        class_weights: torch.Tensor,
+        model: Union[PreTrainedModel, torch.nn.Module] = None,
+        args: TrainingArguments = None,
+        data_collator: Optional[DataCollator] = None,
+        train_dataset: Optional[
+            Union[Dataset, IterableDataset, "datasets.Dataset"]
+        ] = None,
+        eval_dataset: Optional[
+            Union[Dataset, Dict[str, Dataset], "datasets.Dataset"]
+        ] = None,
+        tokenizer: Optional[PreTrainedTokenizerBase] = None,
+        model_init: Optional[Callable[[], PreTrainedModel]] = None,
+        compute_loss_func: Optional[Callable] = None,
+        compute_metrics: Optional[Callable[[EvalPrediction], Dict]] = None,
+        callbacks: Optional[List[TrainerCallback]] = None,
+        optimizers: Tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR] = (
+            None,
+            None,
+        ),
+        preprocess_logits_for_metrics: Optional[
+            Callable[[torch.Tensor, torch.Tensor], torch.Tensor]
+        ] = None,
+    ):
+        super().__init__(
+            model,
+            args,
+            data_collator,
+            train_dataset,
+            eval_dataset,
+            tokenizer,
+            model_init,
+            compute_loss_func,
+            compute_metrics,
+            callbacks,
+            optimizers,
+            preprocess_logits_for_metrics,
+        )
+        self.class_weights = class_weights
+
+    def compute_loss(
+        self, model, inputs, return_outputs=False, num_items_in_batch=None
+    ):
+        labels = inputs.get("labels")
+        outputs = model(**inputs)
+        logits = outputs.get("logits")
+        loss_fct = torch.nn.CrossEntropyLoss(weight=self.class_weights).to(
+            available_device
+        )
+        loss = loss_fct(logits.view(-1, self.model.config.num_labels), labels.view(-1))
+        return (loss, outputs) if return_outputs else loss
+
+
 def finetune_models(
     output_path: PathLike,
     train_datasets: Iterable[Dataset],
@@ -174,7 +246,7 @@ def finetune_models(
     data_seed: int,
     learning_rate: float = 5e-5,
 ):
-    def tokenize_dataset(dataset, tokenizer):
+    def tokenize_dataset(dataset: Dataset, tokenizer) -> Dataset:
         return dataset.map(
             lambda batch: tokenizer(
                 batch["text"],
@@ -218,7 +290,7 @@ def finetune_models(
                 seed=training_seed,
                 data_seed=data_seed,
             )
-            trainer = Trainer(
+            trainer = CustomTrainer(
                 model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
                     model_name,
                     num_labels=len(train_dataset.unique("label")),
@@ -227,6 +299,11 @@ def finetune_models(
                 train_dataset=train_dataset_tokenized,
                 eval_dataset=eval_dataset_tokenized,
                 compute_metrics=compute_metrics,
+                class_weights=compute_class_weight(
+                    class_weight="balanced",
+                    classes=np.sort(train_dataset.unique("label")),
+                    y=train_dataset["label"],
+                ),
             )
             trainer.train()
             trainer.save_model(output_directory)
