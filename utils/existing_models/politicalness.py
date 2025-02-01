@@ -15,7 +15,12 @@ def get_existing_politicalness_models() -> Generator[Model, None, None]:
     # Caution is necessary with creating lists to yield from. The models cannot be instantiated
     # right away, as that would completely undermine the usage of the generator. It could cause the
     # memory to overflow. Instead, models need to be yielded one at a time.
-    for model_class in [TopicPolitics]:
+    for model_class in [
+        TopicPolitics,
+        ClassifierMainSubjectPolitics,
+        PoliticalBiasDebertaMnli,
+        PoliticalDebateLarge,
+    ]:
         yield model_class()
 
 
