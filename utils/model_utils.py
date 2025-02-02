@@ -295,10 +295,12 @@ def finetune_models(
                 train_dataset=train_dataset_tokenized,
                 eval_dataset=eval_dataset_tokenized,
                 compute_metrics=compute_metrics,
-                class_weights=compute_class_weight(
-                    class_weight="balanced",
-                    classes=np.sort(train_dataset.unique("label")),
-                    y=train_dataset["label"],
+                class_weights=torch.from_numpy(
+                    compute_class_weight(
+                        class_weight="balanced",
+                        classes=np.sort(train_dataset.unique("label")),
+                        y=train_dataset["label"],
+                    ).astype(np.float32)
                 ),
             )
             trainer.train()
