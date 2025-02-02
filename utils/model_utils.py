@@ -188,12 +188,8 @@ class CustomTrainer(Trainer):
         model: Union[PreTrainedModel, torch.nn.Module] = None,
         args: TrainingArguments = None,
         data_collator: Optional[DataCollator] = None,
-        train_dataset: Optional[
-            Union[Dataset, IterableDataset, "datasets.Dataset"]
-        ] = None,
-        eval_dataset: Optional[
-            Union[Dataset, Dict[str, Dataset], "datasets.Dataset"]
-        ] = None,
+        train_dataset: Optional[Union[Dataset, IterableDataset, "Dataset"]] = None,
+        eval_dataset: Optional[Union[Dataset, Dict[str, Dataset], "Dataset"]] = None,
         tokenizer: Optional[PreTrainedTokenizerBase] = None,
         model_init: Optional[Callable[[], PreTrainedModel]] = None,
         compute_loss_func: Optional[Callable] = None,
