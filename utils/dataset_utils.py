@@ -187,6 +187,12 @@ def get_politicalness_datasets() -> Generator[PoliticalnessDataset, None, None]:
     return get_datasets("politicalness", PoliticalnessDataset)
 
 
+def get_politicalness_datasets_from_political_leaning_datasets() -> (
+    Generator[PoliticalnessDataset, None, None]
+):
+    return get_datasets("political_leaning", PoliticalnessDataset)
+
+
 def get_politicalness_datasets_for_leave_one_in_benchmark() -> (
     Generator[PoliticalnessDataset, None, None]
 ):
