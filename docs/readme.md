@@ -1,5 +1,5 @@
 # Political leaning analysis
 
 - [Dataset intersection](dataset_intersection)
-- [Evaluation of existing models](existing_model_evaluation)
+- [Evaluation of existing models](model_evaluation/existing)
 - [Dataset benchmark](dataset_benchmark)

@@ -17,8 +17,7 @@ The Jupyter notebooks are stored in the [analysis](analysis) directory.
 - Chen, Y., Liu, Y., Chen, L., & Zhang, Y. (2021). DialogSum: A real-life scenario dialogue summarization dataset.
   Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021, 5062–5074. Association for Computational
   Linguistics. <https://doi.org/10.18653/v1/2021.findings-acl.449>
-- Webz.io. (2025). Webz.io News Dataset Repository. GitHub. Retrieved January 25, 2025,
-  from <https://github.com/Webhose/free-news-datasets>
+- Webhose.io. (n.d.). Free News Datasets [Dataset]. Retrieved from https://github.com/Webhose/free-news-datasets
 - Szemraj, P. (2024). Goodreads book genres dataset. Retrieved
   from <https://huggingface.co/datasets/pszemraj/goodreads-bookgenres>
 - Maas, A. L., Daly, R. E., Pham, P. T., Huang, D., Ng, A. Y., & Potts, C. (2011). Learning word vectors for sentiment
@@ -87,6 +86,17 @@ The Jupyter notebooks are stored in the [analysis](analysis) directory.
   Zenodo. <https://doi.org/10.5281/zenodo.8321586>
 
 ## Referenced existing models
+
+### Politicalness
+
+- Silcock, E., Arora, A., D'Amico-Wong, L., & Dell, M. (2024). Newswire: A large-scale structured database of a century
+  of historical news. arXiv. https://arxiv.org/abs/2406.09490
+- Burnham, M. (2024). Political DEBATE large [Model]. Hugging
+  Face. <https://huggingface.co/mlburnham/Political_DEBATE_large_v1.0>
+- GPTMurdock (2024). Classifier – main subjects politics [Model]. Hugging
+  Face. <https://huggingface.co/gptmurdock/classifier-main_subjects_politics>
+- Sar, S. (2024). Political bias DeBERTa MNLI [Model]. Hugging
+  Face. <https://huggingface.co/SOUMYADEEPSAR/political_bias_deberta-mnli>
 
 ### Political leaning
 
