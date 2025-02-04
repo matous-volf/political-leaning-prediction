@@ -108,7 +108,7 @@ class PoliticalDebateLarge(Model):
         )
 
     def predict(self, text: str, truncate_tokens: bool) -> int:
-        hypothesis_template = "This text {} politics."
+        hypothesis_template = "This text {} about politics."
         output = self.pipe(
             text,
             ["is not", "is"],
