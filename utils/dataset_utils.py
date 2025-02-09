@@ -18,21 +18,6 @@ LEANING_LEAVE_ONE_OUT_BENCHMARK_EXCLUDED_NAMES = [
     "webis_news_bias_20",
 ]
 
-POLITICALNESS_LEAVE_ONE_IN_BENCHMARK_EXCLUDED_NAMES = [
-    "amazon_reviews_2023",
-    "dialogsum",
-    "goodreads_bookgenres",
-    "imdb",
-    "imdb_movie_genres",
-    "recipes",
-    "reddit_comments",
-    "reddit_submissions",
-    "rotten_tomatoes",
-    "textbooks",
-    "tweet_topic_multi",
-    "yelp_review_full",
-]
-
 leaning_with_center_label_mapping = {"left": 0, "center": 1, "right": 2}
 leaning_no_center_label_mapping = {"left": 0, "right": 1}
 politicalness_label_mapping = {"non-political": 0, "political": 1}
@@ -187,19 +172,19 @@ def get_politicalness_datasets() -> Generator[PoliticalnessDataset, None, None]:
     return get_datasets("politicalness", PoliticalnessDataset)
 
 
-def get_politicalness_datasets_from_political_leaning_datasets() -> (
+def get_politicalness_datasets_from_leaning_datasets() -> (
     Generator[PoliticalnessDataset, None, None]
 ):
     return get_datasets("political_leaning", PoliticalnessDataset)
 
 
-def get_politicalness_datasets_for_leave_one_in_benchmark() -> (
+def get_politicalness_datasets_from_leaning_datasets_for_leave_one_out_benchmark() -> (
     Generator[PoliticalnessDataset, None, None]
 ):
     yield from filter(
         lambda dataset: dataset.name
-        not in POLITICALNESS_LEAVE_ONE_IN_BENCHMARK_EXCLUDED_NAMES,
-        get_politicalness_datasets(),
+        not in LEANING_LEAVE_ONE_OUT_BENCHMARK_EXCLUDED_NAMES,
+        get_politicalness_datasets_from_leaning_datasets(),
     )
 
 
