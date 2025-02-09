@@ -95,8 +95,6 @@ The Jupyter notebooks are stored in the [analysis](analysis) directory.
   Face. <https://huggingface.co/mlburnham/Political_DEBATE_large_v1.0>
 - GPTMurdock (2024). Classifier – main subjects politics [Model]. Hugging
   Face. <https://huggingface.co/gptmurdock/classifier-main_subjects_politics>
-- Sar, S. (2024). Political bias DeBERTa MNLI [Model]. Hugging
-  Face. <https://huggingface.co/SOUMYADEEPSAR/political_bias_deberta-mnli>
 
 ### Political leaning
 

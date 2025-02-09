@@ -83,28 +83,6 @@ and are recorded in the two tables below.
         <td style="white-space: nowrap;">15811 / 18000 (88 %)</td>
     </tr>
     <tr>
-        <th style="white-space: nowrap;">PoliticalBiasDebertaMnli</th>
-        <td style="white-space: nowrap;">603 / 1000 (60 %)</td>
-        <td style="white-space: nowrap;">473 / 1000 (47 %)</td>
-        <td style="white-space: nowrap;">429 / 1000 (43 %)</td>
-        <td style="white-space: nowrap;">619 / 1000 (62 %)</td>
-        <td style="white-space: nowrap;">860 / 1000 (86 %)</td>
-        <td style="white-space: nowrap;">474 / 1000 (47 %)</td>
-        <td style="white-space: nowrap;">387 / 1000 (39 %)</td>
-        <td style="white-space: nowrap;">528 / 1000 (53 %)</td>
-        <td style="white-space: nowrap;">414 / 1000 (41 %)</td>
-        <td style="white-space: nowrap;">301 / 1000 (30 %)</td>
-        <td style="white-space: nowrap;">300 / 1000 (30 %)</td>
-        <td style="white-space: nowrap;">685 / 1000 (68 %)</td>
-        <td style="white-space: nowrap;">735 / 1000 (74 %)</td>
-        <td style="white-space: nowrap;">630 / 1000 (63 %)</td>
-        <td style="white-space: nowrap;">743 / 1000 (74 %)</td>
-        <td style="white-space: nowrap;">302 / 1000 (30 %)</td>
-        <td style="white-space: nowrap;">301 / 1000 (30 %)</td>
-        <td style="white-space: nowrap;">862 / 1000 (86 %)</td>
-        <td style="white-space: nowrap;">9646 / 18000 (54 %)</td>
-    </tr>
-    <tr>
         <th style="white-space: nowrap;">PoliticalDebateLarge</th>
         <td style="white-space: nowrap;">992 / 1000 (99 %)</td>
         <td style="white-space: nowrap;">980 / 1000 (98 %)</td>
@@ -178,22 +156,6 @@ and are recorded in the two tables below.
         <td style="white-space: nowrap;">602 / 1000 (60 %)</td>
         <td style="white-space: nowrap;">561 / 1000 (56 %)</td>
         <td style="white-space: nowrap;">4792 / 11612 (41 %)</td>
-    </tr>
-    <tr>
-        <th style="white-space: nowrap;">PoliticalBiasDebertaMnli</th>
-        <td style="white-space: nowrap;">307 / 1000 (31 %)</td>
-        <td style="white-space: nowrap;">536 / 1000 (54 %)</td>
-        <td style="white-space: nowrap;">251 / 1000 (25 %)</td>
-        <td style="white-space: nowrap;">413 / 612 (67 %)</td>
-        <td style="white-space: nowrap;">452 / 1000 (45 %)</td>
-        <td style="white-space: nowrap;">376 / 1000 (38 %)</td>
-        <td style="white-space: nowrap;">43 / 1000 (4 %)</td>
-        <td style="white-space: nowrap;">472 / 1000 (47 %)</td>
-        <td style="white-space: nowrap;">501 / 1000 (50 %)</td>
-        <td style="white-space: nowrap;">754 / 1000 (75 %)</td>
-        <td style="white-space: nowrap;">398 / 1000 (40 %)</td>
-        <td style="white-space: nowrap;">486 / 1000 (49 %)</td>
-        <td style="white-space: nowrap;">4989 / 11612 (43 %)</td>
     </tr>
     <tr>
         <th>PoliticalDebateLarge</th>

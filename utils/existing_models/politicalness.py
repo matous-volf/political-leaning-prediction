@@ -18,7 +18,6 @@ def get_existing_politicalness_models() -> Generator[Model, None, None]:
     for model_class in [
         TopicPolitics,
         ClassifierMainSubjectPolitics,
-        PoliticalBiasDebertaMnli,
         PoliticalDebateLarge,
     ]:
         yield model_class()
@@ -60,32 +59,6 @@ class ClassifierMainSubjectPolitics(Model):
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return torch.argmax(output.logits, dim=-1).item()
-
-
-class PoliticalBiasDebertaMnli(Model):
-    def __init__(self) -> None:
-        model = AutoAdapterModel.from_pretrained(
-            "microsoft/deberta-base-mnli",
-            code_revision="3e4177c6b8c8d12094658e170aab4e15002ece30",
-        )
-        model.load_adapter(
-            "SOUMYADEEPSAR/political_bias_deberta-mnli",
-            version="3e4177c6b8c8d12094658e170aab4e15002ece30",
-            set_active=True,
-        )
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "microsoft/deberta-base-mnli",
-                code_revision="a80a6eb013898011540b19bf1f64e21eb61e53d6",
-            ),
-            model,
-            512,
-        )
-
-    def predict(self, text: str, truncate_tokens: bool) -> int:
-        tokens = self.get_tokens(text, truncate_tokens)
-        output = self.get_output(tokens)
-        return [1, 0][torch.argmax(output.logits, dim=-1).item()]
 
 
 class PoliticalDebateLarge(Model):
