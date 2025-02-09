@@ -1,4 +1,4 @@
-# Political leaning analysis
+# Documentation
 
 - [Dataset intersection](dataset_intersection)
 - [Evaluation of existing models](model_evaluation/existing)
