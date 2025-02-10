@@ -1,5 +1,6 @@
 import os
 from abc import ABC, abstractmethod
+from copy import deepcopy
 from os import PathLike
 from pathlib import Path
 from typing import (
@@ -16,11 +17,13 @@ from typing import (
 )
 
 import numpy as np
+import pandas as pd
 import torch
+import evaluate
 from datasets import Dataset, IterableDataset
 from evaluate import EvaluationModule
 from pandas import DataFrame
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.utils import compute_class_weight
 from tqdm.notebook import tqdm
 from transformers import (
@@ -71,7 +74,7 @@ class Model(ABC):
         self.name = type(self).__name__
 
     @abstractmethod
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         pass
 
     def get_tokens(
@@ -113,7 +116,7 @@ class CustomPoliticalnessModel(Model):
         )
         self.name = str(Path(path, model_name))
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return torch.argmax(output.logits, dim=-1).item()
@@ -153,7 +156,7 @@ class CustomLeaningModel(LeaningModel):
         )
         self.name = str(Path(path, model_name))
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return torch.argmax(output.logits, dim=-1).item()
@@ -236,7 +239,6 @@ def finetune_models(
     output_path: PathLike,
     train_datasets: Iterable[Dataset],
     eval_datasets: Iterable[Dataset],
-    metric: EvaluationModule,
     eval_strategy: IntervalStrategy,
     training_seed: int,
     data_seed: int,
@@ -256,7 +258,7 @@ def finetune_models(
     def compute_metrics(eval_pred):
         logits, labels = eval_pred
         predictions = np.argmax(logits, axis=-1)
-        return metric.compute(predictions=predictions, references=labels)
+        return compute_all_metrics(predictions, labels)
 
     for model_name in DATASET_BENCHMARK_MODEL_NAMES:
         print(f"fine-tuning {model_name} into {output_path}:")
@@ -307,69 +309,147 @@ def finetune_models(
             trainer.save_model(output_directory)
 
 
+class MetricResult:
+    def __init__(
+        self,
+        count,
+        accuracy,
+        f1,
+        precision,
+        recall,
+        confusion_matrix,
+    ):
+        self.count = count
+        self.accuracy = accuracy
+        self.f1 = f1
+        self.precision = precision
+        self.recall = recall
+        self.confusion_matrix = confusion_matrix
+
+
+def mean_without_training_datasets(df):
+    df_mean = deepcopy(df)
+    for index in df_mean.index:
+        for column in df_mean.columns:
+            # Exclude the dataset the model has been trained on from the calculation of the average.
+            if index.split("/")[-1] == column:
+                continue
+            df_mean.loc[index, column] = np.nan
+    return df_mean.mean(axis=1, skipna=True)
+
+
+class MetricResults:
+    def __init__(
+        self,
+        results: List[List[MetricResult]],
+        model_names: List[str],
+        dataset_names: List[str],
+    ):
+        self.count = DataFrame(
+            list(
+                map(
+                    lambda row: list(
+                        map(lambda col: f"{col.count[0]} / {col.count[1]}", row)
+                    ),
+                    results,
+                )
+            ),
+            index=model_names,
+            columns=dataset_names,
+        )
+
+        self.accuracy = DataFrame(
+            list(map(lambda row: list(map(lambda col: col.accuracy, row)), results)),
+            index=model_names,
+            columns=dataset_names,
+        )
+        self.accuracy["average"] = mean_without_training_datasets(self.accuracy)
+
+        self.f1 = DataFrame(
+            list(map(lambda row: list(map(lambda col: col.f1, row)), results)),
+            index=model_names,
+            columns=dataset_names,
+        )
+        self.f1["average"] = mean_without_training_datasets(self.f1)
+
+        self.precision = DataFrame(
+            list(map(lambda row: list(map(lambda col: col.precision, row)), results)),
+            index=model_names,
+            columns=dataset_names,
+        )
+        self.precision["average"] = mean_without_training_datasets(self.precision)
+
+        self.recall = DataFrame(
+            list(map(lambda row: list(map(lambda col: col.recall, row)), results)),
+            index=model_names,
+            columns=dataset_names,
+        )
+        self.recall["average"] = mean_without_training_datasets(self.recall)
+
+        self.confusion_matrix = DataFrame(
+            list(
+                map(
+                    lambda row: list(map(lambda col: col.confusion_matrix, row)),
+                    results,
+                )
+            ),
+            index=model_names,
+            columns=dataset_names,
+        )
+
+
 def evaluate_models(
     get_models: Callable[[], Generator[Model, None, None]],
     datasets: List[Dataset],
-    truncate_tokens: bool,
-):
-    accuracy_results = []
+) -> MetricResults:
+    results = []
 
     for model in get_models():
         print(f"evaluating {model.name} on:")
 
-        accuracy_results.append([])
-        total_predictions_count = 0
-        total_correct_predictions_count = 0
+        results.append([])
 
         for dataset in datasets:
             print(f"  {dataset.info.dataset_name}")
 
             predictions = []
             for text in tqdm(dataset["text"]):
-                try:
-                    predictions.append(model.predict(text, truncate_tokens))
-                except RuntimeError:
-                    if truncate_tokens:
-                        raise
-                    predictions.append(None)
+                predictions.append(model.predict(text))
 
-            valid_indices = [
-                i for i, prediction in enumerate(predictions) if prediction is not None
-            ]
-            predictions = list([predictions[i] for i in valid_indices])
-            accuracy = (
-                accuracy_score(
-                    dataset.to_pandas()["label"].iloc[valid_indices].tolist(),
-                    predictions,
-                )
-                if len(predictions) > 0
-                else 0
-            )
+            results[-1].append(compute_metric_result(predictions, dataset["label"]))
 
-            predictions_count = len(valid_indices)
-            correct_predictions_count = predictions_count * accuracy
+    return MetricResults(
+        results,
+        list(map(lambda model: model.name, get_models())),
+        list(map(lambda dataset: dataset.info.dataset_name, datasets)),
+    )
 
-            accuracy_results[-1].append(
-                f"{correct_predictions_count:.0f} / {predictions_count} ({accuracy * 100:.0f} %)"
-            )
-            # Skip the evaluation of the models trained on the same dataset for the calculation of
-            # the average.
-            if model.name.split("/")[-1] != dataset.info.dataset_name:
-                total_predictions_count += predictions_count
-                total_correct_predictions_count += correct_predictions_count
 
-        average_accuracy = (
-            total_correct_predictions_count / total_predictions_count
-            if total_predictions_count > 0
-            else 0
-        )
-        accuracy_results[-1].append(
-            f"{total_correct_predictions_count:.0f} / {total_predictions_count} ({average_accuracy * 100:.0f} %)"
-        )
+metric_accuracy = evaluate.load("accuracy")
+metric_f1 = evaluate.load("f1")
+metric_precision = evaluate.load("precision")
+metric_recall = evaluate.load("recall")
 
-    return DataFrame(
-        accuracy_results,
-        index=list(map(lambda model: model.name, get_models())),
-        columns=list(map(lambda dataset: dataset.info.dataset_name, datasets))
-        + ["average"],
+
+def compute_metric_result(predictions, references):
+    accuracy = metric_accuracy.compute(predictions=predictions, references=references)
+    f1 = metric_f1.compute(
+        predictions=predictions, references=references, average="weighted"
+    )
+    precision = metric_precision.compute(
+        predictions=predictions, references=references, average="weighted"
+    )
+    recall = metric_recall.compute(
+        predictions=predictions, references=references, average="weighted"
+    )
+
+    print(accuracy, f1, precision, recall)
+
+    return MetricResult(
+        (len(predictions) * accuracy["accuracy"], len(predictions)),
+        accuracy["accuracy"],
+        f1["f1"],
+        precision["precision"],
+        recall["recall"],
+        confusion_matrix(references, predictions),
     )

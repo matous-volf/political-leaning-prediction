@@ -36,7 +36,7 @@ class TopicPolitics(Model):
             ),
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return torch.argmax(output.logits, dim=-1).item()
@@ -55,7 +55,7 @@ class ClassifierMainSubjectPolitics(Model):
             ),
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return torch.argmax(output.logits, dim=-1).item()
@@ -80,7 +80,7 @@ class PoliticalDebateLarge(Model):
             device=available_device,
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         hypothesis_template = "This text {} about politics."
         output = self.pipe(
             text,
