@@ -1,12 +1,16 @@
 # Leave-one-in dataset benchmark
 
+## Methodology
+
 From each dataset, a sample of 1 000 rows (or less if the dataset is smaller) has been taken while ensuring an equal
-distribution of leaning and systematically sampling by the body length. Several models have been fine-tuned separately
-on each of these samples to compare the suitability of the datasets for training.
+distribution of classes and systematically sampling by the body length in each class. Several models have been
+fine-tuned separately on each of these samples to compare the suitability and the character of the datasets for
+training.
 
-The fine-tuned models can be reproduced using [this notebook](../../../analysis/dataset_benchmark/leave_one_in/notebook.ipynb).
+The fine-tuned models can be reproduced
+using [this notebook](/analysis/dataset_benchmark/leave_one_in/notebook.ipynb).
 
-Then the models have been evaluated using the methodology prescribed in [this document](../../../analysis/model_evaluation), while
+Then the models have been evaluated using the methodology prescribed in [this document](/docs/model_evaluation), while
 the datasets have been sampled to 1 000 rows each. The resulting accuracies are recorded in the tables below, rows
 being models and columns being datasets. The heading of the row means the dataset the model has been fine-tuned on,
 while the heading of the column is the dataset being evaluated on.
@@ -14,6 +18,13 @@ while the heading of the column is the dataset being evaluated on.
 The average accuracy does not include the resulting accuracy on the dataset the model has been fine-tuned on (the
 diagonal), as that may be misleading. Models fine-tuned on datasets containing only left and right classes are moved
 into a separate table, since their accuracy is probabilistically higher.
+
+## Results
+
+This benchmark has not been conducted on politicalness datasets, as most of them contain only one class, and so training
+a model on them is impossible.
+
+- [Political leaning](political_leaning)
 
 ## BERT base (cased)
 
