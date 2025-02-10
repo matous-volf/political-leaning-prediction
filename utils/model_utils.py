@@ -5,6 +5,7 @@ from os import PathLike
 from pathlib import Path
 from typing import (
     Callable,
+    Dict,
     Generator,
     Iterable,
     List,
@@ -13,17 +14,14 @@ from typing import (
     Type,
     TypeVar,
     Union,
-    Dict,
 )
 
-import numpy as np
-import pandas as pd
-import torch
 import evaluate
+import numpy as np
+import torch
 from datasets import Dataset, IterableDataset
-from evaluate import EvaluationModule
 from pandas import DataFrame
-from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import confusion_matrix
 from sklearn.utils import compute_class_weight
 from tqdm.notebook import tqdm
 from transformers import (
@@ -258,7 +256,7 @@ def finetune_models(
     def compute_metrics(eval_pred):
         logits, labels = eval_pred
         predictions = np.argmax(logits, axis=-1)
-        return compute_all_metrics(predictions, labels)
+        return compute_metric_result(predictions, labels).__dict__
 
     for model_name in DATASET_BENCHMARK_MODEL_NAMES:
         print(f"fine-tuning {model_name} into {output_path}:")
@@ -333,8 +331,7 @@ def mean_without_training_datasets(df):
         for column in df_mean.columns:
             # Exclude the dataset the model has been trained on from the calculation of the average.
             if index.split("/")[-1] == column:
-                continue
-            df_mean.loc[index, column] = np.nan
+                df_mean.loc[index, column] = np.nan
     return df_mean.mean(axis=1, skipna=True)
 
 
@@ -443,13 +440,11 @@ def compute_metric_result(predictions, references):
         predictions=predictions, references=references, average="weighted"
     )
 
-    print(accuracy, f1, precision, recall)
-
     return MetricResult(
-        (len(predictions) * accuracy["accuracy"], len(predictions)),
-        accuracy["accuracy"],
-        f1["f1"],
-        precision["precision"],
-        recall["recall"],
+        (round(len(predictions) * accuracy["accuracy"]), len(predictions)),
+        round(accuracy["accuracy"], 3),
+        round(f1["f1"], 3),
+        round(precision["precision"], 3),
+        round(recall["recall"], 3),
         confusion_matrix(references, predictions),
     )
