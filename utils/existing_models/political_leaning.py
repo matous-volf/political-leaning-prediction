@@ -44,7 +44,7 @@ class PoliticalBiasBert(LeaningModel):
             ),
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [0, 1, 2][torch.argmax(output.logits, dim=-1).item()]
@@ -70,7 +70,7 @@ class PoliticalBiasPredictionAllsidesDeberta(LeaningModel):
             device=available_device,
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         output = self.pipe(text)
         return {
             "LABEL_0": 0,
@@ -93,7 +93,7 @@ class DistilBertPoliticalBias(LeaningModel):
             512,
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         text = text.replace("\n", "").replace("``", '"')
         tokens = self.get_tokens(text, truncate_tokens)
         unk_token_id = self.tokenizer.convert_tokens_to_ids(self.tokenizer.unk_token)
@@ -116,7 +116,7 @@ class BertPoliticalBiasFinetune(LeaningModel):
             ),
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [0, 1][torch.argmax(output.logits, dim=-1).item()]
@@ -136,7 +136,7 @@ class DistilBertPoliticalFinetune(LeaningModel):
             512,
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [0, 1, 2][torch.argmax(output.logits, dim=-1).item()]
@@ -155,7 +155,7 @@ class PoliticalIdeologiesRobertaFinetuned(LeaningModel):
             ),
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [1, 0][torch.argmax(output.logits, dim=-1).item()]
@@ -175,7 +175,7 @@ class DebertaPoliticalClassification(LeaningModel):
             512,
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [0, 1][torch.argmax(output.logits, dim=-1).item()]
@@ -194,7 +194,7 @@ class DistilBertPoliticalTweets(LeaningModel):
             ),
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         tokens = self.get_tokens(text, truncate_tokens)
         output = self.get_output(tokens)
         return [1, 0][torch.argmax(output.logits, dim=-1)]
@@ -220,7 +220,7 @@ class PoliticalDebateLarge(LeaningModel):
             device=available_device,
         )
 
-    def predict(self, text: str, truncate_tokens: bool) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         hypothesis_template = "This text supports {} political leaning."
         output = self.pipe(
             text,
