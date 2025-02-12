@@ -1,6 +1,35 @@
+,article_bias_prediction,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,parliament_speeches_2024,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20
+PoliticalBiasBert,596 / 1000,497 / 1000,461 / 1000,190 / 612,386 / 1000,350 / 1000,414 / 1000,213 / 1000,467 / 1000,358 / 1000,368 / 1000,486 / 1000
+PoliticalBiasPredictionAllsidesDeberta,651 / 1000,653 / 1000,626 / 1000,188 / 612,759 / 1000,679 / 1000,493 / 1000,763 / 1000,575 / 1000,456 / 1000,602 / 1000,745 / 1000
+DistilBertPoliticalBias,332 / 1000,334 / 1000,473 / 1000,502 / 612,588 / 1000,499 / 1000,496 / 1000,493 / 1000,436 / 1000,345 / 1000,328 / 1000,327 / 1000
+DistilBertPoliticalFinetune,340 / 1000,312 / 1000,398 / 1000,271 / 612,571 / 1000,425 / 1000,425 / 1000,441 / 1000,504 / 1000,318 / 1000,333 / 1000,311 / 1000
+PoliticalDebateLarge,504 / 1000,458 / 1000,482 / 1000,367 / 612,724 / 1000,406 / 1000,325 / 1000,566 / 1000,419 / 1000,378 / 1000,417 / 1000,390 / 1000
+
 ,article_bias_prediction,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,parliament_speeches_2024,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
-PoliticalBiasBert,596 / 1000 (60 %),462 / 1000 (46 %),461 / 1000 (46 %),190 / 612 (31 %),386 / 1000 (39 %),350 / 1000 (35 %),414 / 1000 (41 %),213 / 1000 (21 %),479 / 1000 (48 %),374 / 1000 (37 %),368 / 1000 (37 %),486 / 1000 (49 %),4779 / 11612 (41 %)
-PoliticalBiasPredictionAllsidesDeberta,651 / 1000 (65 %),652 / 1000 (65 %),626 / 1000 (63 %),188 / 612 (31 %),759 / 1000 (76 %),686 / 1000 (69 %),493 / 1000 (49 %),763 / 1000 (76 %),576 / 1000 (58 %),472 / 1000 (47 %),602 / 1000 (60 %),745 / 1000 (74 %),7213 / 11612 (62 %)
-DistilBertPoliticalBias,332 / 1000 (33 %),331 / 1000 (33 %),473 / 1000 (47 %),502 / 612 (82 %),588 / 1000 (59 %),501 / 1000 (50 %),496 / 1000 (50 %),493 / 1000 (49 %),442 / 1000 (44 %),337 / 1000 (34 %),328 / 1000 (33 %),327 / 1000 (33 %),5150 / 11612 (44 %)
-DistilBertPoliticalFinetune,340 / 1000 (34 %),311 / 1000 (31 %),398 / 1000 (40 %),271 / 612 (44 %),571 / 1000 (57 %),447 / 1000 (45 %),425 / 1000 (42 %),441 / 1000 (44 %),506 / 1000 (51 %),334 / 1000 (33 %),333 / 1000 (33 %),311 / 1000 (31 %),4688 / 11612 (40 %)
-PoliticalDebateLarge,504 / 1000 (50 %),466 / 1000 (47 %),482 / 1000 (48 %),367 / 612 (60 %),724 / 1000 (72 %),429 / 1000 (43 %),325 / 1000 (32 %),566 / 1000 (57 %),404 / 1000 (40 %),386 / 1000 (39 %),417 / 1000 (42 %),390 / 1000 (39 %),5460 / 11612 (47 %)
+PoliticalBiasBert,0.596,0.497,0.461,0.310,0.386,0.350,0.414,0.213,0.467,0.358,0.368,0.486,0.408833
+PoliticalBiasPredictionAllsidesDeberta,0.651,0.653,0.626,0.307,0.759,0.679,0.493,0.763,0.575,0.456,0.602,0.745,0.609083
+DistilBertPoliticalBias,0.332,0.334,0.473,0.820,0.588,0.499,0.496,0.493,0.436,0.345,0.328,0.327,0.455917
+DistilBertPoliticalFinetune,0.340,0.312,0.398,0.443,0.571,0.425,0.425,0.441,0.504,0.318,0.333,0.311,0.401750
+PoliticalDebateLarge,0.504,0.458,0.482,0.600,0.724,0.406,0.325,0.566,0.419,0.378,0.417,0.390,0.472417
+
+,article_bias_prediction,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,parliament_speeches_2024,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+PoliticalBiasBert,0.572,0.496,0.495,0.221,0.375,0.440,0.382,0.258,0.414,0.291,0.379,0.479,0.400167
+PoliticalBiasPredictionAllsidesDeberta,0.646,0.652,0.604,0.153,0.751,0.728,0.380,0.796,0.565,0.456,0.590,0.745,0.588833
+DistilBertPoliticalBias,0.166,0.176,0.421,0.818,0.544,0.342,0.370,0.343,0.419,0.229,0.164,0.164,0.346333
+DistilBertPoliticalFinetune,0.260,0.257,0.418,0.389,0.632,0.420,0.455,0.459,0.554,0.212,0.240,0.210,0.375500
+PoliticalDebateLarge,0.509,0.432,0.615,0.568,0.823,0.541,0.396,0.693,0.570,0.366,0.415,0.393,0.526750
+
+
+,article_bias_prediction,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,parliament_speeches_2024,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+PoliticalBiasBert,0.620,0.500,0.541,0.244,0.403,0.617,0.496,0.482,0.489,0.363,0.426,0.492,0.472750
+PoliticalBiasPredictionAllsidesDeberta,0.693,0.654,0.663,0.499,0.795,0.805,0.474,0.835,0.583,0.468,0.601,0.751,0.651750
+DistilBertPoliticalBias,0.110,0.334,0.522,0.821,0.648,0.585,0.484,0.454,0.489,0.400,0.110,0.109,0.422167
+DistilBertPoliticalFinetune,0.355,0.287,0.552,0.574,0.793,0.475,0.498,0.649,0.619,0.271,0.332,0.266,0.472583
+PoliticalDebateLarge,0.530,0.511,0.862,0.784,0.972,0.811,0.729,0.894,0.892,0.393,0.438,0.414,0.685833
+
+,article_bias_prediction,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,parliament_speeches_2024,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+PoliticalBiasBert,0.596,0.497,0.461,0.310,0.386,0.350,0.414,0.213,0.467,0.358,0.368,0.486,0.408833
+PoliticalBiasPredictionAllsidesDeberta,0.651,0.653,0.626,0.307,0.759,0.679,0.493,0.763,0.575,0.456,0.602,0.745,0.609083
+DistilBertPoliticalBias,0.332,0.334,0.473,0.820,0.588,0.499,0.496,0.493,0.436,0.345,0.328,0.327,0.455917
+DistilBertPoliticalFinetune,0.340,0.312,0.398,0.443,0.571,0.425,0.425,0.441,0.504,0.318,0.333,0.311,0.401750
+PoliticalDebateLarge,0.504,0.458,0.482,0.600,0.724,0.406,0.325,0.566,0.419,0.378,0.417,0.390,0.472417
