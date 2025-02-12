@@ -1,14 +1,13 @@
 from typing import Generator
 
 import torch
-from adapters import AutoAdapterModel
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
     pipeline,
 )
 
-from utils.model_utils import Model, available_device
+from utils.model_utils import Model, PoliticalnessModel, available_device
 
 
 def get_existing_politicalness_models() -> Generator[Model, None, None]:
@@ -23,7 +22,7 @@ def get_existing_politicalness_models() -> Generator[Model, None, None]:
         yield model_class()
 
 
-class TopicPolitics(Model):
+class TopicPolitics(PoliticalnessModel):
     def __init__(self) -> None:
         super().__init__(
             AutoTokenizer.from_pretrained(
@@ -42,7 +41,7 @@ class TopicPolitics(Model):
         return torch.argmax(output.logits, dim=-1).item()
 
 
-class ClassifierMainSubjectPolitics(Model):
+class ClassifierMainSubjectPolitics(PoliticalnessModel):
     def __init__(self) -> None:
         super().__init__(
             AutoTokenizer.from_pretrained(
@@ -61,7 +60,7 @@ class ClassifierMainSubjectPolitics(Model):
         return torch.argmax(output.logits, dim=-1).item()
 
 
-class PoliticalDebateLarge(Model):
+class PoliticalDebateLarge(PoliticalnessModel):
     def __init__(self) -> None:
         super().__init__(
             AutoTokenizer.from_pretrained(
