@@ -28,7 +28,7 @@ a model on them is impossible.
 
 ## BERT base (cased)
 
-### With a center leaning class
+### with the center leaning class
 
 <table>
 <tr>
@@ -145,7 +145,7 @@ a model on them is impossible.
 </tr>
 </table>
 
-### Without a center leaning class
+### without the center leaning class
 
 <table>
 <tr>
@@ -264,7 +264,7 @@ a model on them is impossible.
 
 ## RoBERTa base
 
-### With a center leaning class
+### with the center leaning class
 
 <table>
 <tr>
@@ -381,7 +381,7 @@ a model on them is impossible.
 </tr>
 </table>
 
-### Without a center leaning class
+### without the center leaning class
 
 <table>
 <tr>
@@ -500,7 +500,7 @@ a model on them is impossible.
 
 ## POLITICS
 
-### With a center leaning class
+### with the center leaning class
 
 <table>
 <tr>
@@ -617,7 +617,7 @@ a model on them is impossible.
 </tr>
 </table>
 
-### Without a center leaning class
+### without the center leaning class
 
 <table>
 <tr>
