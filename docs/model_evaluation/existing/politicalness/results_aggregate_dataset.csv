@@ -1,0 +1,20 @@
+count,
+TopicPolitics,22608 / 29612
+ClassifierMainSubjectPolitics,20585 / 29612
+PoliticalDebateLarge,26764 / 29612
+accuracy,
+TopicPolitics,0.763
+ClassifierMainSubjectPolitics,0.695
+PoliticalDebateLarge,0.904
+f1,
+TopicPolitics,0.751
+ClassifierMainSubjectPolitics,0.669
+PoliticalDebateLarge,0.904
+precision,
+TopicPolitics,0.837
+ClassifierMainSubjectPolitics,0.796
+PoliticalDebateLarge,0.910
+recall,
+TopicPolitics,0.763
+ClassifierMainSubjectPolitics,0.695
+PoliticalDebateLarge,0.904
