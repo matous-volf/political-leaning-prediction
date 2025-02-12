@@ -332,7 +332,7 @@ def mean_without_training_datasets(df):
             # Exclude the dataset the model has been trained on from the calculation of the average.
             if index.split("/")[-1] == column:
                 df_mean.loc[index, column] = np.nan
-    return df_mean.mean(axis=1, skipna=True)
+    return df_mean.mean(axis=1, skipna=True).round(3)
 
 
 class MetricResults:
