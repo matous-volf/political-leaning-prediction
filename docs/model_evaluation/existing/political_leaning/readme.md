@@ -52,7 +52,7 @@ The resulting accuracies are stored in files
 
 and are recorded in the two tables below.
 
-## With a center leaning class
+## with the center leaning class
 
 <table>
 <tr>
@@ -153,7 +153,7 @@ and are recorded in the two tables below.
 </tr>
 </table>
 
-## Without a center leaning class
+## without the center leaning class
 
 <table>
 <tr>
