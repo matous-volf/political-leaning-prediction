@@ -17,11 +17,12 @@ from typing import (
 )
 
 import evaluate
+import matplotlib.pyplot as plt
 import numpy as np
 import torch
 from datasets import Dataset, IterableDataset
 from pandas import DataFrame
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
 from sklearn.utils import compute_class_weight
 from tqdm.notebook import tqdm
 from transformers import (
@@ -59,11 +60,13 @@ class Model(ABC):
         self,
         tokenizer,
         model,
+        label_count: int,
         model_max_length: int | None = None,
     ) -> None:
         model.to(available_device)
         self.tokenizer = tokenizer
         self.model = model
+        self.label_count = label_count
         self.model_max_length = (
             self.tokenizer.model_max_length
             if model_max_length is None
@@ -96,7 +99,22 @@ class Model(ABC):
             return self.model(**tokens)
 
 
-class CustomPoliticalnessModel(Model):
+class PoliticalnessModel(Model, ABC):
+    def __init__(
+        self,
+        tokenizer,
+        model,
+        model_max_length: int | None = None,
+    ):
+        super().__init__(
+            tokenizer,
+            model,
+            2,
+            model_max_length,
+        )
+
+
+class CustomPoliticalnessModel(PoliticalnessModel):
     def __init__(
         self,
         path: PathLike[str],
@@ -128,11 +146,16 @@ class LeaningModel(Model, ABC):
         model_max_length: int | None = None,
         supports_center_leaning_class: bool | None = None,
     ):
-        super().__init__(tokenizer, model, model_max_length)
         self.supports_center_leaning_class = (
             model.config.num_labels >= 3
             if supports_center_leaning_class is None
             else supports_center_leaning_class
+        )
+        super().__init__(
+            tokenizer,
+            model,
+            3 if self.supports_center_leaning_class else 2,
+            model_max_length,
         )
 
 
@@ -254,9 +277,9 @@ def finetune_models(
         )
 
     def compute_metrics(eval_pred):
-        logits, labels = eval_pred
+        logits, references = eval_pred
         predictions = np.argmax(logits, axis=-1)
-        return compute_metric_result(predictions, labels).__dict__
+        return compute_metric_result(None, predictions, references).__dict__
 
     for model_name in DATASET_BENCHMARK_MODEL_NAMES:
         print(f"fine-tuning {model_name} into {output_path}:")
@@ -394,6 +417,21 @@ class MetricResults:
             columns=dataset_names,
         )
 
+    def save_confusion_matrix_images(
+        self, path: PathLike[str], label_mapping: dict[str, int]
+    ):
+        for index, row in self.confusion_matrix.iterrows():
+            for col in self.confusion_matrix.columns:
+                display = ConfusionMatrixDisplay(
+                    confusion_matrix=row[col],
+                    display_labels=list(label_mapping.keys()),
+                )
+                subdirectory = path / index
+                subdirectory.mkdir(parents=True, exist_ok=True)
+                figure = display.plot().figure_
+                figure.savefig(subdirectory / f"{col}.svg", format="svg")
+                plt.close(figure)
+
 
 def evaluate_models(
     get_models: Callable[[], Generator[Model, None, None]],
@@ -413,7 +451,11 @@ def evaluate_models(
             for text in tqdm(dataset["text"]):
                 predictions.append(model.predict(text))
 
-            results[-1].append(compute_metric_result(predictions, dataset["label"]))
+            results[-1].append(
+                compute_metric_result(
+                    range(model.label_count), predictions, dataset["label"]
+                )
+            )
 
     return MetricResults(
         results,
@@ -422,13 +464,12 @@ def evaluate_models(
     )
 
 
-metric_accuracy = evaluate.load("accuracy")
-metric_f1 = evaluate.load("f1")
-metric_precision = evaluate.load("precision")
-metric_recall = evaluate.load("recall")
+def compute_metric_result(labels, predictions, references):
+    metric_accuracy = evaluate.load("accuracy")
+    metric_f1 = evaluate.load("f1")
+    metric_precision = evaluate.load("precision")
+    metric_recall = evaluate.load("recall")
 
-
-def compute_metric_result(predictions, references):
     accuracy = metric_accuracy.compute(predictions=predictions, references=references)
     f1 = metric_f1.compute(
         predictions=predictions, references=references, average="weighted"
@@ -446,5 +487,5 @@ def compute_metric_result(predictions, references):
         round(f1["f1"], 3),
         round(precision["precision"], 3),
         round(recall["recall"], 3),
-        confusion_matrix(references, predictions),
+        confusion_matrix(references, predictions, labels=labels),
     )
