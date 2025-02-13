@@ -279,7 +279,9 @@ def finetune_models(
     def compute_metrics(eval_pred):
         logits, references = eval_pred
         predictions = np.argmax(logits, axis=-1)
-        return compute_metric_result(None, predictions, references).__dict__
+        metric_result = compute_metric_result(None, predictions, references)
+        metric_result.confusion_matrix = str(metric_result.confusion_matrix)
+        return metric_result.__dict__
 
     for model_name in DATASET_BENCHMARK_MODEL_NAMES:
         print(f"fine-tuning {model_name} into {output_path}:")
