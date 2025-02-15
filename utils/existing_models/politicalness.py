@@ -15,30 +15,11 @@ def get_existing_politicalness_models() -> Generator[Model, None, None]:
     # right away, as that would completely undermine the usage of the generator. It could cause the
     # memory to overflow. Instead, models need to be yielded one at a time.
     for model_class in [
-        TopicPolitics,
         ClassifierMainSubjectPolitics,
         PoliticalDebateLarge,
+        TopicPolitics,
     ]:
         yield model_class()
-
-
-class TopicPolitics(PoliticalnessModel):
-    def __init__(self) -> None:
-        super().__init__(
-            AutoTokenizer.from_pretrained(
-                "dell-research-harvard/topic-politics",
-                code_revision="eb68c30bcecd019b1d2a93d3b595136126a30e07",
-            ),
-            AutoModelForSequenceClassification.from_pretrained(
-                "dell-research-harvard/topic-politics",
-                code_revision="eb68c30bcecd019b1d2a93d3b595136126a30e07",
-            ),
-        )
-
-    def predict(self, text: str, truncate_tokens: bool = True) -> int:
-        tokens = self.get_tokens(text, truncate_tokens)
-        output = self.get_output(tokens)
-        return torch.argmax(output.logits, dim=-1).item()
 
 
 class ClassifierMainSubjectPolitics(PoliticalnessModel):
@@ -88,3 +69,22 @@ class PoliticalDebateLarge(PoliticalnessModel):
             multi_label=False,
         )
         return {"is not": 0, "is": 1}[output["labels"][0]]
+
+
+class TopicPolitics(PoliticalnessModel):
+    def __init__(self) -> None:
+        super().__init__(
+            AutoTokenizer.from_pretrained(
+                "dell-research-harvard/topic-politics",
+                code_revision="eb68c30bcecd019b1d2a93d3b595136126a30e07",
+            ),
+            AutoModelForSequenceClassification.from_pretrained(
+                "dell-research-harvard/topic-politics",
+                code_revision="eb68c30bcecd019b1d2a93d3b595136126a30e07",
+            ),
+        )
+
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
+        tokens = self.get_tokens(text, truncate_tokens)
+        output = self.get_output(tokens)
+        return torch.argmax(output.logits, dim=-1).item()
