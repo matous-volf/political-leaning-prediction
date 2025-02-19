@@ -84,6 +84,9 @@ The Jupyter notebooks are stored in the [analysis](analysis) directory.
   Generation Conference (INLG 2018). Zenodo. <https://doi.org/10.5281/zenodo.3250686>
 - Chen, W.-F., Al-Khatib, K., Wachsmuth, H., & Stein, B. (2020). Webis-News-Bias-20 [Data set].
   Zenodo. <https://doi.org/10.5281/zenodo.8321586>
+- Liu, Y., Zhang, X. F., Wegsman, D., Beauchamp, N., & Wang, L. (2022). POLITICS: Pretraining with same-story article
+  comparison for ideology prediction and stance detection. In Findings of the Association for Computational Linguistics:
+  NAACL 2022. <https://huggingface.co/launch/POLITICS>
 
 ## Referenced existing models
 
