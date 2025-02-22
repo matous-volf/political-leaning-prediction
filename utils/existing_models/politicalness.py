@@ -1,4 +1,4 @@
-from typing import Generator
+from typing import Generator, List, Tuple
 
 import torch
 from transformers import (
@@ -61,14 +61,25 @@ class PoliticalDebateLarge(PoliticalnessModel):
         )
 
     def predict(self, text: str, truncate_tokens: bool = True) -> int:
+        return self.predict_batch_with_score([text])[0][0]
+
+    def predict_batch_with_score(self, texts: List[str]) -> List[Tuple[int, float]]:
         hypothesis_template = "This text {} about politics."
-        output = self.pipe(
-            text,
+        outputs = self.pipe(
+            texts,
             ["is not", "is"],
             hypothesis_template=hypothesis_template,
             multi_label=False,
         )
-        return {"is not": 0, "is": 1}[output["labels"][0]]
+        return list(
+            map(
+                lambda output: (
+                    {"is not": 0, "is": 1}[output["labels"][0]],
+                    output["scores"][0],
+                ),
+                outputs,
+            )
+        )
 
 
 class TopicPolitics(PoliticalnessModel):
