@@ -153,6 +153,34 @@ class PoliticalLeaningDataset(Dataset):
     def has_center_leaning_class(self):
         return len(self.dataframe["leaning"].unique()) == 3
 
+    def take_balanced_class_distribution_sample(
+        self, size: int, center_multiplier: float
+    ) -> Self:
+        dataset = deepcopy(self)
+        if size < self.dataframe[self.label_column_name].nunique():
+            raise ValueError(
+                "The sample size must be at least the number of present classes."
+            )
+        else:
+            class_sample_count = int(
+                np.ceil(size / dataset.dataframe[self.label_column_name].nunique())
+            )
+            dataset.dataframe = dataset.dataframe.groupby(
+                self.label_column_name, group_keys=False, observed=True
+            ).apply(
+                lambda group: systematic_sample(
+                    group,
+                    (
+                        int(class_sample_count * center_multiplier)
+                        if self.has_center_leaning_class()
+                        and (group["leaning"].eq("center").all())
+                        else class_sample_count
+                    ),
+                )
+            )
+
+        return dataset
+
 
 def get_datasets(directory: str, cls: Type[T]) -> Generator[T, None, None]:
     for filename in sorted(
