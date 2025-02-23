@@ -19,6 +19,7 @@ from typing import (
 import evaluate
 import matplotlib.pyplot as plt
 import numpy as np
+import sklearn
 import torch
 from datasets import Dataset, IterableDataset
 from pandas import DataFrame
@@ -439,7 +440,7 @@ def evaluate_models(
     get_models: Callable[[], Generator[Model, None, None]],
     datasets: List[Dataset],
 ) -> MetricResults:
-    results = []
+    results: List[List[MetricResult]] = []
 
     for model in get_models():
         print(f"evaluating {model.name} on:")

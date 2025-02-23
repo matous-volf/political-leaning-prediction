@@ -60,7 +60,7 @@ class PoliticalDebateLarge(PoliticalnessModel):
             device=available_device,
         )
 
-    def predict(self, text: str, truncate_tokens: bool = True) -> int:
+    def predict(self, text: str, _truncate_tokens: bool = True) -> int:
         return self.predict_batch_with_score([text])[0][0]
 
     def predict_batch_with_score(self, texts: List[str]) -> List[Tuple[int, float]]:

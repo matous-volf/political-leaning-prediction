@@ -42,7 +42,7 @@ class Dataset(ABC):
             raise ValueError(
                 "The sample size must be at least the number of present classes."
             )
-        
+
         class_sample_count = int(
             np.ceil(size / dataset.dataframe[self.label_column_name].nunique())
         )
@@ -161,23 +161,23 @@ class PoliticalLeaningDataset(Dataset):
             raise ValueError(
                 "The sample size must be at least the number of present classes."
             )
-        else:
-            class_sample_count = int(
-                np.ceil(size / dataset.dataframe[self.label_column_name].nunique())
+
+        class_sample_count = int(
+            np.ceil(size / dataset.dataframe[self.label_column_name].nunique())
+        )
+        dataset.dataframe = dataset.dataframe.groupby(
+            self.label_column_name, group_keys=False, observed=True
+        ).apply(
+            lambda group: systematic_sample(
+                group,
+                (
+                    int(class_sample_count * center_multiplier)
+                    if self.has_center_leaning_class()
+                    and (group["leaning"].eq("center").all())
+                    else class_sample_count
+                ),
             )
-            dataset.dataframe = dataset.dataframe.groupby(
-                self.label_column_name, group_keys=False, observed=True
-            ).apply(
-                lambda group: systematic_sample(
-                    group,
-                    (
-                        int(class_sample_count * center_multiplier)
-                        if self.has_center_leaning_class()
-                        and (group["leaning"].eq("center").all())
-                        else class_sample_count
-                    ),
-                )
-            )
+        )
 
         return dataset
 

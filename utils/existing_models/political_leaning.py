@@ -93,7 +93,7 @@ class DistilBertPoliticalBias(LeaningModel):
             512,
         )
 
-    def predict(self, text: str, _truncate_tokens: bool = True) -> int:
+    def predict(self, text: str, truncate_tokens: bool = True) -> int:
         text = text.replace("\n", "").replace("``", '"')
         tokens = self.get_tokens(text, truncate_tokens)
         unk_token_id = self.tokenizer.convert_tokens_to_ids(self.tokenizer.unk_token)
@@ -220,7 +220,7 @@ class PoliticalDebateLarge(LeaningModel):
             device=available_device,
         )
 
-    def predict(self, text: str, truncate_tokens: bool = True) -> int:
+    def predict(self, text: str, _truncate_tokens: bool = True) -> int:
         hypothesis_template = "This text supports {} political leaning."
         output = self.pipe(
             text,
