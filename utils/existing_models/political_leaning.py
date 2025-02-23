@@ -70,7 +70,7 @@ class PoliticalBiasPredictionAllsidesDeberta(LeaningModel):
             device=available_device,
         )
 
-    def predict(self, text: str, truncate_tokens: bool = True) -> int:
+    def predict(self, text: str, _truncate_tokens: bool = True) -> int:
         output = self.pipe(text)
         return {
             "LABEL_0": 0,
@@ -93,7 +93,7 @@ class DistilBertPoliticalBias(LeaningModel):
             512,
         )
 
-    def predict(self, text: str, truncate_tokens: bool = True) -> int:
+    def predict(self, text: str, _truncate_tokens: bool = True) -> int:
         text = text.replace("\n", "").replace("``", '"')
         tokens = self.get_tokens(text, truncate_tokens)
         unk_token_id = self.tokenizer.convert_tokens_to_ids(self.tokenizer.unk_token)

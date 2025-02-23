@@ -42,17 +42,17 @@ class Dataset(ABC):
             raise ValueError(
                 "The sample size must be at least the number of present classes."
             )
-        else:
-            class_sample_count = int(
-                np.ceil(size / dataset.dataframe[self.label_column_name].nunique())
+        
+        class_sample_count = int(
+            np.ceil(size / dataset.dataframe[self.label_column_name].nunique())
+        )
+        dataset.dataframe = (
+            dataset.dataframe.groupby(
+                self.label_column_name, group_keys=False, observed=True
             )
-            dataset.dataframe = (
-                dataset.dataframe.groupby(
-                    self.label_column_name, group_keys=False, observed=True
-                )
-                .apply(lambda group: systematic_sample(group, class_sample_count))
-                .head(size)
-            )
+            .apply(lambda group: systematic_sample(group, class_sample_count))
+            .head(size)
+        )
 
         return dataset
 

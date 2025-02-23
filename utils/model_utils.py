@@ -22,7 +22,7 @@ import numpy as np
 import torch
 from datasets import Dataset, IterableDataset
 from pandas import DataFrame
-from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.utils import compute_class_weight
 from tqdm.notebook import tqdm
 from transformers import (
@@ -244,7 +244,7 @@ class CustomTrainer(Trainer):
         self.class_weights = class_weights
 
     def compute_loss(
-        self, model, inputs, return_outputs=False, num_items_in_batch=None
+        self, model, inputs, return_outputs=False, _num_items_in_batch=None
     ):
         labels = inputs.get("labels")
         outputs = model(**inputs)
@@ -489,5 +489,5 @@ def compute_metric_result(labels, predictions, references):
         round(f1["f1"], 3),
         round(precision["precision"], 3),
         round(recall["recall"], 3),
-        confusion_matrix(references, predictions, labels=labels),
+        sklearn.metrics.confusion_matrix(references, predictions, labels=labels),
     )
