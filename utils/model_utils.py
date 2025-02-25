@@ -245,7 +245,12 @@ class CustomTrainer(Trainer):
         self.class_weights = class_weights
 
     def compute_loss(
-        self, model, inputs, return_outputs=False, _num_items_in_batch=None
+        self,
+        model,
+        inputs,
+        return_outputs=False,
+        # pylint: disable=unused-argument
+        num_items_in_batch=None,
     ):
         labels = inputs.get("labels")
         outputs = model(**inputs)
