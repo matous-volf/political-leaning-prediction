@@ -36,7 +36,7 @@ class Dataset(ABC):
     def label_mapping(self) -> dict[str, int]:
         pass
 
-    def take_even_class_distribution_sample(self, size: int) -> Self:
+    def take_even_class_sample_by_size(self, size: int) -> Self:
         dataset = deepcopy(self)
         if size < self.dataframe[self.label_column_name].nunique():
             raise ValueError(
@@ -55,6 +55,11 @@ class Dataset(ABC):
         )
 
         return dataset
+
+    def take_even_class_sample_by_fraction(self, fraction: float) -> Self:
+        return self.take_even_class_sample_by_size(
+            round(len(self.dataframe) * fraction)
+        )
 
     def transform_train_texts(self) -> Self:
         dataset = deepcopy(self)
@@ -153,7 +158,7 @@ class PoliticalLeaningDataset(Dataset):
     def has_center_leaning_class(self):
         return len(self.dataframe["leaning"].unique()) == 3
 
-    def take_balanced_class_distribution_sample(
+    def take_balanced_class_sample_by_size(
         self, size: int, center_multiplier: float
     ) -> Self:
         dataset = deepcopy(self)
