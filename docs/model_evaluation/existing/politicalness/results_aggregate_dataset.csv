@@ -1,0 +1,24 @@
+,aggregate
+ClassifierMainSubjectPolitics,20770 / 29612
+PoliticalDebateLarge,27144 / 29612
+TopicPolitics,22660 / 29612
+
+,aggregate
+ClassifierMainSubjectPolitics,0.701
+PoliticalDebateLarge,0.917
+TopicPolitics,0.765
+
+,aggregate
+ClassifierMainSubjectPolitics,0.677
+PoliticalDebateLarge,0.917
+TopicPolitics,0.753
+
+,aggregate
+ClassifierMainSubjectPolitics,0.799
+PoliticalDebateLarge,0.920
+TopicPolitics,0.838
+
+,aggregate
+ClassifierMainSubjectPolitics,0.701
+PoliticalDebateLarge,0.917
+TopicPolitics,0.765
