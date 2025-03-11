@@ -1,4 +1,5 @@
 ,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20
+PoliticalBiasBert,596 / 1000,374 / 1000,467 / 1000,461 / 1000,190 / 612,386 / 1000,350 / 1000,213 / 1000,467 / 1000,358 / 1000,368 / 1000,486 / 1000
 PoliticalBiasPredictionAllsidesDeberta,651 / 1000,544 / 1000,680 / 1000,626 / 1000,188 / 612,759 / 1000,686 / 1000,763 / 1000,575 / 1000,456 / 1000,602 / 1000,745 / 1000
 DistilBertPoliticalBias,332 / 1000,333 / 1000,337 / 1000,473 / 1000,502 / 612,588 / 1000,501 / 1000,493 / 1000,436 / 1000,345 / 1000,328 / 1000,327 / 1000
 DistilBertPoliticalFinetune,340 / 1000,292 / 1000,344 / 1000,398 / 1000,271 / 612,571 / 1000,447 / 1000,441 / 1000,504 / 1000,318 / 1000,333 / 1000,311 / 1000
