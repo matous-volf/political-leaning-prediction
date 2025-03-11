@@ -27,6 +27,14 @@ relationships are shown in the following table.
     <td>Article bias prediction</td>
 </tr>
 <tr>
+    <td>DistilBertPoliticalBias</td>
+    <td>GPT-4 political bias</td>
+</tr>
+<tr>
+    <td>PoliticalDebateLarge</td>
+    <td>Dem., rep. party platform topics; Political tweets</td>
+</tr>
+<tr>
     <td>PoliticalIdeologiesRobertaFinetuned</td>
     <td>GPT-4 political ideologies</td>
 </tr>
