@@ -47,13 +47,14 @@ available_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 DATASET_BENCHMARK_MODEL_NAMES = sorted(
     [
-        "google-bert/bert-base-cased",
-        "FacebookAI/roberta-base",
         "launch/POLITICS",
+        "google-bert/bert-base-cased",
+        "microsoft/deberta-v3-base",
+        "FacebookAI/roberta-base",
     ],
     key=lambda model_name: model_name.split("/")[-1],
 )
-DATASET_BENCHMARK_MODELS_MAX_LENGTH = 512
+DATASET_BENCHMARK_MODELS_MAX_LENGTH = 256
 
 
 class Model(ABC):
@@ -308,6 +309,7 @@ def finetune_models(
 
             training_arguments = TrainingArguments(
                 learning_rate=learning_rate,
+                warmup_ratio=0.15,
                 auto_find_batch_size=True,
                 eval_strategy=(
                     eval_strategy if len(eval_dataset) > 0 else IntervalStrategy.NO
@@ -317,7 +319,7 @@ def finetune_models(
                 seed=training_seed,
                 data_seed=data_seed,
             )
-            trainer = CustomTrainer(
+            trainer = Trainer(
                 model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
                     model_name,
                     num_labels=len(train_dataset.unique("label")),
@@ -326,13 +328,13 @@ def finetune_models(
                 train_dataset=train_dataset_tokenized,
                 eval_dataset=eval_dataset_tokenized,
                 compute_metrics=compute_metrics,
-                class_weights=torch.from_numpy(
-                    compute_class_weight(
-                        class_weight="balanced",
-                        classes=np.sort(train_dataset.unique("label")),
-                        y=train_dataset["label"],
-                    ).astype(np.float32)
-                ),
+                # class_weights=torch.from_numpy(
+                #     compute_class_weight(
+                #         class_weight="balanced",
+                #         classes=np.sort(train_dataset.unique("label")),
+                #         y=train_dataset["label"],
+                #     ).astype(np.float32)
+                # ),
             )
             trainer.train()
             trainer.save_model(output_directory)
