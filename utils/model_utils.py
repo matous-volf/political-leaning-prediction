@@ -24,7 +24,6 @@ import torch
 from datasets import Dataset, IterableDataset
 from pandas import DataFrame
 from sklearn.metrics import ConfusionMatrixDisplay
-from sklearn.utils import compute_class_weight
 from tqdm.notebook import tqdm
 from transformers import (
     AutoModelForSequenceClassification,
