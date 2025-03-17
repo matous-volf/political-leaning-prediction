@@ -1,0 +1,30 @@
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/dem_rep_party_platform_topics,2000 / 4010,4953 / 10000,4925 / 10000,1328 / 1734,51 / 65,342 / 480,7392 / 15000,920 / 1657,7828 / 15000,1251 / 2620,360 / 735,489 / 973
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/gpt4_political_ideologies,1962 / 4010,4556 / 10000,5013 / 10000,1057 / 1734,52 / 65,475 / 480,7594 / 15000,881 / 1657,8570 / 15000,1300 / 2620,364 / 735,480 / 973
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/media_political_stance,2301 / 4010,6076 / 10000,5694 / 10000,906 / 1734,31 / 65,241 / 480,12562 / 15000,634 / 1657,7147 / 15000,1438 / 2620,420 / 735,597 / 973
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_podcasts,2172 / 4010,4985 / 10000,5246 / 10000,877 / 1734,32 / 65,239 / 480,6853 / 15000,1648 / 1657,7505 / 15000,1332 / 2620,312 / 735,506 / 973
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_tweets,2090 / 4010,5292 / 10000,5328 / 10000,1020 / 1734,45 / 65,313 / 480,7876 / 15000,925 / 1657,10782 / 15000,1342 / 2620,403 / 735,510 / 973
+
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/dem_rep_party_platform_topics,0.499,0.495,0.492,0.766,0.785,0.713,0.493,0.555,0.522,0.477,0.490,0.503,0.548
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/gpt4_political_ideologies,0.489,0.456,0.501,0.610,0.800,0.990,0.506,0.532,0.571,0.496,0.495,0.493,0.541
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/media_political_stance,0.574,0.608,0.569,0.522,0.477,0.502,0.837,0.383,0.476,0.549,0.571,0.614,0.531
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_podcasts,0.542,0.498,0.525,0.506,0.492,0.498,0.457,0.995,0.500,0.508,0.424,0.520,0.497
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_tweets,0.521,0.529,0.533,0.588,0.692,0.652,0.525,0.558,0.719,0.512,0.548,0.524,0.562
+
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/dem_rep_party_platform_topics,0.350,0.357,0.356,0.766,0.782,0.708,0.366,0.470,0.479,0.386,0.334,0.357,0.450
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/gpt4_political_ideologies,0.484,0.455,0.499,0.609,0.794,0.990,0.506,0.530,0.570,0.495,0.490,0.486,0.538
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/media_political_stance,0.556,0.607,0.556,0.457,0.342,0.338,0.837,0.383,0.438,0.548,0.571,0.614,0.492
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_podcasts,0.531,0.494,0.523,0.376,0.325,0.332,0.454,0.995,0.337,0.459,0.422,0.520,0.434
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_tweets,0.491,0.511,0.512,0.588,0.691,0.623,0.505,0.538,0.716,0.512,0.526,0.505,0.546
+
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/dem_rep_party_platform_topics,0.485,0.466,0.451,0.766,0.794,0.727,0.464,0.653,0.533,0.444,0.331,0.522,0.534
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/gpt4_political_ideologies,0.489,0.455,0.501,0.610,0.838,0.990,0.506,0.532,0.572,0.496,0.495,0.493,0.544
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/media_political_stance,0.588,0.608,0.579,0.544,0.407,0.751,0.838,0.383,0.468,0.549,0.571,0.614,0.551
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_podcasts,0.546,0.498,0.525,0.534,0.242,0.249,0.456,0.995,0.527,0.513,0.423,0.520,0.458
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_tweets,0.528,0.534,0.540,0.589,0.696,0.719,0.530,0.570,0.728,0.512,0.559,0.528,0.573
+
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/dem_rep_party_platform_topics,0.499,0.495,0.492,0.766,0.785,0.713,0.493,0.555,0.522,0.477,0.490,0.503,0.548
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/gpt4_political_ideologies,0.489,0.456,0.501,0.610,0.800,0.990,0.506,0.532,0.571,0.496,0.495,0.493,0.541
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/media_political_stance,0.574,0.608,0.569,0.522,0.477,0.502,0.837,0.383,0.476,0.549,0.571,0.614,0.531
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_podcasts,0.542,0.498,0.525,0.506,0.492,0.498,0.457,0.995,0.500,0.508,0.424,0.520,0.497
+dataset_benchmark/leave_one_in/political_leaning/bert-base-cased/political_tweets,0.521,0.529,0.533,0.588,0.692,0.652,0.525,0.558,0.719,0.512,0.548,0.524,0.562

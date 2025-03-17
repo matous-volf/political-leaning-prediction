@@ -1,0 +1,30 @@
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/dem_rep_party_platform_topics,2005 / 4010,5000 / 10000,4995 / 10000,1007 / 1734,37 / 65,275 / 480,7224 / 15000,887 / 1657,7569 / 15000,1256 / 2620,367 / 735,487 / 973
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/gpt4_political_ideologies,2047 / 4010,4636 / 10000,5260 / 10000,1090 / 1734,52 / 65,476 / 480,8291 / 15000,1085 / 1657,8766 / 15000,1275 / 2620,382 / 735,504 / 973
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/media_political_stance,2303 / 4010,5795 / 10000,6715 / 10000,923 / 1734,36 / 65,248 / 480,12319 / 15000,1055 / 1657,7194 / 15000,1486 / 2620,441 / 735,670 / 973
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_podcasts,2153 / 4010,5069 / 10000,5567 / 10000,894 / 1734,36 / 65,265 / 480,8193 / 15000,1653 / 1657,7346 / 15000,1327 / 2620,371 / 735,502 / 973
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_tweets,2045 / 4010,5207 / 10000,5262 / 10000,948 / 1734,42 / 65,298 / 480,7994 / 15000,804 / 1657,9877 / 15000,1308 / 2620,356 / 735,478 / 973
+
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/dem_rep_party_platform_topics,0.500,0.500,0.499,0.581,0.569,0.573,0.482,0.535,0.505,0.479,0.499,0.501,0.513
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/gpt4_political_ideologies,0.510,0.464,0.526,0.629,0.800,0.992,0.553,0.655,0.584,0.487,0.520,0.518,0.568
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/media_political_stance,0.574,0.580,0.671,0.532,0.554,0.517,0.821,0.637,0.480,0.567,0.600,0.689,0.582
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_podcasts,0.537,0.507,0.557,0.516,0.554,0.552,0.546,0.998,0.490,0.506,0.505,0.516,0.526
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_tweets,0.510,0.521,0.526,0.547,0.646,0.621,0.533,0.485,0.658,0.499,0.484,0.491,0.533
+
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/dem_rep_party_platform_topics,0.333,0.333,0.334,0.578,0.476,0.488,0.331,0.418,0.476,0.391,0.336,0.336,0.387
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/gpt4_political_ideologies,0.509,0.464,0.526,0.625,0.794,0.992,0.552,0.647,0.576,0.483,0.518,0.517,0.565
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/media_political_stance,0.568,0.579,0.670,0.518,0.510,0.391,0.821,0.636,0.357,0.567,0.599,0.688,0.553
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_podcasts,0.436,0.409,0.476,0.498,0.466,0.533,0.489,0.998,0.479,0.399,0.381,0.386,0.450
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_tweets,0.483,0.520,0.517,0.546,0.644,0.565,0.533,0.485,0.658,0.452,0.451,0.457,0.514
+
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/dem_rep_party_platform_topics,0.250,0.250,0.386,0.583,0.770,0.715,0.313,0.682,0.506,0.451,0.417,0.500,0.476
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/gpt4_political_ideologies,0.511,0.464,0.526,0.633,0.838,0.992,0.553,0.669,0.592,0.486,0.520,0.518,0.574
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/media_political_stance,0.579,0.580,0.675,0.537,0.576,0.595,0.821,0.637,0.414,0.568,0.601,0.691,0.587
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_podcasts,0.631,0.521,0.647,0.518,0.682,0.562,0.584,0.998,0.489,0.523,0.521,0.600,0.571
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_tweets,0.513,0.521,0.528,0.547,0.649,0.748,0.533,0.485,0.658,0.499,0.480,0.489,0.545
+
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/dem_rep_party_platform_topics,0.500,0.500,0.499,0.581,0.569,0.573,0.482,0.535,0.505,0.479,0.499,0.501,0.513
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/gpt4_political_ideologies,0.510,0.464,0.526,0.629,0.800,0.992,0.553,0.655,0.584,0.487,0.520,0.518,0.568
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/media_political_stance,0.574,0.580,0.671,0.532,0.554,0.517,0.821,0.637,0.480,0.567,0.600,0.689,0.582
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_podcasts,0.537,0.507,0.557,0.516,0.554,0.552,0.546,0.998,0.490,0.506,0.505,0.516,0.526
+dataset_benchmark/leave_one_in/political_leaning/deberta-v3-base/political_tweets,0.510,0.521,0.526,0.547,0.646,0.621,0.533,0.485,0.658,0.499,0.484,0.491,0.533
