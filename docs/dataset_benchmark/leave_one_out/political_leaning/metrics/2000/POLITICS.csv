@@ -39,7 +39,6 @@ dataset_benchmark/leave_one_out/political_leaning/POLITICS/dem_rep_party_platfor
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_bias,0.819,0.879,0.806,0.797,0.367,0.990,0.889,0.989,0.730,0.556,0.828
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_ideologies,0.810,0.874,0.800,0.781,0.896,0.880,0.890,0.992,0.735,0.553,0.815
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/media_political_stance,0.805,0.866,0.798,0.791,0.910,0.977,0.748,0.993,0.735,0.553,0.825
-dataset_benchmark/leave_one_out/political_leaning/POLITICS/parliament_speeches_2024,0.785,0.653,0.781,0.790,0.921,0.973,0.873,0.990,0.711,0.548,0.802
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_podcasts,0.805,0.874,0.803,0.787,0.910,0.983,0.890,0.815,0.739,0.538,0.814
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_tweets,0.810,0.872,0.795,0.788,0.926,0.988,0.892,0.992,0.599,0.552,0.846
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/qbias,0.805,0.879,0.812,0.784,0.906,0.979,0.890,0.991,0.734,0.456,0.864
@@ -51,7 +50,6 @@ dataset_benchmark/leave_one_out/political_leaning/POLITICS/dem_rep_party_platfor
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_bias,0.818,0.877,0.805,0.796,0.554,0.990,0.884,0.987,0.729,0.555,0.827
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_ideologies,0.808,0.872,0.798,0.776,0.891,0.848,0.883,0.988,0.734,0.548,0.811
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/media_political_stance,0.804,0.865,0.797,0.788,0.902,0.977,0.601,0.990,0.732,0.550,0.823
-dataset_benchmark/leave_one_out/political_leaning/POLITICS/parliament_speeches_2024,0.784,0.617,0.774,0.788,0.913,0.973,0.866,0.987,0.710,0.548,0.796
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_podcasts,0.804,0.872,0.802,0.784,0.902,0.983,0.885,0.722,0.739,0.536,0.812
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_tweets,0.808,0.871,0.794,0.786,0.924,0.988,0.887,0.989,0.549,0.548,0.844
 dataset_benchmark/leave_one_out/political_leaning/POLITICS/qbias,0.801,0.878,0.809,0.782,0.902,0.979,0.886,0.988,0.731,0.441,0.862

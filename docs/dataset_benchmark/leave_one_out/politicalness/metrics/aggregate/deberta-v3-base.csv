@@ -1,0 +1,145 @@
+,aggregate
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/amazon_reviews_2023,242353 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/article_bias_prediction,241919 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/bignewsbln,240781 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/commoncrawl_news_articles,238219 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dem_rep_party_platform_topics,242030 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dialogsum,242068 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/free_news,241797 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/goodreads_book_genres,241747 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_bias,242384 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_ideologies,241901 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb,242126 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb_movie_genres,237275 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/media_political_stance,240233 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/medium_post_titles,242096 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/news_category,241834 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/pens,241385 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/polibertweet,240431 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_or_not,241747 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_podcasts,241942 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_tweets,234553 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/qbias,241857 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/recipes,236779 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_comments,240777 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_submissions,241732 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/rotten_tomatoes,241553 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/textbooks,241900 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/tweet_topic_multi,240657 / 248057
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/yelp_review_full,241805 / 248057
+
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/amazon_reviews_2023,0.977
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/article_bias_prediction,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/bignewsbln,0.971
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/commoncrawl_news_articles,0.960
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dem_rep_party_platform_topics,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dialogsum,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/free_news,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/goodreads_book_genres,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_bias,0.977
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_ideologies,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb_movie_genres,0.957
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/media_political_stance,0.968
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/medium_post_titles,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/news_category,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/pens,0.973
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/polibertweet,0.969
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_or_not,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_podcasts,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_tweets,0.946
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/qbias,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/recipes,0.955
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_comments,0.971
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_submissions,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/rotten_tomatoes,0.974
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/textbooks,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/tweet_topic_multi,0.970
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/yelp_review_full,0.975
+
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/amazon_reviews_2023,0.977
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/article_bias_prediction,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/bignewsbln,0.971
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/commoncrawl_news_articles,0.960
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dem_rep_party_platform_topics,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dialogsum,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/free_news,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/goodreads_book_genres,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_bias,0.977
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_ideologies,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb_movie_genres,0.957
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/media_political_stance,0.968
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/medium_post_titles,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/news_category,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/pens,0.973
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/polibertweet,0.969
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_or_not,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_podcasts,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_tweets,0.945
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/qbias,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/recipes,0.954
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_comments,0.971
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_submissions,0.974
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/rotten_tomatoes,0.974
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/textbooks,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/tweet_topic_multi,0.970
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/yelp_review_full,0.975
+
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/amazon_reviews_2023,0.977
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/article_bias_prediction,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/bignewsbln,0.971
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/commoncrawl_news_articles,0.961
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dem_rep_party_platform_topics,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dialogsum,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/free_news,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/goodreads_book_genres,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_bias,0.977
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_ideologies,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb_movie_genres,0.957
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/media_political_stance,0.969
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/medium_post_titles,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/news_category,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/pens,0.973
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/polibertweet,0.969
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_or_not,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_podcasts,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_tweets,0.946
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/qbias,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/recipes,0.956
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_comments,0.971
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_submissions,0.974
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/rotten_tomatoes,0.974
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/textbooks,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/tweet_topic_multi,0.970
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/yelp_review_full,0.975
+
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/amazon_reviews_2023,0.977
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/article_bias_prediction,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/bignewsbln,0.971
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/commoncrawl_news_articles,0.960
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dem_rep_party_platform_topics,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/dialogsum,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/free_news,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/goodreads_book_genres,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_bias,0.977
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/gpt4_political_ideologies,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/imdb_movie_genres,0.957
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/media_political_stance,0.968
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/medium_post_titles,0.976
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/news_category,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/pens,0.973
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/polibertweet,0.969
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_or_not,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_podcasts,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/political_tweets,0.946
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/qbias,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/recipes,0.955
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_comments,0.971
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/reddit_submissions,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/rotten_tomatoes,0.974
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/textbooks,0.975
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/tweet_topic_multi,0.970
+dataset_benchmark/leave_one_out/politicalness/deberta-v3-base/yelp_review_full,0.975

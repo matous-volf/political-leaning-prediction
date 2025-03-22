@@ -1,0 +1,145 @@
+,aggregate
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/amazon_reviews_2023,241390 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/article_bias_prediction,241165 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/bignewsbln,240368 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/commoncrawl_news_articles,239910 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dem_rep_party_platform_topics,240255 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dialogsum,241137 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/free_news,240639 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/goodreads_book_genres,241162 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_bias,241014 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_ideologies,241395 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb,241176 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb_movie_genres,240724 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/media_political_stance,239643 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/medium_post_titles,241376 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/news_category,239665 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/pens,241071 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/polibertweet,241009 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_or_not,241195 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_podcasts,240716 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_tweets,231755 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/qbias,240708 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/recipes,240974 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_comments,240639 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_submissions,241076 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/rotten_tomatoes,240874 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/textbooks,240061 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/tweet_topic_multi,240689 / 248057
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/yelp_review_full,241104 / 248057
+
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/amazon_reviews_2023,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/article_bias_prediction,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/bignewsbln,0.969
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/commoncrawl_news_articles,0.967
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dem_rep_party_platform_topics,0.969
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dialogsum,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/free_news,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/goodreads_book_genres,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_bias,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_ideologies,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb_movie_genres,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/media_political_stance,0.966
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/medium_post_titles,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/news_category,0.966
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/pens,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/polibertweet,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_or_not,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_podcasts,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_tweets,0.934
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/qbias,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/recipes,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_comments,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_submissions,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/rotten_tomatoes,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/textbooks,0.968
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/tweet_topic_multi,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/yelp_review_full,0.972
+
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/amazon_reviews_2023,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/article_bias_prediction,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/bignewsbln,0.969
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/commoncrawl_news_articles,0.967
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dem_rep_party_platform_topics,0.968
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dialogsum,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/free_news,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/goodreads_book_genres,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_bias,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_ideologies,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb_movie_genres,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/media_political_stance,0.966
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/medium_post_titles,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/news_category,0.966
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/pens,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/polibertweet,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_or_not,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_podcasts,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_tweets,0.933
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/qbias,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/recipes,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_comments,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_submissions,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/rotten_tomatoes,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/textbooks,0.968
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/tweet_topic_multi,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/yelp_review_full,0.972
+
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/amazon_reviews_2023,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/article_bias_prediction,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/bignewsbln,0.969
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/commoncrawl_news_articles,0.967
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dem_rep_party_platform_topics,0.969
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dialogsum,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/free_news,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/goodreads_book_genres,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_bias,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_ideologies,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb_movie_genres,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/media_political_stance,0.966
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/medium_post_titles,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/news_category,0.966
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/pens,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/polibertweet,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_or_not,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_podcasts,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_tweets,0.937
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/qbias,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/recipes,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_comments,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_submissions,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/rotten_tomatoes,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/textbooks,0.968
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/tweet_topic_multi,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/yelp_review_full,0.972
+
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/amazon_reviews_2023,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/article_bias_prediction,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/bignewsbln,0.969
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/commoncrawl_news_articles,0.967
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dem_rep_party_platform_topics,0.969
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/dialogsum,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/free_news,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/goodreads_book_genres,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_bias,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/gpt4_political_ideologies,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/imdb_movie_genres,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/media_political_stance,0.966
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/medium_post_titles,0.973
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/news_category,0.966
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/pens,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/polibertweet,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_or_not,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_podcasts,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/political_tweets,0.934
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/qbias,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/recipes,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_comments,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/reddit_submissions,0.972
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/rotten_tomatoes,0.971
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/textbooks,0.968
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/tweet_topic_multi,0.970
+dataset_benchmark/leave_one_out/politicalness/bert-base-cased/yelp_review_full,0.972

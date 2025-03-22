@@ -1,0 +1,146 @@
+,aggregate
+dataset_benchmark/leave_one_out/political_leaning/roberta-base/article_bias_prediction,2800 / 5632,10852 / 15000,9393 / 12317,1295 / 1734,87 / 92,472 / 480,12975 / 15000,1629 / 1657,10536 / 15000,1615 / 3257
+dataset_benchmark/leave_one_out/politicalness/roberta-base/amazon_reviews_2023,242415 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/article_bias_prediction,241749 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/bignewsbln,241223 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/commoncrawl_news_articles,241538 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dem_rep_party_platform_topics,239506 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dialogsum,240024 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/free_news,241915 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/goodreads_book_genres,241950 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_bias,242368 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_ideologies,239519 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb,241181 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb_movie_genres,238926 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/media_political_stance,238330 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/medium_post_titles,240278 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/news_category,240647 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/pens,241318 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/polibertweet,156931 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_or_not,241900 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_podcasts,241484 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_tweets,234445 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/qbias,240807 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/recipes,230796 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_comments,240866 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_submissions,240846 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/rotten_tomatoes,239761 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/textbooks,240591 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/tweet_topic_multi,239765 / 248057
+dataset_benchmark/leave_one_out/politicalness/roberta-base/yelp_review_full,241757 / 248057
+
+dataset_benchmark/leave_one_out/politicalness/roberta-base/amazon_reviews_2023,0.977
+dataset_benchmark/leave_one_out/politicalness/roberta-base/article_bias_prediction,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/bignewsbln,0.972
+dataset_benchmark/leave_one_out/politicalness/roberta-base/commoncrawl_news_articles,0.974
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dem_rep_party_platform_topics,0.966
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dialogsum,0.968
+dataset_benchmark/leave_one_out/politicalness/roberta-base/free_news,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/goodreads_book_genres,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_bias,0.977
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_ideologies,0.966
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb,0.972
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb_movie_genres,0.963
+dataset_benchmark/leave_one_out/politicalness/roberta-base/media_political_stance,0.961
+dataset_benchmark/leave_one_out/politicalness/roberta-base/medium_post_titles,0.969
+dataset_benchmark/leave_one_out/politicalness/roberta-base/news_category,0.970
+dataset_benchmark/leave_one_out/politicalness/roberta-base/pens,0.973
+dataset_benchmark/leave_one_out/politicalness/roberta-base/polibertweet,0.633
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_or_not,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_podcasts,0.974
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_tweets,0.945
+dataset_benchmark/leave_one_out/politicalness/roberta-base/qbias,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/recipes,0.930
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_comments,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_submissions,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/rotten_tomatoes,0.967
+dataset_benchmark/leave_one_out/politicalness/roberta-base/textbooks,0.970
+dataset_benchmark/leave_one_out/politicalness/roberta-base/tweet_topic_multi,0.967
+dataset_benchmark/leave_one_out/politicalness/roberta-base/yelp_review_full,0.975
+
+dataset_benchmark/leave_one_out/politicalness/roberta-base/amazon_reviews_2023,0.977
+dataset_benchmark/leave_one_out/politicalness/roberta-base/article_bias_prediction,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/bignewsbln,0.972
+dataset_benchmark/leave_one_out/politicalness/roberta-base/commoncrawl_news_articles,0.974
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dem_rep_party_platform_topics,0.965
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dialogsum,0.968
+dataset_benchmark/leave_one_out/politicalness/roberta-base/free_news,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/goodreads_book_genres,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_bias,0.977
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_ideologies,0.966
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb,0.972
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb_movie_genres,0.963
+dataset_benchmark/leave_one_out/politicalness/roberta-base/media_political_stance,0.961
+dataset_benchmark/leave_one_out/politicalness/roberta-base/medium_post_titles,0.969
+dataset_benchmark/leave_one_out/politicalness/roberta-base/news_category,0.970
+dataset_benchmark/leave_one_out/politicalness/roberta-base/pens,0.973
+dataset_benchmark/leave_one_out/politicalness/roberta-base/polibertweet,0.490
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_or_not,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_podcasts,0.973
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_tweets,0.944
+dataset_benchmark/leave_one_out/politicalness/roberta-base/qbias,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/recipes,0.930
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_comments,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_submissions,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/rotten_tomatoes,0.967
+dataset_benchmark/leave_one_out/politicalness/roberta-base/textbooks,0.970
+dataset_benchmark/leave_one_out/politicalness/roberta-base/tweet_topic_multi,0.967
+dataset_benchmark/leave_one_out/politicalness/roberta-base/yelp_review_full,0.975
+
+dataset_benchmark/leave_one_out/politicalness/roberta-base/amazon_reviews_2023,0.977
+dataset_benchmark/leave_one_out/politicalness/roberta-base/article_bias_prediction,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/bignewsbln,0.972
+dataset_benchmark/leave_one_out/politicalness/roberta-base/commoncrawl_news_articles,0.974
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dem_rep_party_platform_topics,0.965
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dialogsum,0.968
+dataset_benchmark/leave_one_out/politicalness/roberta-base/free_news,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/goodreads_book_genres,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_bias,0.977
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_ideologies,0.966
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb,0.972
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb_movie_genres,0.963
+dataset_benchmark/leave_one_out/politicalness/roberta-base/media_political_stance,0.961
+dataset_benchmark/leave_one_out/politicalness/roberta-base/medium_post_titles,0.969
+dataset_benchmark/leave_one_out/politicalness/roberta-base/news_category,0.970
+dataset_benchmark/leave_one_out/politicalness/roberta-base/pens,0.973
+dataset_benchmark/leave_one_out/politicalness/roberta-base/polibertweet,0.400
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_or_not,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_podcasts,0.973
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_tweets,0.947
+dataset_benchmark/leave_one_out/politicalness/roberta-base/qbias,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/recipes,0.930
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_comments,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_submissions,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/rotten_tomatoes,0.967
+dataset_benchmark/leave_one_out/politicalness/roberta-base/textbooks,0.970
+dataset_benchmark/leave_one_out/politicalness/roberta-base/tweet_topic_multi,0.967
+dataset_benchmark/leave_one_out/politicalness/roberta-base/yelp_review_full,0.975
+
+dataset_benchmark/leave_one_out/politicalness/roberta-base/amazon_reviews_2023,0.977
+dataset_benchmark/leave_one_out/politicalness/roberta-base/article_bias_prediction,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/bignewsbln,0.972
+dataset_benchmark/leave_one_out/politicalness/roberta-base/commoncrawl_news_articles,0.974
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dem_rep_party_platform_topics,0.966
+dataset_benchmark/leave_one_out/politicalness/roberta-base/dialogsum,0.968
+dataset_benchmark/leave_one_out/politicalness/roberta-base/free_news,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/goodreads_book_genres,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_bias,0.977
+dataset_benchmark/leave_one_out/politicalness/roberta-base/gpt4_political_ideologies,0.966
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb,0.972
+dataset_benchmark/leave_one_out/politicalness/roberta-base/imdb_movie_genres,0.963
+dataset_benchmark/leave_one_out/politicalness/roberta-base/media_political_stance,0.961
+dataset_benchmark/leave_one_out/politicalness/roberta-base/medium_post_titles,0.969
+dataset_benchmark/leave_one_out/politicalness/roberta-base/news_category,0.970
+dataset_benchmark/leave_one_out/politicalness/roberta-base/pens,0.973
+dataset_benchmark/leave_one_out/politicalness/roberta-base/polibertweet,0.633
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_or_not,0.975
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_podcasts,0.974
+dataset_benchmark/leave_one_out/politicalness/roberta-base/political_tweets,0.945
+dataset_benchmark/leave_one_out/politicalness/roberta-base/qbias,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/recipes,0.930
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_comments,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/reddit_submissions,0.971
+dataset_benchmark/leave_one_out/politicalness/roberta-base/rotten_tomatoes,0.967
+dataset_benchmark/leave_one_out/politicalness/roberta-base/textbooks,0.970
+dataset_benchmark/leave_one_out/politicalness/roberta-base/tweet_topic_multi,0.967
+dataset_benchmark/leave_one_out/politicalness/roberta-base/yelp_review_full,0.975
