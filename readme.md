@@ -2,7 +2,7 @@
 
 ## Docs
 
-The documents describing the methodology and results are stored in the [docs](docs) directory.
+The complete results of all our measurements are stored in the [results](results) directory.
 
 ## Analysis
 
