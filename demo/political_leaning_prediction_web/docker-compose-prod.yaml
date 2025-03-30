@@ -11,6 +11,8 @@ services:
   model-runner:
     build:
       dockerfile: docker/prod/model_runner/Dockerfile
+    environment:
+      FLASK_DEBUG: False
     volumes:
       - ./model_runner:/usr/src/model_runner
     deploy:

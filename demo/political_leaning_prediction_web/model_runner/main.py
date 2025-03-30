@@ -69,4 +69,5 @@ def handle_political_leaning():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8001)
+    app.run(debug=os.environ.get("FLASK_DEBUG"), host="0.0.0.0", port=8001)
+
