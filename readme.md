@@ -1,16 +1,23 @@
 # Political leaning prediction
 
-## Politicalness
+## Docs
 
-### Used datasets
+The complete results of all our measurements are stored in the [results](results) directory.
+
+## Analysis
+
+The Jupyter notebooks are stored in the [analysis](analysis) directory.
+
+## Used datasets
+
+### Politicalness
 
 - Hou, Y., Li, J., He, Z., Yan, A., Chen, X., & McAuley, J. (2024). Bridging language and items for retrieval and
   recommendation. arXiv preprint arXiv:2403.03952. <https://arxiv.org/abs/2403.03952>
 - Chen, Y., Liu, Y., Chen, L., & Zhang, Y. (2021). DialogSum: A real-life scenario dialogue summarization dataset.
   Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021, 5062–5074. Association for Computational
   Linguistics. <https://doi.org/10.18653/v1/2021.findings-acl.449>
-- Webz.io. (2025). Webz.io News Dataset Repository. GitHub. Retrieved January 25, 2025,
-  from <https://github.com/Webhose/free-news-datasets>
+- Webhose.io. (n.d.). Free News Datasets [Dataset]. Retrieved from <https://github.com/Webhose/free-news-datasets>
 - Szemraj, P. (2024). Goodreads book genres dataset. Retrieved
   from <https://huggingface.co/datasets/pszemraj/goodreads-bookgenres>
 - Maas, A. L., Daly, R. E., Pham, P. T., Huang, D., Ng, A. Y., & Potts, C. (2011). Learning word vectors for sentiment
@@ -45,11 +52,7 @@
 - Xiang Zhang, Junbo Zhao, Yann LeCun. Character-level Convolutional Networks for Text Classification. Advances in
   Neural Information Processing Systems 28 (NIPS 2015).
 
-## Political leaning
-
-- [Analysis](political_leaning/analysis)
-
-### Used datasets
+### Political leaning
 
 - Baly, R., Da San Martino, G., Glass, J., & Nakov, P. (2020). We Can Detect Your Bias: Predicting the Political
   Ideology of News Articles. Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing
@@ -81,8 +84,22 @@
   Generation Conference (INLG 2018). Zenodo. <https://doi.org/10.5281/zenodo.3250686>
 - Chen, W.-F., Al-Khatib, K., Wachsmuth, H., & Stein, B. (2020). Webis-News-Bias-20 [Data set].
   Zenodo. <https://doi.org/10.5281/zenodo.8321586>
+- Liu, Y., Zhang, X. F., Wegsman, D., Beauchamp, N., & Wang, L. (2022). POLITICS: Pretraining with same-story article
+  comparison for ideology prediction and stance detection. In Findings of the Association for Computational Linguistics:
+  NAACL 2022. <https://huggingface.co/launch/POLITICS>
 
-### Referenced existing models
+## Referenced existing models
+
+### Politicalness
+
+- Silcock, E., Arora, A., D'Amico-Wong, L., & Dell, M. (2024). Newswire: A large-scale structured database of a century
+  of historical news. arXiv. <https://arxiv.org/abs/2406.09490>
+- Burnham, M. (2024). Political DEBATE large [Model]. Hugging
+  Face. <https://huggingface.co/mlburnham/Political_DEBATE_large_v1.0>
+- GPTMurdock (2024). Classifier – main subjects politics [Model]. Hugging
+  Face. <https://huggingface.co/gptmurdock/classifier-main_subjects_politics>
+
+### Political leaning
 
 - Liu, Y., Zhang, X. F., Wegsman, D., Beauchamp, N., & Wang, L. (2022). POLITICS: Pretraining with same-story article
   comparison for ideology prediction and stance detection. In Findings of the Association for Computational Linguistics:

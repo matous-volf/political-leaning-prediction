@@ -1,0 +1,55 @@
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,average
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/article_bias_prediction,3549 / 5632,13427 / 15000,10559 / 12317,1400 / 1734,81 / 92,466 / 480,13759 / 15000,1652 / 1657,11711 / 15000,1675 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/bignewsbln,4760 / 5632,9573 / 15000,10641 / 12317,1390 / 1734,84 / 92,467 / 480,13590 / 15000,1649 / 1657,11704 / 15000,1725 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/commoncrawl_news_articles,4811 / 5632,13428 / 15000,7273 / 12317,1320 / 1734,81 / 92,465 / 480,13696 / 15000,1649 / 1657,11492 / 15000,1806 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/dem_rep_party_platform_topics,4769 / 5632,13367 / 15000,10749 / 12317,1201 / 1734,84 / 92,471 / 480,13796 / 15000,1650 / 1657,11775 / 15000,1732 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_bias,4749 / 5632,13350 / 15000,10316 / 12317,1400 / 1734,53 / 92,467 / 480,13653 / 15000,1645 / 1657,11570 / 15000,1759 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_ideologies,4783 / 5632,13455 / 15000,10582 / 12317,1426 / 1734,84 / 92,415 / 480,13762 / 15000,1649 / 1657,11659 / 15000,1756 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/media_political_stance,4804 / 5632,13477 / 15000,10799 / 12317,1415 / 1734,81 / 92,471 / 480,10139 / 15000,1654 / 1657,11417 / 15000,1734 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_podcasts,4841 / 5632,13449 / 15000,10771 / 12317,1393 / 1734,77 / 92,471 / 480,13702 / 15000,1277 / 1657,11750 / 15000,1748 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_tweets,4817 / 5632,13398 / 15000,10613 / 12317,1415 / 1734,82 / 92,468 / 480,13860 / 15000,1652 / 1657,9285 / 15000,1750 / 3257
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/qbias,4732 / 5632,13424 / 15000,10544 / 12317,1431 / 1734,80 / 92,477 / 480,13768 / 15000,1650 / 1657,11676 / 15000,1425 / 3257
+
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/article_bias_prediction,0.630,0.895,0.857,0.807,0.880,0.971,0.917,0.997,0.781,0.514,0.847
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/bignewsbln,0.845,0.638,0.864,0.802,0.913,0.973,0.906,0.995,0.780,0.530,0.845
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/commoncrawl_news_articles,0.854,0.895,0.590,0.761,0.880,0.969,0.913,0.995,0.766,0.554,0.843
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/dem_rep_party_platform_topics,0.847,0.891,0.873,0.693,0.913,0.981,0.920,0.996,0.785,0.532,0.860
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_bias,0.843,0.890,0.838,0.807,0.576,0.973,0.910,0.993,0.771,0.540,0.841
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_ideologies,0.849,0.897,0.859,0.822,0.913,0.865,0.917,0.995,0.777,0.539,0.841
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/media_political_stance,0.853,0.898,0.877,0.816,0.880,0.981,0.676,0.998,0.761,0.532,0.844
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_podcasts,0.860,0.897,0.874,0.803,0.837,0.981,0.913,0.771,0.783,0.537,0.832
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_tweets,0.855,0.893,0.862,0.816,0.891,0.975,0.924,0.997,0.619,0.537,0.861
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/qbias,0.840,0.895,0.856,0.825,0.870,0.994,0.918,0.996,0.778,0.438,0.886
+
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/article_bias_prediction,0.631,0.895,0.857,0.807,0.876,0.971,0.919,0.998,0.781,0.505,0.845
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/bignewsbln,0.845,0.606,0.863,0.800,0.913,0.973,0.909,0.995,0.779,0.516,0.844
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/commoncrawl_news_articles,0.854,0.895,0.580,0.752,0.879,0.969,0.913,0.996,0.764,0.552,0.842
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/dem_rep_party_platform_topics,0.847,0.891,0.872,0.700,0.913,0.981,0.922,0.996,0.785,0.523,0.859
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_bias,0.843,0.890,0.837,0.807,0.459,0.973,0.913,0.995,0.772,0.536,0.841
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_ideologies,0.849,0.897,0.859,0.822,0.913,0.865,0.920,0.996,0.777,0.531,0.840
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/media_political_stance,0.853,0.898,0.877,0.816,0.880,0.981,0.727,0.999,0.759,0.523,0.843
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_podcasts,0.860,0.897,0.875,0.802,0.833,0.981,0.914,0.791,0.783,0.530,0.831
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_tweets,0.856,0.894,0.861,0.815,0.891,0.975,0.924,0.997,0.620,0.535,0.861
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/qbias,0.841,0.895,0.855,0.825,0.869,0.994,0.920,0.996,0.778,0.429,0.886
+
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/article_bias_prediction,0.637,0.898,0.860,0.819,0.889,0.971,0.921,0.998,0.785,0.528,0.852
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/bignewsbln,0.853,0.637,0.870,0.821,0.916,0.974,0.915,0.996,0.786,0.547,0.853
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/commoncrawl_news_articles,0.861,0.900,0.610,0.812,0.888,0.971,0.916,0.997,0.779,0.558,0.854
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/dem_rep_party_platform_topics,0.858,0.898,0.874,0.709,0.914,0.981,0.925,0.996,0.786,0.546,0.864
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_bias,0.854,0.898,0.849,0.811,0.382,0.974,0.917,0.997,0.773,0.549,0.847
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_ideologies,0.856,0.902,0.865,0.826,0.916,0.867,0.923,0.996,0.781,0.550,0.846
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/media_political_stance,0.854,0.901,0.878,0.819,0.888,0.981,0.791,0.999,0.774,0.548,0.849
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_podcasts,0.861,0.899,0.876,0.813,0.864,0.982,0.916,0.817,0.787,0.553,0.839
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_tweets,0.860,0.898,0.866,0.822,0.896,0.975,0.924,0.998,0.621,0.544,0.865
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/qbias,0.855,0.902,0.864,0.828,0.883,0.994,0.923,0.997,0.781,0.440,0.892
+
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/article_bias_prediction,0.630,0.895,0.857,0.807,0.880,0.971,0.917,0.997,0.781,0.514,0.847
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/bignewsbln,0.845,0.638,0.864,0.802,0.913,0.973,0.906,0.995,0.780,0.530,0.845
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/commoncrawl_news_articles,0.854,0.895,0.590,0.761,0.880,0.969,0.913,0.995,0.766,0.554,0.843
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/dem_rep_party_platform_topics,0.847,0.891,0.873,0.693,0.913,0.981,0.920,0.996,0.785,0.532,0.860
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_bias,0.843,0.890,0.838,0.807,0.576,0.973,0.910,0.993,0.771,0.540,0.841
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/gpt4_political_ideologies,0.849,0.897,0.859,0.822,0.913,0.865,0.917,0.995,0.777,0.539,0.841
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/media_political_stance,0.853,0.898,0.877,0.816,0.880,0.981,0.676,0.998,0.761,0.532,0.844
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_podcasts,0.860,0.897,0.874,0.803,0.837,0.981,0.913,0.771,0.783,0.537,0.832
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/political_tweets,0.855,0.893,0.862,0.816,0.891,0.975,0.924,0.997,0.619,0.537,0.861
+dataset_benchmark/leave_one_out/political_leaning/POLITICS/qbias,0.840,0.895,0.856,0.825,0.870,0.994,0.918,0.996,0.778,0.438,0.886

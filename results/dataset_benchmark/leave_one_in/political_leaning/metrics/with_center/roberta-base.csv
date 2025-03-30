@@ -1,0 +1,40 @@
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/article_bias_prediction,3347 / 5632,5761 / 15000,6285 / 12317,341 / 1734,31 / 92,55 / 480,3571 / 15000,561 / 1657,7389 / 15000,1270 / 3257,332 / 960,598 / 1158
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/bignewsbln,2346 / 5632,11687 / 15000,5345 / 12317,469 / 1734,13 / 92,27 / 480,6245 / 15000,668 / 1657,3599 / 15000,1145 / 3257,423 / 960,592 / 1158
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/commoncrawl_news_articles,2639 / 5632,6108 / 15000,9695 / 12317,177 / 1734,31 / 92,46 / 480,6279 / 15000,1125 / 1657,6772 / 15000,1229 / 3257,332 / 960,565 / 1158
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/gpt4_political_bias,1864 / 5632,5225 / 15000,4132 / 12317,891 / 1734,84 / 92,287 / 480,7431 / 15000,884 / 1657,8854 / 15000,1104 / 3257,322 / 960,390 / 1158
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/qbias,2617 / 5632,5745 / 15000,7107 / 12317,487 / 1734,28 / 92,34 / 480,8734 / 15000,764 / 1657,6832 / 15000,1749 / 3257,459 / 960,635 / 1158
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_bias_flipper_18,2773 / 5632,6534 / 15000,5108 / 12317,98 / 1734,31 / 92,2 / 480,6742 / 15000,700 / 1657,7032 / 15000,1216 / 3257,788 / 960,705 / 1158
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_news_bias_20,2765 / 5632,6959 / 15000,5705 / 12317,365 / 1734,31 / 92,47 / 480,7818 / 15000,936 / 1657,7223 / 15000,1187 / 3257,509 / 960,926 / 1158
+
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/article_bias_prediction,0.594,0.384,0.510,0.197,0.337,0.115,0.238,0.339,0.493,0.390,0.346,0.516,0.351
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/bignewsbln,0.417,0.779,0.434,0.270,0.141,0.056,0.416,0.403,0.240,0.352,0.441,0.511,0.335
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/commoncrawl_news_articles,0.469,0.407,0.787,0.102,0.337,0.096,0.419,0.679,0.451,0.377,0.346,0.488,0.379
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/gpt4_political_bias,0.331,0.348,0.335,0.514,0.913,0.598,0.495,0.533,0.590,0.339,0.335,0.337,0.432
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/qbias,0.465,0.383,0.577,0.281,0.304,0.071,0.582,0.461,0.455,0.537,0.478,0.548,0.419
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_bias_flipper_18,0.492,0.436,0.415,0.057,0.337,0.004,0.449,0.422,0.469,0.373,0.821,0.609,0.369
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_news_bias_20,0.491,0.464,0.463,0.210,0.337,0.098,0.521,0.565,0.482,0.364,0.530,0.800,0.411
+
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/article_bias_prediction,0.589,0.356,0.498,0.245,0.171,0.173,0.332,0.327,0.378,0.346,0.351,0.494,0.334
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/bignewsbln,0.384,0.779,0.391,0.254,0.100,0.086,0.484,0.363,0.274,0.306,0.430,0.512,0.326
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/commoncrawl_news_articles,0.465,0.406,0.787,0.163,0.170,0.144,0.501,0.716,0.357,0.327,0.354,0.485,0.372
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/gpt4_political_bias,0.231,0.246,0.242,0.545,0.912,0.709,0.437,0.495,0.581,0.235,0.214,0.221,0.378
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/qbias,0.445,0.353,0.580,0.309,0.187,0.119,0.608,0.509,0.463,0.536,0.452,0.537,0.415
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_bias_flipper_18,0.489,0.399,0.330,0.094,0.170,0.008,0.489,0.419,0.334,0.365,0.821,0.604,0.336
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_news_bias_20,0.482,0.458,0.411,0.277,0.170,0.155,0.513,0.475,0.330,0.296,0.493,0.800,0.369
+
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/article_bias_prediction,0.602,0.430,0.502,0.426,0.115,0.582,0.550,0.482,0.567,0.399,0.373,0.534,0.451
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/bignewsbln,0.447,0.782,0.412,0.314,0.078,0.182,0.581,0.389,0.435,0.327,0.436,0.516,0.374
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/commoncrawl_news_articles,0.473,0.406,0.790,0.546,0.114,0.287,0.654,0.756,0.520,0.406,0.399,0.501,0.460
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/gpt4_political_bias,0.305,0.323,0.304,0.587,0.918,0.914,0.534,0.568,0.627,0.338,0.266,0.310,0.461
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/qbias,0.553,0.410,0.587,0.457,0.180,0.574,0.664,0.791,0.496,0.541,0.551,0.605,0.533
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_bias_flipper_18,0.497,0.406,0.486,0.289,0.114,0.200,0.575,0.448,0.449,0.370,0.822,0.625,0.405
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_news_bias_20,0.529,0.521,0.563,0.505,0.114,0.588,0.604,0.724,0.380,0.385,0.557,0.801,0.497
+
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/article_bias_prediction,0.594,0.384,0.510,0.197,0.337,0.115,0.238,0.339,0.493,0.390,0.346,0.516,0.351
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/bignewsbln,0.417,0.779,0.434,0.270,0.141,0.056,0.416,0.403,0.240,0.352,0.441,0.511,0.335
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/commoncrawl_news_articles,0.469,0.407,0.787,0.102,0.337,0.096,0.419,0.679,0.451,0.377,0.346,0.488,0.379
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/gpt4_political_bias,0.331,0.348,0.335,0.514,0.913,0.598,0.495,0.533,0.590,0.339,0.335,0.337,0.432
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/qbias,0.465,0.383,0.577,0.281,0.304,0.071,0.582,0.461,0.455,0.537,0.478,0.548,0.419
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_bias_flipper_18,0.492,0.436,0.415,0.057,0.337,0.004,0.449,0.422,0.469,0.373,0.821,0.609,0.369
+dataset_benchmark/leave_one_in/political_leaning/roberta-base/webis_news_bias_20,0.491,0.464,0.463,0.210,0.337,0.098,0.521,0.565,0.482,0.364,0.530,0.800,0.411

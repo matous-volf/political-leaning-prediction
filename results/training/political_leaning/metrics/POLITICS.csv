@@ -1,0 +1,30 @@
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,average
+training/political_leaning/POLITICS/checkpoint-1600,4372 / 5632,13290 / 15000,9063 / 12317,1293 / 1734,63 / 92,459 / 480,12937 / 15000,1619 / 1657,10685 / 15000,1527 / 3257
+training/political_leaning/POLITICS/checkpoint-3200,4645 / 5632,13208 / 15000,10365 / 12317,1358 / 1734,80 / 92,460 / 480,13597 / 15000,1639 / 1657,11079 / 15000,1592 / 3257
+training/political_leaning/POLITICS/checkpoint-4800,4768 / 5632,13382 / 15000,10492 / 12317,1346 / 1734,78 / 92,468 / 480,13613 / 15000,1647 / 1657,11461 / 15000,1681 / 3257
+training/political_leaning/POLITICS/checkpoint-7000,4770 / 5632,13320 / 15000,10784 / 12317,1404 / 1734,82 / 92,471 / 480,13811 / 15000,1650 / 1657,11622 / 15000,1708 / 3257
+training/political_leaning/POLITICS/checkpoint-19000,4844 / 5632,13534 / 15000,10670 / 12317,1439 / 1734,82 / 92,473 / 480,13790 / 15000,1654 / 1657,11891 / 15000,1742 / 3257
+
+training/political_leaning/POLITICS/checkpoint-1600,0.776,0.886,0.736,0.746,0.685,0.956,0.862,0.977,0.712,0.469,0.781
+training/political_leaning/POLITICS/checkpoint-3200,0.825,0.881,0.842,0.783,0.870,0.958,0.906,0.989,0.739,0.489,0.828
+training/political_leaning/POLITICS/checkpoint-4800,0.847,0.892,0.852,0.776,0.848,0.975,0.908,0.994,0.764,0.516,0.837
+training/political_leaning/POLITICS/checkpoint-7000,0.847,0.888,0.876,0.810,0.891,0.981,0.921,0.996,0.775,0.524,0.851
+training/political_leaning/POLITICS/checkpoint-19000,0.860,0.902,0.866,0.830,0.891,0.985,0.919,0.998,0.793,0.535,0.858
+
+training/political_leaning/POLITICS/checkpoint-1600,0.777,0.886,0.733,0.744,0.663,0.956,0.870,0.978,0.707,0.453,0.777
+training/political_leaning/POLITICS/checkpoint-3200,0.824,0.881,0.841,0.783,0.869,0.958,0.909,0.990,0.731,0.471,0.826
+training/political_leaning/POLITICS/checkpoint-4800,0.846,0.892,0.851,0.773,0.842,0.975,0.911,0.995,0.762,0.510,0.836
+training/political_leaning/POLITICS/checkpoint-7000,0.847,0.888,0.875,0.809,0.892,0.981,0.921,0.996,0.775,0.511,0.849
+training/political_leaning/POLITICS/checkpoint-19000,0.860,0.902,0.865,0.830,0.890,0.985,0.922,0.999,0.793,0.523,0.857
+
+training/political_leaning/POLITICS/checkpoint-1600,0.798,0.891,0.774,0.760,0.725,0.956,0.879,0.980,0.732,0.495,0.799
+training/political_leaning/POLITICS/checkpoint-3200,0.834,0.885,0.844,0.786,0.870,0.960,0.912,0.991,0.771,0.520,0.837
+training/political_leaning/POLITICS/checkpoint-4800,0.851,0.898,0.857,0.797,0.863,0.976,0.916,0.996,0.774,0.534,0.846
+training/political_leaning/POLITICS/checkpoint-7000,0.856,0.891,0.877,0.814,0.894,0.982,0.922,0.996,0.776,0.548,0.856
+training/political_leaning/POLITICS/checkpoint-19000,0.866,0.907,0.872,0.835,0.896,0.986,0.925,0.999,0.794,0.550,0.863
+
+training/political_leaning/POLITICS/checkpoint-1600,0.776,0.886,0.736,0.746,0.685,0.956,0.862,0.977,0.712,0.469,0.781
+training/political_leaning/POLITICS/checkpoint-3200,0.825,0.881,0.842,0.783,0.870,0.958,0.906,0.989,0.739,0.489,0.828
+training/political_leaning/POLITICS/checkpoint-4800,0.847,0.892,0.852,0.776,0.848,0.975,0.908,0.994,0.764,0.516,0.837
+training/political_leaning/POLITICS/checkpoint-7000,0.847,0.888,0.876,0.810,0.891,0.981,0.921,0.996,0.775,0.524,0.851
+training/political_leaning/POLITICS/checkpoint-19000,0.860,0.902,0.866,0.830,0.891,0.985,0.919,0.998,0.793,0.535,0.858

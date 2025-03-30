@@ -1,0 +1,24 @@
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+ClassifierMainSubjectPolitics,534 / 1000,534 / 1000,552 / 1000,540 / 1000,305 / 612,101 / 1000,432 / 1000,54 / 1000,373 / 1000,413 / 1000,602 / 1000,561 / 1000
+PoliticalDebateLarge,876 / 1000,729 / 1000,976 / 1000,965 / 1000,610 / 612,972 / 1000,687 / 1000,813 / 1000,742 / 1000,830 / 1000,855 / 1000,898 / 1000
+TopicPolitics,622 / 1000,482 / 1000,544 / 1000,686 / 1000,198 / 612,769 / 1000,403 / 1000,262 / 1000,393 / 1000,515 / 1000,692 / 1000,642 / 1000
+
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+ClassifierMainSubjectPolitics,0.534,0.534,0.552,0.540,0.498,0.101,0.432,0.054,0.373,0.413,0.602,0.561,0.433
+PoliticalDebateLarge,0.876,0.729,0.976,0.965,0.997,0.972,0.687,0.813,0.742,0.830,0.855,0.898,0.862
+TopicPolitics,0.622,0.482,0.544,0.686,0.324,0.769,0.403,0.262,0.393,0.515,0.692,0.642,0.528
+
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+ClassifierMainSubjectPolitics,0.696,0.696,0.711,0.701,0.665,0.183,0.603,0.102,0.543,0.585,0.752,0.719,0.580
+PoliticalDebateLarge,0.934,0.843,0.988,0.982,0.998,0.986,0.814,0.897,0.852,0.907,0.922,0.946,0.922
+TopicPolitics,0.767,0.650,0.705,0.814,0.489,0.869,0.574,0.415,0.564,0.680,0.818,0.782,0.677
+
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+ClassifierMainSubjectPolitics,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+PoliticalDebateLarge,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+TopicPolitics,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,webis_bias_flipper_18,webis_news_bias_20,average
+ClassifierMainSubjectPolitics,0.534,0.534,0.552,0.540,0.498,0.101,0.432,0.054,0.373,0.413,0.602,0.561,0.433
+PoliticalDebateLarge,0.876,0.729,0.976,0.965,0.997,0.972,0.687,0.813,0.742,0.830,0.855,0.898,0.862
+TopicPolitics,0.622,0.482,0.544,0.686,0.324,0.769,0.403,0.262,0.393,0.515,0.692,0.642,0.528

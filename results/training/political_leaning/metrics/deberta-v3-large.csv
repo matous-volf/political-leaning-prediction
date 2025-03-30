@@ -1,0 +1,15 @@
+,article_bias_prediction,bignewsbln,commoncrawl_news_articles,dem_rep_party_platform_topics,gpt4_political_bias,gpt4_political_ideologies,media_political_stance,political_podcasts,political_tweets,qbias,average
+training/political_leaning/deberta-v3-large/checkpoint-7400,5011 / 5632,13292 / 15000,10954 / 12317,1482 / 1734,80 / 92,478 / 480,13746 / 15000,1653 / 1657,12313 / 15000,1888 / 3257
+training/political_leaning/deberta-v3-large/checkpoint-9800,4953 / 5632,13355 / 15000,11022 / 12317,1482 / 1734,80 / 92,475 / 480,13756 / 15000,1654 / 1657,12343 / 15000,1904 / 3257
+
+training/political_leaning/deberta-v3-large/checkpoint-7400,0.890,0.886,0.889,0.855,0.87,0.996,0.916,0.998,0.821,0.580
+training/political_leaning/deberta-v3-large/checkpoint-9800,0.879,0.890,0.895,0.855,0.87,0.990,0.917,0.998,0.823,0.585
+
+training/political_leaning/deberta-v3-large/checkpoint-7400,0.89,0.886,0.889,0.856,0.869,0.996,0.931,0.998,0.821,0.579
+training/political_leaning/deberta-v3-large/checkpoint-9800,0.88,0.890,0.895,0.855,0.869,0.990,0.930,0.998,0.823,0.583
+
+training/political_leaning/deberta-v3-large/checkpoint-7400,0.891,0.891,0.890,0.857,0.871,0.996,0.946,0.998,0.821,0.583
+training/political_leaning/deberta-v3-large/checkpoint-9800,0.885,0.895,0.896,0.855,0.871,0.990,0.943,0.998,0.823,0.587
+
+training/political_leaning/deberta-v3-large/checkpoint-7400,0.890,0.886,0.889,0.855,0.87,0.996,0.916,0.998,0.821,0.580
+training/political_leaning/deberta-v3-large/checkpoint-9800,0.879,0.890,0.895,0.855,0.87,0.990,0.917,0.998,0.823,0.585
