@@ -11,11 +11,11 @@ pub(crate) fn PoliticalLeaningResult(
             class: "flex flex-col h-32 md:h-auto",
             label {
                 class: "ps-4 font-semibold",
-                r#for: "politicalness_result",
+                r#for: "political_leaning_result",
                 "Politické zabarvení"
             }
             div {
-                id: "politicalness_result",
+                id: "political_leaning_result",
                 class: format!(
                     "flex-grow p-4 flex flex-col justify-center items-center text-center {} font-semibold border shadow rounded-xl",
                     match political_leaning_with_confidence {
