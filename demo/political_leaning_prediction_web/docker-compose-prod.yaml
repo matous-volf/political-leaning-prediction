@@ -1,0 +1,25 @@
+---
+services:
+  app:
+    build:
+      dockerfile: docker/prod/app/Dockerfile
+    networks:
+      - default
+      - web-server-network
+    restart: always
+
+  model-runner:
+    build:
+      dockerfile: docker/prod/model_runner/Dockerfile
+    volumes:
+      - ./model_runner:/usr/src/model_runner
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]
+    restart: always
+
+networks:
+  web-server-network:
+    external: true
