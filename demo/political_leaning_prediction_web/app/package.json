@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "tailwindcss": "3.4.17"
+  },
+  "scripts": {
+    "build": "tailwindcss -c src/styles/tailwind.config.js -i src/styles/tailwind.css -o assets/styles/tailwind_output.css",
+    "watch": "npm run build -- --watch"
+  }
+}
