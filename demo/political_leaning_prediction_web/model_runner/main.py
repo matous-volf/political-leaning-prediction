@@ -11,7 +11,10 @@ model_politicalness_pipe = pipeline(
 tokenizer_leaning = AutoTokenizer.from_pretrained("microsoft/deberta-v3-large")
 model_leaning = AutoModelForSequenceClassification.from_pretrained("model_leaning")
 model_leaning_pipe = pipeline(
-    "text-classification", tokenizer=tokenizer_leaning, model=model_leaning, device="cpu"
+    "text-classification",
+    tokenizer=tokenizer_leaning,
+    model=model_leaning,
+    device="cpu",
 )
 
 
@@ -41,9 +44,11 @@ def handle_politicalness():
         prediction_politicalness_result["labels"][0]
     ]
 
-    return jsonify({
-        "result": predicted_class_politicalness,
-    })
+    return jsonify(
+        {
+            "result": predicted_class_politicalness,
+        }
+    )
 
 
 @app.route("/political-leaning", methods=["POST"])
@@ -62,12 +67,15 @@ def handle_political_leaning():
         case _:
             predicted_class_leaning = "center"
 
-    return jsonify({
-        "result": predicted_class_leaning,
-        "confidence": round((round(prediction_leaning_result["score"], 2) - 0.33) * 100 / 0.67)
-    })
+    return jsonify(
+        {
+            "result": predicted_class_leaning,
+            "confidence": round(
+                (round(prediction_leaning_result["score"], 2) - 0.33) * 100 / 0.67
+            ),
+        }
+    )
 
 
 if __name__ == "__main__":
     app.run(debug=os.environ.get("FLASK_DEBUG"), host="0.0.0.0", port=8001)
-
