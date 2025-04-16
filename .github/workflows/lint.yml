@@ -28,6 +28,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
           FIX_YAML_PRETTIER: true
+          VALIDATE_CSS: false
+          VALIDATE_CSS_PRETTIER: false
           VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_RUST_2015: false
           VALIDATE_RUST_2018: false
