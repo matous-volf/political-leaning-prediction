@@ -13,7 +13,7 @@ impl TryFrom<&str> for Politicalness {
         match value {
             "non-political" => Ok(Self::Nonpolitical),
             "political" => Ok(Self::Political),
-            _ => Err(())
+            _ => Err(()),
         }
     }
 }

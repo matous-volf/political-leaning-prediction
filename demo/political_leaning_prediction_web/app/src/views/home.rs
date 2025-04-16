@@ -1,7 +1,9 @@
-use dioxus::prelude::*;
 use crate::components::{InputText, PoliticalLeaningResult, PoliticalnessResult, PreprocessedText};
-use crate::models::{Politicalness};
-use crate::server::{classify_text_by_political_leaning, classify_text_by_politicalness, preprocess_text};
+use crate::models::Politicalness;
+use crate::server::{
+    classify_text_by_political_leaning, classify_text_by_politicalness, preprocess_text,
+};
+use dioxus::prelude::*;
 
 #[component]
 pub(crate) fn Home() -> Element {
