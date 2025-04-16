@@ -1,0 +1,45 @@
+---
+services:
+  app:
+    build:
+      dockerfile: docker/dev/app/Dockerfile
+    volumes:
+      - ./app/assets:/srv/app/assets
+      - ./app/src:/srv/app/src
+      - ./app/.env:/srv/app/.env
+      - ./app/Cargo.lock:/srv/app/Cargo.lock
+      - ./app/Cargo.toml:/srv/app/Cargo.toml
+      - ./app/Dioxus.toml:/srv/app/Dioxus.toml
+    restart: always
+    ports: [ "8000:8000" ]
+    depends_on: [ "style-builder" ]
+
+  model-runner:
+    build:
+      dockerfile: docker/dev/model_runner/Dockerfile
+    environment:
+      FLASK_DEBUG: True
+    volumes:
+      - ./model_runner:/usr/src/model_runner
+    develop:
+      watch:
+        - action: rebuild
+          path: ./model_runner
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]
+
+  style-builder:
+    build:
+      dockerfile: docker/dev/style_builder/Dockerfile
+    volumes:
+      - ./app/assets:/srv/app/assets
+      - ./app/src:/srv/app/src
+      - ./app/package.json:/srv/app/package.json
+      - ./app/package-lock.json:/srv/app/package-lock.json
+    # To prevent the container from exiting.
+    # See https://github.com/rails/rails/issues/44048.
+    tty: true
+    restart: always

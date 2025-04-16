@@ -1,0 +1,11 @@
+/.git
+/.github
+/app/node_modules
+/app/target
+
+/.dockerignore
+/docker-compose-dev.yaml
+/docker-compose-prod.yaml
+/docker-compose.yaml
+/docker/dev/*/Dockerfile
+/docker/prod/*/Dockerfile
