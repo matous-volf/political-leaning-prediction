@@ -11,8 +11,8 @@ services:
       - ./app/Cargo.toml:/srv/app/Cargo.toml
       - ./app/Dioxus.toml:/srv/app/Dioxus.toml
     restart: always
-    ports: ["8000:8000"]
-    depends_on: ["style-builder"]
+    ports: [ "8000:8000" ]
+    depends_on: [ "style-builder" ]
 
   model-runner:
     build:
