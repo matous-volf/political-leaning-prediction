@@ -22,7 +22,7 @@ FROM debian@sha256:b877a1a3fdf02469440f1768cf69c9771338a875b7add5e80c45b756c92ac
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
-    ca-certificates \
+    ca-certificates=20230311 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 

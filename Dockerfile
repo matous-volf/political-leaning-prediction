@@ -7,8 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 RUN useradd -m -u 1000 appuser
 
-RUN mkdir -p /.cache/huggingface /.config /.jupyter /.local /.triton
-RUN chown -R appuser:appuser /usr/src/app /.cache /.config /.jupyter /.local /.triton
+RUN mkdir -p /.cache/huggingface /.config /.jupyter /.local /.triton \
+ && chown -R appuser:appuser /usr/src/app /.cache /.config /.jupyter /.local /.triton
 
 USER appuser
 
