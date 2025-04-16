@@ -1,9 +1,8 @@
 import os
-
-import deepl
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 from datetime import datetime
-from flask import Flask, request, jsonify
+
+from flask import Flask, jsonify, request
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 
 model_politicalness_pipe = pipeline(
     "zero-shot-classification", model="mlburnham/Political_DEBATE_large_v1.0"
@@ -75,6 +74,11 @@ def handle_political_leaning():
             ),
         }
     )
+
+
+@app.route("/", methods=["GET"])
+def root():
+    return "", 200
 
 
 if __name__ == "__main__":
