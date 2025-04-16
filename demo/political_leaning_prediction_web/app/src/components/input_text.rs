@@ -8,7 +8,7 @@ pub(crate) fn InputText() -> Element {
             label {
                 class: "ps-4 font-semibold",
                 r#for: "input_text",
-                "Vstupní text"
+                "Input text"
             }
             textarea {
                 id: "input_text",

@@ -15,7 +15,7 @@ pub(crate) fn Home() -> Element {
             class: "flex-grow flex flex-col items-center gap-8",
             h1 {
                 class: "text-center text-3xl font-semibold",
-                "Klasifikátor politického zabarvení"
+                "Political leaning classifier"
             }
             div {
                 class: format!(
@@ -59,7 +59,7 @@ pub(crate) fn Home() -> Element {
                     InputText {}
                     button {
                         class: "py-4 px-5 bg-gradient-to-r from-[#266bb9] to-[#eb344b] text-white font-semibold rounded-xl shadow-md transition-[box-shadow] duration-300 hover:shadow-lg focus:shadow-none",
-                        "Vyhodnotit"
+                        "Classify"
                     }
                 }
                 div {

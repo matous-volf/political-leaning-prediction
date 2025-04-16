@@ -12,7 +12,7 @@ pub(crate) fn PoliticalLeaningResult(
             label {
                 class: "ps-4 font-semibold",
                 r#for: "political_leaning_result",
-                "Politické zabarvení"
+                "Political leaning"
             }
             div {
                 id: "political_leaning_result",
@@ -30,21 +30,21 @@ pub(crate) fn PoliticalLeaningResult(
                 ),
                 {
                     match &political_leaning_with_confidence {
-                        None => rsx! { "Zpracovávání..." },
+                        None => rsx! { "Processing..." },
                         Some(PoliticalLeaningWithConfidence { political_leaning, confidence }) => rsx! {
                             p {
                                 {format!(
-                                    "Text podporuje {}.",
+                                    "The text supports the {}.",
                                     match political_leaning {
-                                        PoliticalLeaning::Left => "levici",
-                                        PoliticalLeaning::Center => "střed",
-                                        PoliticalLeaning::Right => "pravici",
+                                        PoliticalLeaning::Left => "left",
+                                        PoliticalLeaning::Center => "center",
+                                        PoliticalLeaning::Right => "right",
                                     }
                                 )}
                             }
                             p {
                                 class: "font-medium",
-                                "Jistota: {confidence} %"
+                                "Confidence: {confidence} %"
                             }
                         }
                     }

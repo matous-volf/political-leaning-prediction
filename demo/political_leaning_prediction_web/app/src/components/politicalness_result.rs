@@ -14,11 +14,11 @@ pub(crate) fn PoliticalnessResult(
                 class: "px-4 flex flex-row justify-stretch font-semibold",
                 r#for: "politicalness_result",
                 span {
-                    "Političnost"
+                    "Politicalness"
                 }
                 span {
                     class: "flex-grow text-right text-slate-500 font-normal",
-                    "Existující model"
+                    "Existing model"
                 }
             }
             div {
@@ -32,12 +32,12 @@ pub(crate) fn PoliticalnessResult(
                     }
                 ),
                 match politicalness {
-                    None => rsx! { "Zpracovávání..." },
+                    None => rsx! { "Processing..." },
                     Some(Politicalness::Nonpolitical) => rsx! {
                         div {
                             class: "flex flex-col gap-4",
                             p {
-                                "Text je nepolitický."
+                                "The text is non-political."
                             }
                             if display_force_classify {
                                 button {
@@ -45,12 +45,12 @@ pub(crate) fn PoliticalnessResult(
                                     onclick: move |_| {
                                         on_force_classify.call(());
                                     },
-                                    "Přesto klasifikovat"
+                                    "Classify anyway"
                                 }
                             }
                         }
                     },
-                    Some(Politicalness::Political) => rsx! { "Text je politický." }
+                    Some(Politicalness::Political) => rsx! { "The text is political." }
                 }
             }
         }

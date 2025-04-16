@@ -9,7 +9,7 @@ pub(crate) fn PreprocessedText(text: Option<String>) -> Element {
                 class: "px-4 flex flex-row justify-stretch font-semibold",
                 r#for: "preprocessed_text",
                 span {
-                    "Překlad"
+                    "Translation"
                 }
                 span {
                     class: "flex-grow text-right text-slate-500 font-normal",
