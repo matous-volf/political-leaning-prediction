@@ -26,6 +26,7 @@ from pandas import DataFrame
 from sklearn.metrics import ConfusionMatrixDisplay
 from tqdm.notebook import tqdm
 from transformers import (
+    AutoConfig,
     AutoModelForSequenceClassification,
     AutoTokenizer,
     DataCollator,
@@ -53,7 +54,7 @@ DATASET_BENCHMARK_MODEL_NAMES = sorted(
     ],
     key=lambda model_name: model_name.split("/")[-1],
 )
-DATASET_BENCHMARK_MODELS_MAX_LENGTH = 256
+TOKENIZER_DEFAULT_MAX_LENGTH = 256
 
 
 class Model(ABC):
@@ -206,76 +207,69 @@ def get_custom_leaning_models(path: PathLike[str]):
     return get_custom_models(path, CustomLeaningModel)
 
 
-class CustomTrainer(Trainer):
-    def __init__(
-        self,
-        class_weights: torch.Tensor,
-        model: Union[PreTrainedModel, torch.nn.Module] = None,
-        args: TrainingArguments = None,
-        data_collator: Optional[DataCollator] = None,
-        train_dataset: Optional[Union[Dataset, IterableDataset, "Dataset"]] = None,
-        eval_dataset: Optional[Union[Dataset, Dict[str, Dataset], "Dataset"]] = None,
-        tokenizer: Optional[PreTrainedTokenizerBase] = None,
-        model_init: Optional[Callable[[], PreTrainedModel]] = None,
-        compute_loss_func: Optional[Callable] = None,
-        compute_metrics: Optional[Callable[[EvalPrediction], Dict]] = None,
-        callbacks: Optional[List[TrainerCallback]] = None,
-        optimizers: Tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR] = (
-            None,
-            None,
-        ),
-        preprocess_logits_for_metrics: Optional[
-            Callable[[torch.Tensor, torch.Tensor], torch.Tensor]
-        ] = None,
-    ):
-        super().__init__(
-            model,
-            args,
-            data_collator,
-            train_dataset,
-            eval_dataset,
-            tokenizer,
-            model_init,
-            compute_loss_func,
-            compute_metrics,
-            callbacks,
-            optimizers,
-            preprocess_logits_for_metrics,
-        )
-        self.class_weights = class_weights
-
-    def compute_loss(
-        self,
-        model,
-        inputs,
-        return_outputs=False,
-        # pylint: disable=unused-argument
-        num_items_in_batch=None,
-    ):
-        labels = inputs.get("labels")
-        outputs = model(**inputs)
-        logits = outputs.get("logits")
-        loss_fct = torch.nn.CrossEntropyLoss(weight=self.class_weights).to(
-            available_device
-        )
-        loss = loss_fct(logits.view(-1, self.model.config.num_labels), labels.view(-1))
-        return (loss, outputs) if return_outputs else loss
-
-
 def finetune_models(
     output_path: PathLike,
     train_datasets: Iterable[Dataset],
     eval_datasets: Iterable[Dataset],
-    eval_strategy: IntervalStrategy,
-    training_seed: int,
-    data_seed: int,
-    learning_rate: float = 5e-5,
+    tokenizer_max_length: int | None = TOKENIZER_DEFAULT_MAX_LENGTH,
+    training_arguments: TrainingArguments | None = None,
+    model_config: AutoConfig | None = None,
 ):
+    for model_name in DATASET_BENCHMARK_MODEL_NAMES:
+        print(f"fine-tuning {model_name} into {output_path}:")
+
+        for train_dataset, eval_dataset in zip(train_datasets, eval_datasets):
+            print(f"  {train_dataset.info.dataset_name}")
+            output_directory = (
+                base_directory
+                / "models"
+                / output_path
+                / model_name.split("/")[-1]
+                / train_dataset.info.dataset_name
+            )
+            training_arguments = (
+                training_arguments
+                if training_arguments is not None
+                else TrainingArguments(
+                    warmup_ratio=0.15,
+                    auto_find_batch_size=True,
+                    save_strategy=IntervalStrategy.NO,
+                    output_dir=output_directory,
+                    seed=37,
+                    data_seed=37,
+                )
+            )
+            training_arguments.output_dir = output_directory
+            training_arguments.eval_strategy = (
+                training_arguments.eval_strategy
+                if len(eval_dataset) > 0
+                else IntervalStrategy.NO
+            )
+
+            trainer = finetune_model(
+                train_dataset,
+                eval_dataset,
+                model_name,
+                training_arguments,
+                model_config,
+                tokenizer_max_length,
+            )
+            trainer.save_model()
+
+
+def finetune_model(
+    train_dataset: Dataset,
+    eval_dataset: Dataset,
+    model_name: str,
+    training_arguments: TrainingArguments,
+    model_config: AutoConfig | None = None,
+    tokenizer_max_length: int | None = TOKENIZER_DEFAULT_MAX_LENGTH,
+) -> Trainer:
     def tokenize_dataset(dataset: Dataset, tokenizer) -> Dataset:
         return dataset.map(
             lambda batch: tokenizer(
                 batch["text"],
-                max_length=DATASET_BENCHMARK_MODELS_MAX_LENGTH,
+                max_length=tokenizer_max_length,
                 truncation=True,
                 padding="max_length",
             ),
@@ -289,54 +283,29 @@ def finetune_models(
         metric_result.confusion_matrix = str(metric_result.confusion_matrix)
         return metric_result.__dict__
 
-    for model_name in DATASET_BENCHMARK_MODEL_NAMES:
-        print(f"fine-tuning {model_name} into {output_path}:")
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    train_dataset_tokenized = tokenize_dataset(train_dataset, tokenizer)
+    eval_dataset_tokenized = tokenize_dataset(eval_dataset, tokenizer)
 
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        for train_dataset, eval_dataset in zip(train_datasets, eval_datasets):
-            print(f"  {train_dataset.info.dataset_name}")
-            output_directory = (
-                base_directory
-                / "models"
-                / output_path
-                / model_name.split("/")[-1]
-                / train_dataset.info.dataset_name
-            )
+    model_config = (
+        model_config
+        if model_config is not None
+        else AutoConfig.from_pretrained(model_name)
+    )
+    model_config.num_labels = len(train_dataset.unique("label"))
 
-            train_dataset_tokenized = tokenize_dataset(train_dataset, tokenizer)
-            eval_dataset_tokenized = tokenize_dataset(eval_dataset, tokenizer)
-
-            training_arguments = TrainingArguments(
-                learning_rate=learning_rate,
-                warmup_ratio=0.15,
-                auto_find_batch_size=True,
-                eval_strategy=(
-                    eval_strategy if len(eval_dataset) > 0 else IntervalStrategy.NO
-                ),
-                save_strategy=IntervalStrategy.NO,
-                output_dir=output_directory,
-                seed=training_seed,
-                data_seed=data_seed,
-            )
-            trainer = Trainer(
-                model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
-                    model_name,
-                    num_labels=len(train_dataset.unique("label")),
-                ),
-                args=training_arguments,
-                train_dataset=train_dataset_tokenized,
-                eval_dataset=eval_dataset_tokenized,
-                compute_metrics=compute_metrics,
-                # class_weights=torch.from_numpy(
-                #     compute_class_weight(
-                #         class_weight="balanced",
-                #         classes=np.sort(train_dataset.unique("label")),
-                #         y=train_dataset["label"],
-                #     ).astype(np.float32)
-                # ),
-            )
-            trainer.train()
-            trainer.save_model(output_directory)
+    trainer = Trainer(
+        model_init=lambda: AutoModelForSequenceClassification.from_pretrained(
+            model_name,
+            config=model_config,
+        ),
+        args=training_arguments,
+        train_dataset=train_dataset_tokenized,
+        eval_dataset=eval_dataset_tokenized,
+        compute_metrics=compute_metrics,
+    )
+    trainer.train()
+    return trainer
 
 
 class MetricResult:
