@@ -5,15 +5,11 @@ from os import PathLike
 from pathlib import Path
 from typing import (
     Callable,
-    Dict,
     Generator,
     Iterable,
     List,
-    Optional,
-    Tuple,
     Type,
     TypeVar,
-    Union,
 )
 
 import evaluate
@@ -21,7 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sklearn
 import torch
-from datasets import Dataset, IterableDataset
+from datasets import Dataset
 from pandas import DataFrame
 from sklearn.metrics import ConfusionMatrixDisplay
 from tqdm.notebook import tqdm
@@ -29,13 +25,8 @@ from transformers import (
     AutoConfig,
     AutoModelForSequenceClassification,
     AutoTokenizer,
-    DataCollator,
-    EvalPrediction,
     IntervalStrategy,
-    PreTrainedModel,
-    PreTrainedTokenizerBase,
     Trainer,
-    TrainerCallback,
     TrainingArguments,
 )
 
@@ -195,7 +186,7 @@ def get_custom_models(path: PathLike[str], cls: Type[T]) -> Generator[T, None, N
                 path,
                 f"{model}/{dataset}",
                 tokenizer_name,
-                DATASET_BENCHMARK_MODELS_MAX_LENGTH,
+                TOKENIZER_DEFAULT_MAX_LENGTH,
             )
 
 
@@ -233,6 +224,7 @@ def finetune_models(
                 else TrainingArguments(
                     warmup_ratio=0.15,
                     auto_find_batch_size=True,
+                    eval_strategy=IntervalStrategy.EPOCH,
                     save_strategy=IntervalStrategy.NO,
                     output_dir=output_directory,
                     seed=37,

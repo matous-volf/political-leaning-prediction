@@ -1,12 +1,13 @@
 import os
 from abc import ABC, abstractmethod
 from copy import deepcopy
-from typing import Generator, Self, Type, TypeVar
+from typing import Generator, List, Self, Type, TypeVar
 
 import datasets
 import math
 import numpy as np
 import pandas as pd
+from datasets import DatasetInfo, concatenate_datasets
 from pandas import DataFrame
 
 from utils.base_directory import base_directory
@@ -271,7 +272,7 @@ def get_leave_one_out_datasets(
         )
         eval_datasets.append(dataset.to_huggingface())
 
-    def get_train_dataset(left_out_dataset: dataset_utils.Dataset) -> datasets.Dataset:
+    def get_train_dataset(left_out_dataset: Dataset) -> datasets.Dataset:
         train_datasets_separate = []
 
         for dataset in filter(
