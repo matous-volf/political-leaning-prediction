@@ -272,7 +272,9 @@ def get_leave_one_out_datasets(
         )
         eval_datasets.append(dataset.to_huggingface())
 
-    def get_train_dataset(left_out_dataset: Dataset) -> datasets.Dataset:
+    def get_train_dataset(
+        whole_datasets: List[Dataset], left_out_dataset: Dataset
+    ) -> datasets.Dataset:
         train_datasets_separate = []
 
         for dataset in filter(
@@ -312,7 +314,8 @@ def get_leave_one_out_datasets(
         return dataset
 
     train_datasets = [
-        get_train_dataset(left_out_dataset) for left_out_dataset in whole_datasets
+        get_train_dataset(whole_datasets, left_out_dataset)
+        for left_out_dataset in whole_datasets
     ]
 
     del whole_datasets
