@@ -283,6 +283,7 @@ def get_leave_one_out_datasets(
         ):
             if training_political_leaning:
                 if balance_center_leaning_class:
+                    assert center_leaning_class_train_size_multipliers is not None
                     dataset = dataset.take_balanced_class_sample_by_size(
                         train_dataset_sample_size,
                         (
