@@ -1,12 +1,13 @@
 import os
 from abc import ABC, abstractmethod
 from copy import deepcopy
-from typing import Generator, Self, Type, TypeVar
+from typing import Generator, List, Self, Type, TypeVar
 
 import datasets
 import math
 import numpy as np
 import pandas as pd
+from datasets import DatasetInfo, concatenate_datasets
 from pandas import DataFrame
 
 from utils.base_directory import base_directory
@@ -242,3 +243,82 @@ def systematic_sample(dataframe, size: int):
         return dataframe
     indexes = list(range(0, len(dataframe), max(1, len(dataframe) // size)))[:size]
     return dataframe.iloc[indexes]
+
+
+def get_leave_one_out_datasets(
+    whole_datasets: List[Dataset],
+    training_political_leaning: bool,
+    test_dataset_sample_fraction: float,
+    eval_dataset_sample_size: int,
+    train_dataset_sample_size: int,
+    balance_center_leaning_class: bool,
+    center_leaning_class_train_size_multipliers: dict[str, float] | None,
+    center_leaning_class_train_size_multiplier_default: float | None,
+):
+    for dataset in whole_datasets:
+        test_dataset = dataset.take_even_class_sample_by_fraction(
+            test_dataset_sample_fraction
+        )
+        # Remove the test sample from the source dataframe.
+        dataset.dataframe = dataset.dataframe.loc[
+            ~dataset.dataframe.index.isin(test_dataset.dataframe.index)
+        ]
+
+    eval_datasets = []
+    for dataset in whole_datasets:
+        dataset = dataset.take_even_class_sample_by_size(eval_dataset_sample_size)
+        dataset = dataset.transform_for_inference(
+            leaning_with_center_label_mapping if training_political_leaning else None
+        )
+        eval_datasets.append(dataset.to_huggingface())
+
+    def get_train_dataset(
+        whole_datasets: List[Dataset], left_out_dataset: Dataset
+    ) -> datasets.Dataset:
+        train_datasets_separate = []
+
+        for dataset in filter(
+            lambda dataset: dataset.name != left_out_dataset.name,
+            whole_datasets,
+        ):
+            if training_political_leaning:
+                if balance_center_leaning_class:
+                    assert center_leaning_class_train_size_multipliers is not None
+                    dataset = dataset.take_balanced_class_sample_by_size(
+                        train_dataset_sample_size,
+                        (
+                            center_leaning_class_train_size_multipliers[
+                                left_out_dataset.name
+                            ]
+                            if left_out_dataset.name
+                            in center_leaning_class_train_size_multipliers.keys()
+                            else center_leaning_class_train_size_multiplier_default
+                        ),
+                    ).transform_for_inference()
+                else:
+                    dataset = dataset.take_even_class_sample_by_size(
+                        train_dataset_sample_size
+                    ).transform_for_inference(leaning_with_center_label_mapping)
+            else:
+                dataset = dataset.take_even_class_sample_by_size(
+                    train_dataset_sample_size
+                ).transform_for_inference()
+
+            train_datasets_separate.append(dataset.to_huggingface())
+
+        dataset = concatenate_datasets(
+            train_datasets_separate,
+            info=DatasetInfo(dataset_name=left_out_dataset.name),
+        )
+        print(left_out_dataset.name)
+        print(dataset.to_pandas().groupby("label").count())
+        return dataset
+
+    train_datasets = [
+        get_train_dataset(whole_datasets, left_out_dataset)
+        for left_out_dataset in whole_datasets
+    ]
+
+    del whole_datasets
+
+    return train_datasets, eval_datasets
