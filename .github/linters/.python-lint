@@ -17,5 +17,6 @@ disable=
     no-name-in-module,
     too-few-public-methods,
     too-many-arguments,
+    too-many-positional-arguments,
     too-many-locals,
     wrong-import-order,

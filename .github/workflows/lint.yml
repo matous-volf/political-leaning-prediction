@@ -31,8 +31,12 @@ jobs:
           VALIDATE_CSS: false
           VALIDATE_CSS_PRETTIER: false
           VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_JUPYTER_NBQA_ISORT: false
+          VALIDATE_JUPYTER_NBQA_MYPY: false
+          VALIDATE_JUPYTER_NBQA_PYLINT: false
           VALIDATE_RUST_2015: false
           VALIDATE_RUST_2018: false
           VALIDATE_YAML: false
           VALIDATE_JSCPD: false
           VALIDATE_PYTHON_ISORT: false
+          VALIDATE_PYTHON_PYINK: false

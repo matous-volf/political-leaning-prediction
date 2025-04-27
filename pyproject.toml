@@ -1,0 +1,5 @@
+[tool.nbqa.addopts]
+flake8 = ["--extend-ignore=E203,E501,E731"]
+
+[tool.ruff]
+ignore = ["E731"]
