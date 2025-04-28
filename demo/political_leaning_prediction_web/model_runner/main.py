@@ -8,7 +8,9 @@ model_politicalness_pipe = pipeline(
     "zero-shot-classification", model="mlburnham/Political_DEBATE_large_v1.0"
 )
 tokenizer_leaning = AutoTokenizer.from_pretrained("microsoft/deberta-v3-large")
-model_leaning = AutoModelForSequenceClassification.from_pretrained("model_leaning")
+model_leaning = AutoModelForSequenceClassification.from_pretrained(
+    "matous-volf/political-leaning-deberta-large"
+)
 model_leaning_pipe = pipeline(
     "text-classification",
     tokenizer=tokenizer_leaning,
