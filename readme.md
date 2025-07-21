@@ -1,7 +1,7 @@
-# Political leaning prediction
+# Political Leaning and Politicalness Classification of Texts
 
 The source code of the research done in the paper
-[Predicting political leaning and politicalness of text using transformer models](paper.pdf), which addresses the
+[Political Leaning and Politicalness Classification of Texts](https://arxiv.org/abs/2507.13913), which addresses the
 challenge of automatically classifying text according to political leaning and politicalness using transformer models.
 We compose a comprehensive overview of existing datasets and models for these tasks, finding that current approaches
 create siloed solutions that perform poorly on out-of-distribution texts. To address this limitation, we compile a
@@ -107,19 +107,19 @@ following structure:
 ### BibTeX
 
 ```bibtex
-@article{volf-simko-2025-political-leaning,
-  title        = {Predicting political leaning and politicalness of text using transformer models},
-  author       = {Volf, Matous and Simko, Jakub},
+@misc{volf-simko-2025-political-leaning,
+  title        = {Political Leaning and Politicalness Classification of Texts},
+  author       = {Matous Volf and Jakub Simko},
   year         = 2025,
-  institution  = {
-    DELTA – High school of computer science and economics, Pardubice, Czechia;
-    Kempelen Institute of Intelligent Technologies, Bratislava, Slovakia
-  }
+  url          = {https://arxiv.org/abs/2507.13913},
+  eprint       = {2507.13913},
+  archiveprefix = {arXiv},
+  primaryclass = {cs.CL}
 }
 ```
 
 ### APA
 
-Volf, M. and Simko, J. (2025). Predicting political leaning and politicalness of text using transformer models. DELTA –
-High school of computer science and economics, Pardubice, Czechia; Kempelen Institute of Intelligent Technologies,
-Bratislava, Slovakia.
+Volf, M. and Simko, J. (2025). Political Leaning and Politicalness Classification of Texts. DELTA – High school of
+computer science and economics, Pardubice, Czechia; Kempelen Institute of Intelligent Technologies, Bratislava,
+Slovakia.
